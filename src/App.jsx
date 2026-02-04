@@ -5,6 +5,7 @@ import AboutSection from "./sections/AboutSection";
 import PhilosophySection from "./sections/PhilosophySection";
 import TextSection from "./sections/TextSection";
 import CloneSection from "./sections/CloneSection";
+import ArtworksSection from "./sections/ArtworksSection";
 import ProjectSection from "./sections/ProjectSection";
 
 function App() {
@@ -15,8 +16,9 @@ function App() {
       <AboutSection />
       <PhilosophySection />
       <TextSection />
-      <ProjectSection />
       <CloneSection />
+      <ArtworksSection />
+      <ProjectSection />
     </div>
   );
 }
