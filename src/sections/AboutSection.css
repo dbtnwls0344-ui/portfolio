@@ -1,0 +1,126 @@
+﻿/* sticky 깨짐 방지 */
+.about,
+.about__scrolly {
+  overflow: visible;
+}
+
+.about__scrolly {
+  position: relative;
+}
+
+/* 고정 캔버스 */
+.about__panel {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  padding: 120px;
+}
+
+/* 좌측 상단 타이틀 */
+.about__title {
+  position: absolute;
+  top: 120px;
+  left: 120px;
+  display: grid;
+  gap: 12px;
+}
+
+.about__title h3 {
+  font-size: 140px;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* 좌측 본문 */
+.about__body {
+  position: absolute;
+  top: 520px;
+  left: 120px;
+  max-width: 520px;
+  line-height: 1.8;
+}
+
+.about__body p {
+  margin: 0;
+}
+
+/* 우측 하단 이미지 */
+.about__image {
+  position: absolute;
+  right: 120px;
+  bottom: 120px;
+  width: min(640px, 46vw);
+  overflow: hidden;
+}
+
+.about__image img {
+  width: 100%;
+  display: block;
+}
+
+/* ⭐ 인디케이터 */
+.about__indicator {
+  position: absolute;
+  right: 32px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: grid;
+  gap: 14px;
+  z-index: 20;
+}
+
+.about__indicator-item {
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+
+  opacity: 0.25;
+  transform: scale(0.9);
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.about__indicator-item img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.about__indicator-item.is-active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.about__indicator-item:hover {
+  opacity: 0.6;
+}
+
+/* 스크롤 길이 */
+.about__step {
+  height: 100vh;
+}
+
+/* 모바일 */
+@media (max-width: 980px) {
+  .about__panel {
+    position: static;
+    height: auto;
+    padding: 40px;
+  }
+
+  .about__title,
+  .about__body,
+  .about__image,
+  .about__indicator {
+    position: static;
+    transform: none;
+  }
+
+  .about__steps {
+    display: none;
+  }
+}

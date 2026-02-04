@@ -1,0 +1,137 @@
+.philosophy {
+  --philo-bg: #d9d7d4;
+  --philo-text: #b11226;
+  --philo-accent: #b11226;
+  --philo-border: rgba(177, 18, 38, 0.35);
+  --philo-star-a: 1;
+  --philo-star-b: 0;
+  background: var(--philo-bg);
+  color: var(--philo-text);
+  transition:
+    background-color 0.6s ease,
+    color 0.6s ease;
+}
+
+.philosophy__inner {
+  width: min(1600px, 100%);
+  margin: 0 auto;
+  display: grid;
+  gap: 48px;
+}
+
+.philosophy__quote {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+  font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+.philosophy__quote p {
+  margin: 0;
+  color: inherit;
+}
+
+.philosophy__star-wrap {
+  position: relative;
+  width: 42px;
+  height: 42px;
+}
+
+.philosophy__star {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: var(--philo-star-a);
+  transition: opacity 0.6s ease;
+}
+
+.philosophy__star--swap {
+  opacity: var(--philo-star-b);
+}
+
+.philosophy__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.5fr) minmax(0, 1.5fr);
+  gap: 40px;
+  align-items: start;
+}
+
+.philosophy__left {
+  display: grid;
+  gap: 18px;
+  justify-items: start;
+}
+
+.philosophy__rail {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-size: 0.9rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--philo-text);
+}
+
+.philosophy__dropcap {
+  font-size: clamp(12rem, 28vw, 26rem);
+  font-weight: 600;
+  line-height: 0.8;
+  color: var(--philo-text);
+}
+
+.philosophy__list {
+  display: grid;
+  gap: 28px;
+}
+
+.philosophy__item {
+  border-bottom: 1px solid var(--philo-border);
+  padding-bottom: 18px;
+}
+
+.philosophy__item h3 {
+  margin: 0 0 6px 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: inherit;
+}
+
+.philosophy__item p {
+  margin: 0 0 8px 0;
+  font-size: 0.92rem;
+  color: inherit;
+  line-height: 1.7;
+}
+
+@media (max-width: 980px) {
+  .philosophy__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .philosophy__left {
+    grid-auto-flow: column;
+    align-items: end;
+  }
+
+  .philosophy__rail {
+    writing-mode: horizontal-tb;
+    transform: none;
+    letter-spacing: 0.2em;
+  }
+
+  .philosophy__dropcap {
+    font-size: clamp(8rem, 36vw, 16rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .philosophy {
+    transition: none;
+  }
+
+  .philosophy__star {
+    transition: none;
+  }
+}

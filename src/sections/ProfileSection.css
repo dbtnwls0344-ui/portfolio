@@ -1,0 +1,160 @@
+.profile__inner {
+  width: min(1700px, 100%);
+  margin: 200px auto;
+}
+
+.profile__stage {
+  position: relative;
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  display: block;
+  width: min(1620px, 95vw);
+  aspect-ratio: 16 / 9;
+  perspective: 1600px;
+  rotate: -11deg;
+}
+
+.profile__closed,
+.profile__open {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transition: opacity 0.35s ease;
+}
+
+.profile__closed img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: top center;
+}
+
+.profile__closed {
+  opacity: 1;
+  z-index: 2;
+}
+
+.profile__open {
+  opacity: 0;
+  z-index: 1;
+}
+
+.profile__stage.is-open .profile__closed {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.profile__stage.is-open .profile__open {
+  opacity: 1;
+}
+
+.profile__spread {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.profile__board {
+  position: absolute;
+  top: 0%;
+  width: auto;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  transition:
+    transform 0.6s ease,
+    opacity 0.5s ease;
+  transform-style: preserve-3d;
+  z-index: 2;
+}
+
+.profile__board--left {
+  right: 50%;
+  transform-origin: right center;
+  transform: rotateY(-75deg);
+  opacity: 0.3;
+}
+
+.profile__board--right {
+  left: 49.9%;
+  transform-origin: left center;
+  transform: none;
+  opacity: 1;
+}
+
+.profile__stage.is-open .profile__board--left {
+  transform: rotateY(0deg);
+  opacity: 1;
+}
+
+.profile__asset {
+  position: absolute;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+  transition:
+    transform 0.5s ease,
+    opacity 0.5s ease;
+  opacity: 0;
+  transform: translateY(14px);
+  z-index: 3;
+}
+
+.profile__asset--photo {
+  width: 18%;
+  left: 16%;
+  top: 22%;
+  transition-delay: 0.1s;
+}
+
+.profile__asset--polaroid {
+  width: 15%;
+  right: 31.5%;
+  top: -2.5%;
+  transition-delay: 0.16s;
+  rotate: -20deg;
+}
+
+.profile__asset--clip {
+  width: 9%;
+  right: 4%;
+  top: 25%;
+  transition-delay: 0.22s;
+}
+
+.profile__stage.is-open .profile__asset {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .profile__stage {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    cursor: default;
+  }
+
+  .profile__closed {
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  .profile__open {
+    opacity: 1;
+  }
+
+  .profile__board--left,
+  .profile__board--right {
+    transform: rotateY(0deg) translateX(0);
+    opacity: 1;
+  }
+
+  .profile__asset {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
