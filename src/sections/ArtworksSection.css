@@ -76,15 +76,6 @@
     box-shadow 0.35s ease;
 }
 
-.artworks-cover::after {
-  content: "";
-  position: absolute;
-  inset: 12px;
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  pointer-events: none;
-}
-
 .artworks-cover:hover {
   transform: translateY(-6px);
   box-shadow: 0 34px 70px rgba(0, 0, 0, 0.55);

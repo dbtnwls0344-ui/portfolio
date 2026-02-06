@@ -1,8 +1,8 @@
-/* =========================
-   SECTION
+﻿/* =========================
+   SECTION (전역 .section 영향 차단)
    ========================= */
 
-.project-section {
+.project-section.section {
   background: #9c2020;
   color: #ffffff;
   position: relative;
@@ -12,6 +12,11 @@
 .project-section__stage {
   display: grid;
   gap: 48px;
+}
+
+.project-section__header {
+  width: min(1108px, 100%);
+  margin: 0 auto;
 }
 
 .project-section__title {
@@ -47,15 +52,10 @@
   --lid-height: 413px;
   --body-height: 460px;
   --file-width: 1074px;
-  --body-offset: -120px;
-  --shadow-soft: 0 2.45px 12.04px rgba(0, 0, 0, 0.07);
-  --shadow-tight: 1.72px 1.72px 1.81px rgba(0, 0, 0, 0.07);
+  --body-offset: -38px;
 
-  --string-top: 0px;
-  --string-open-x: -140%;
-  --string-open-y: 18px;
-  --string-open-rotate: -14deg;
   --file-height: clamp(220px, 18vw, 280px);
+  --tag-height: 48px;
 
   position: relative;
   width: min(var(--folder-width), 100%);
@@ -71,7 +71,7 @@
 
 .project-folder__toggle {
   position: absolute;
-  top: 0;
+  top: 160px;
   left: 0;
   width: 100%;
   height: var(--lid-height);
@@ -80,53 +80,6 @@
   cursor: pointer;
   z-index: 6;
   transition: transform 0.6s ease;
-}
-
-/* =========================
-   LID
-   ========================= */
-
-.project-folder__lid {
-  position: relative;
-  height: var(--lid-height);
-  transform-origin: bottom center;
-  transition: transform 0.6s ease;
-  z-index: 4;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--shadow-soft);
-}
-
-/* =========================
-   BODY (중요)
-   ========================= */
-
-.project-folder__body {
-  position: relative;
-  height: var(--body-height);
-  margin-top: var(--body-offset);
-  overflow: visible;
-  z-index: 1;
-  border-radius: 8px;
-}
-
-/* 바디 이미지(회색 판)는 항상 파일 위 */
-.project-folder__body > .project-folder__panel {
-  position: relative;
-  z-index: 3;
-  pointer-events: none;
-}
-
-/* =========================
-   PANEL IMG
-   ========================= */
-
-.project-folder__panel {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  border-radius: 8px;
 }
 
 /* =========================
@@ -149,14 +102,58 @@
   width: 678px;
   height: 1000px;
   left: 71.25%;
-  top: var(--string-top);
   transform-origin: 50% 0%;
   transition: transform 1s ease;
 }
 
 .project-folder--open .project-folder__string-svg {
-  transform: translate(var(--string-open-x), var(--string-open-y))
-    rotate(var(--string-open-rotate));
+  transform: translate(-140%, 18px) rotate(-14deg);
+}
+
+/* =========================
+   LID
+   ========================= */
+
+.project-folder__lid {
+  position: relative;
+  height: var(--lid-height);
+  transform-origin: bottom center;
+  transition: transform 0.6s ease;
+  z-index: 4;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 40px rgba(0, 0, 0, 0.35),
+    0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   BODY
+   ========================= */
+
+.project-folder__body {
+  position: relative;
+  height: var(--body-height);
+  margin-top: var(--body-offset);
+  z-index: 1;
+}
+
+.project-folder__body > .project-folder__panel {
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* =========================
+   PANEL IMG
+   ========================= */
+
+.project-folder__panel {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
 /* =========================
@@ -172,7 +169,7 @@
 }
 
 .project-folder__button--top {
-  top: calc(var(--lid-height) * 1);
+  top: var(--lid-height);
   transition: transform 0.6s ease;
 }
 
@@ -195,26 +192,27 @@
 }
 
 .project-folder--open .project-folder__button--top {
-  transform: translate(-50%, -50%) translateY(-228px);
+  transform: translate(-50%, -50%) translateY(-300px);
 }
 
 /* =========================
-   SLOT (파일 영역, 바디 안)
+   SLOT (파일 영역 기준점)
    ========================= */
 
 .project-folder__slot {
   position: absolute;
   left: 50%;
-  top: -20%;
+  top: -51%; /* ❗ -35% → 안정값 */
   transform: translateX(-50%);
   width: min(var(--file-width), 94%);
-  height: 72%;
+  height: 100%;
 
   opacity: 0;
   pointer-events: none;
   overflow: visible;
 
-  z-index: 4;
+  z-index: 2;
+
   transition:
     opacity 0.4s ease,
     transform 0.4s ease;
@@ -237,19 +235,16 @@
 }
 
 /* =========================
-   FILE CARD (겹침 + 순서)
+   FILE CARD (겹쳐진 탭 스택)
    ========================= */
 
 .project-file {
-  --stack-gap: 30px;
-  --lift: 14px;
-  --stack-y: 18px;
-  --tag-lift: 10px;
-  --tag-height: 48px;
+  --stack-y: 64px; /* ❗ 15px → 정상 겹침 */
+  --tag-lift: 14px;
 
   position: absolute;
   left: 50%;
-  top: calc(0px + (var(--file-index) * var(--stack-y)));
+  top: calc(var(--file-index) * var(--stack-y));
   transform: translateX(-50%);
   width: 100%;
   height: var(--file-height);
@@ -262,89 +257,106 @@
   cursor: pointer;
 
   border-radius: 18px;
-  overflow: hidden;
-
-  box-shadow: 0 16px 26px rgba(0, 0, 0, 0.25);
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease;
-}
-
-.project-file:hover {
-  transform: translateX(-50%) translateY(calc(var(--lift) * -1));
-  box-shadow: 0 28px 34px rgba(0, 0, 0, 0.32);
+  overflow: visible;
+  transition: transform 0.22s ease;
 }
 
 .project-file:disabled {
   cursor: default;
 }
 
-.project-file__tag {
-  position: absolute;
-  top: 0;
-  left: 24px;
-  display: inline-flex;
-  align-items: center;
-  height: var(--tag-height);
-  padding: 0 22px;
-  border-radius: 22px 22px 0 0;
-  font-family: var(--mono);
-  font-size: 0.95rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  transform: translateY(0);
-  transition: transform 0.25s ease;
-  pointer-events: auto;
-  color: #fff;
-  background: #141414;
+.project-file:not(:disabled):hover,
+.project-file:not(:disabled):focus-visible {
+  transform: translateX(-50%) translateY(-12px);
 }
 
-.project-file__tag:hover {
-  transform: translateY(calc(var(--tag-lift) * -1));
-}
-
+/* 카드 본체 */
 .project-file__card {
   position: absolute;
   inset: 0;
   border-radius: 18px;
-  background: #e8e2e2;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  background: var(--card-bg, #e8e2e2);
+
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08);
 }
 
-.project-file__card--art {
-  background: #ded6d6;
+/* =========================
+   TAG (이름 탭만 인터랙션)
+   ========================= */
+
+.project-file__tag {
+  position: absolute;
+  top: 0;
+  left: 28px;
+  transform: translateY(-24px);
+
+  height: var(--tag-height);
+  padding: 0 22px;
+
+  display: inline-flex;
+  align-items: center;
+
+  border-radius: 18px 18px 0 0;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #fff;
+  background: var(--tag-bg, #141414);
+
+  box-shadow: none;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
 }
+
+.project-file__tag:hover {
+  transform: translateY(calc(-24px - var(--tag-lift)));
+}
+
+/* =========================
+   CARD COLOR PRESETS
+   ========================= */
 
 .project-file__card--monami {
-  background: #0f0f0f;
+  --card-bg: #0f0f0f;
 }
-
+.project-file__card--art {
+  --card-bg: #ded6d6;
+}
 .project-file__card--personal {
-  background: #f4f1f1;
+  --card-bg: #f4f1f1;
+}
+.project-file__card--dugout {
+  --card-bg: #7a0b0b;
 }
 
-.project-file__card--dugout {
-  background: #7a0b0b;
-}
+/* =========================
+   TAG COLOR PRESETS
+   ========================= */
 
 .project-file__tag--monami {
-  background: #0a0a0a;
   color: #ffffff;
+  left: 22px;
+  --tag-bg: #0f0f0f;
 }
-
 .project-file__tag--dugout {
-  background: #7a0b0b;
   color: #f2f2f2;
+  left: 220px;
+  --tag-bg: #7a0b0b;
 }
-
 .project-file__tag--art {
-  background: #e6e0e0;
   color: #0a9f62;
+  left: 90px;
+  --tag-bg: #ded6d6;
 }
-
 .project-file__tag--personal {
-  background: #f4f1f1;
   color: #9c2020;
+  left: 150px;
+  --tag-bg: #f4f1f1;
   text-transform: none;
   letter-spacing: 0.02em;
   font-weight: 600;
@@ -358,11 +370,155 @@
 @media (max-width: 1100px) {
   .project-folder {
     --folder-width: 92vw;
-    --string-top: -22vw;
   }
 
   .project-folder__string-svg {
     width: 60vw;
     height: auto;
+  }
+}
+
+/* =========================
+   MODAL
+   ========================= */
+
+.project-section--modal .project-section__stage {
+  filter: blur(6px);
+  transform: scale(0.985);
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.project-modal__overlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(20, 8, 8, 0.62);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.project-modal__panel {
+  position: relative;
+  width: min(1120px, 94vw);
+  background: #0b0b0b;
+  color: #f2f2f2;
+  border-radius: 22px;
+  padding: clamp(24px, 3vw, 40px);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  z-index: 1;
+}
+
+.project-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.project-modal__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 42px);
+  align-items: start;
+}
+
+.project-modal__image {
+  position: relative;
+}
+
+.project-modal__image img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  background: #f1f1f1;
+}
+
+.project-modal__badge {
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  background: #ffffff;
+  color: #121212;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  padding: 6px 12px;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.project-modal__info h3 {
+  margin: 0 0 14px;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+}
+
+.project-modal__category {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.project-modal__summary {
+  margin: 0 0 22px;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+.project-modal__meta p {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.project-modal__bars {
+  display: grid;
+  gap: 10px;
+}
+
+.project-modal__bars span {
+  display: block;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffffff, #cfcfcf);
+  opacity: 0.9;
+}
+
+.project-modal__bars span:nth-child(1) {
+  width: 92%;
+}
+
+.project-modal__bars span:nth-child(2) {
+  width: 86%;
+}
+
+.project-modal__bars span:nth-child(3) {
+  width: 72%;
+}
+
+@media (max-width: 860px) {
+  .project-modal__content {
+    grid-template-columns: 1fr;
+  }
+
+  .project-modal__badge {
+    left: 12px;
   }
 }

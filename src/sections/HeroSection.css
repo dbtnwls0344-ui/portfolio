@@ -101,7 +101,7 @@
 
 /* ✅ hover: 이동은 변수 하나만 변경, 교체는 opacity만 */
 .hero__card:hover {
-  --mid-tx: 149px; /* 원하는 만큼 조절 */
+  --mid-tx: 167px; /* 원하는 만큼 조절 */
 }
 
 .hero__card:hover .hero__img--mid {
