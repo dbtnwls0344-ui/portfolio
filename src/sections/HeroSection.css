@@ -4,13 +4,12 @@
   align-items: flex-start;
   background: #dfdfdf;
   color: #a61e24;
-  padding-top: 80px;
+  padding-top: 20px;
 }
 
 .hero__inner {
   width: min(1800px, 100%);
   margin: 0 auto;
-  padding: 0 24px 80px;
 
   display: grid;
   grid-template-columns: 1fr;
@@ -28,7 +27,7 @@
 .hero__copy h1 {
   font-size: 140px;
   font-weight: 900;
-  margin: 0 0 12px 0;
+  margin: 0 0 -2px 0;
   -webkit-text-stroke: 3px #6d1a1a;
   color: #a61e24;
   white-space: nowrap;
@@ -36,9 +35,10 @@
 
 .hero__subtitle {
   font-family: var(--mono);
-  font-size: 60px;
+  font-size: 38px;
   margin: 0;
-  letter-spacing: 0.08em;
+  letter-spacing: -2;
+  line-height: 1.32;
   color: #a61e24;
 }
 
@@ -51,11 +51,11 @@
 
 .hero__card {
   position: relative;
-  width: min(60%, 92vw);
+  width: min(53%, 92vw);
   aspect-ratio: 16 / 9;
 
   /* ✅ mid & mid-hover가 '같이' 움직이게 만드는 공통 변수 */
-  --mid-tx: -4px;
+  --mid-tx: 0px;
 }
 
 .hero__img {
@@ -101,7 +101,7 @@
 
 /* ✅ hover: 이동은 변수 하나만 변경, 교체는 opacity만 */
 .hero__card:hover {
-  --mid-tx: 187px; /* 원하는 만큼 조절 */
+  --mid-tx: 149px; /* 원하는 만큼 조절 */
 }
 
 .hero__card:hover .hero__img--mid {
@@ -117,7 +117,7 @@
   justify-self: end;
   align-self: end;
   font-family: var(--mono);
-  font-size: 0.9rem;
+  font-size: 28px;
   letter-spacing: 0.2em;
   color: #a61e24;
   margin-top: 12px;

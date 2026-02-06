@@ -2,15 +2,12 @@
 import { gsap } from "gsap";
 import { interpolate } from "flubber";
 import "./ProjectSection.css";
+
 import aboutIconWhite from "../assets/images/about-icon-star-white.svg";
 import folderLid from "../assets/images/project-folder-lid.png";
 import folderBody from "../assets/images/project-folder-body.png";
 import buttonTop from "../assets/images/project-button-top.png";
 import buttonBottom from "../assets/images/project-button-bottom.png";
-import fileThumb01 from "../assets/images/project-file-01.png";
-import fileThumb02 from "../assets/images/project-file-02.png";
-import fileThumb03 from "../assets/images/project-file-03.png";
-import fileThumb04 from "../assets/images/project-file-04.png";
 import detail01 from "../assets/images/project-detail-01.png";
 import detail02 from "../assets/images/project-detail-02.png";
 import detail03 from "../assets/images/project-detail-03.png";
@@ -25,8 +22,10 @@ const LOOSE_PATH =
 function ProjectSection() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeFile, setActiveFile] = useState(null);
+
   const stringPathRef = useRef(null);
-  const morphTweenRef = useRef(null);
+  const closeBtnRef = useRef(null);
+  const lastActiveElRef = useRef(null);
 
   const files = useMemo(
     () => [
@@ -37,8 +36,10 @@ function ProjectSection() {
         category: "Branding",
         summary:
           "관람에 머무르던 야구 팬 경험을 기록하고, 공유하며, 확장하는 모바일 앱 프로젝트입니다.",
-        thumb: fileThumb01,
         detail: detail01,
+        tag: "MONAMI",
+        tagStyle: "project-file__tag--monami",
+        cardStyle: "project-file__card--monami",
       },
       {
         id: "art",
@@ -47,8 +48,10 @@ function ProjectSection() {
         category: "Art",
         summary:
           "경험의 흐름을 조형적으로 정리하고, 시각적 리듬으로 재구성한 시리즈입니다.",
-        thumb: fileThumb02,
         detail: detail02,
+        tag: "ART",
+        tagStyle: "project-file__tag--art",
+        cardStyle: "project-file__card--art",
       },
       {
         id: "personal",
@@ -57,8 +60,10 @@ function ProjectSection() {
         category: "Identity",
         summary:
           "나의 태도와 시선이 드러나는 톤을 정리하고, 브랜드 언어를 설계했습니다.",
-        thumb: fileThumb03,
         detail: detail03,
+        tag: "personalbranding",
+        tagStyle: "project-file__tag--personal",
+        cardStyle: "project-file__card--personal",
       },
       {
         id: "uiux",
@@ -67,55 +72,72 @@ function ProjectSection() {
         category: "Product",
         summary:
           "사용자 경험을 빠르게 검증하고 구현까지 이어지는 프로토타입 실험입니다.",
-        thumb: fileThumb04,
         detail: detail04,
+        tag: "DUG  OUT",
+        tagStyle: "project-file__tag--dugout",
+        cardStyle: "project-file__card--dugout",
       },
     ],
     [],
   );
 
-  useLayoutEffect(() => {
-    if (!stringPathRef.current) return;
-
-    const morph = interpolate(TIED_PATH, LOOSE_PATH, {
-      maxSegmentLength: 2,
-    });
-
-    const state = { t: isOpen ? 1 : 0 };
-    stringPathRef.current.setAttribute("d", morph(state.t));
-
-    if (morphTweenRef.current) morphTweenRef.current.kill();
-    morphTweenRef.current = gsap.to(state, {
-      t: isOpen ? 1 : 0,
-      duration: 1.5,
-      ease: "sine.inOut",
-      onUpdate: () => {
-        if (!stringPathRef.current) return;
-        stringPathRef.current.setAttribute("d", morph(state.t));
-      },
-    });
-
-    return () => {
-      if (morphTweenRef.current) morphTweenRef.current.kill();
-    };
-  }, [isOpen]);
+  const handleClose = () => setActiveFile(null);
 
   const handleFolderToggle = () => {
     setIsOpen((prev) => !prev);
     if (activeFile) setActiveFile(null);
   };
 
-  const handleFileOpen = (file) => {
-    setActiveFile(file);
-  };
+  const handleFileOpen = (file) => setActiveFile(file);
 
-  const handleClose = () => {
-    setActiveFile(null);
-  };
+  // 끈 모핑
+  useLayoutEffect(() => {
+    if (!stringPathRef.current) return;
+
+    const morph = interpolate(TIED_PATH, LOOSE_PATH, { maxSegmentLength: 2 });
+    const state = { t: isOpen ? 1 : 0 };
+    stringPathRef.current.setAttribute("d", morph(state.t));
+
+    const tween = gsap.to(state, {
+      t: isOpen ? 1 : 0,
+      duration: 1.5,
+      ease: "sine.inOut",
+      onUpdate: () => stringPathRef.current?.setAttribute("d", morph(state.t)),
+    });
+
+    return () => tween.kill();
+  }, [isOpen]);
+
+  // 모달: ESC/스크롤 잠금/포커스
+  useLayoutEffect(() => {
+    if (!activeFile) return;
+
+    lastActiveElRef.current = document.activeElement;
+
+    const onKeyDown = (e) => {
+      if (e.key === "Escape") handleClose();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+
+    const prevOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    closeBtnRef.current?.focus();
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      document.body.style.overflow = prevOverflow;
+
+      if (lastActiveElRef.current?.focus) lastActiveElRef.current.focus();
+    };
+  }, [activeFile]);
 
   return (
     <section
-      className={`project-section section${activeFile ? " project-section--modal" : ""}`}
+      className={`project-section section${
+        activeFile ? " project-section--modal" : ""
+      }`}
       id="project"
     >
       <div className="project-section__stage">
@@ -144,6 +166,7 @@ function ProjectSection() {
           >
             <span className="sr-only">Toggle project folder</span>
           </button>
+
           <div className="project-folder__string" aria-hidden="true">
             <svg
               className="project-folder__string-svg"
@@ -161,6 +184,7 @@ function ProjectSection() {
               />
             </svg>
           </div>
+
           <div className="project-folder__lid">
             <img
               className="project-folder__panel"
@@ -169,6 +193,7 @@ function ProjectSection() {
               aria-hidden
             />
           </div>
+
           <div className="project-folder__body">
             <img
               className="project-folder__panel"
@@ -176,6 +201,7 @@ function ProjectSection() {
               alt=""
               aria-hidden
             />
+
             <div className="project-folder__slot" aria-hidden={!isOpen}>
               <div className="project-folder__files">
                 {files.map((file, index) => (
@@ -183,21 +209,31 @@ function ProjectSection() {
                     key={file.id}
                     className="project-file"
                     type="button"
-                    style={{ "--file-index": index }}
+                    style={{
+                      "--file-index": index,
+                      "--file-image": `url(${file.thumb})`,
+                    }}
                     onClick={() => handleFileOpen(file)}
+                    disabled={!isOpen}
+                    tabIndex={isOpen ? 0 : -1}
                     aria-label={`${file.title} 상세 보기`}
                   >
-                    <img
-                      className="project-file__thumb"
-                      src={file.thumb}
-                      alt=""
-                      loading="lazy"
+                    <span
+                      className={`project-file__card ${file.cardStyle}`}
+                      aria-hidden="true"
                     />
+                    <span
+                      className={`project-file__tag ${file.tagStyle}`}
+                      aria-hidden="true"
+                    >
+                      {file.tag}
+                    </span>
                   </button>
                 ))}
               </div>
             </div>
           </div>
+
           <img
             className="project-folder__button project-folder__button--top"
             src={buttonTop}
@@ -214,7 +250,12 @@ function ProjectSection() {
       </div>
 
       {activeFile && (
-        <div className="project-modal" role="dialog" aria-modal="true">
+        <div
+          className="project-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby="project-modal-title"
+        >
           <button
             className="project-modal__overlay"
             type="button"
@@ -222,14 +263,17 @@ function ProjectSection() {
           >
             <span className="sr-only">Close project detail</span>
           </button>
-          <div className="project-modal__panel">
+
+          <div className="project-modal__panel" role="document">
             <button
+              ref={closeBtnRef}
               className="project-modal__close"
               type="button"
               onClick={handleClose}
             >
               Close
             </button>
+
             <div className="project-modal__content">
               <div className="project-modal__image">
                 <img
@@ -239,14 +283,16 @@ function ProjectSection() {
                 />
                 <span className="project-modal__badge">{activeFile.label}</span>
               </div>
+
               <div className="project-modal__info">
-                <h3>{activeFile.title}</h3>
+                <h3 id="project-modal-title">{activeFile.title}</h3>
                 <p className="project-modal__category">{activeFile.category}</p>
                 <p className="project-modal__summary">{activeFile.summary}</p>
+
                 <div className="project-modal__meta">
                   <div>
                     <p>My Role / Contribution</p>
-                    <div className="project-modal__bars">
+                    <div className="project-modal__bars" aria-hidden="true">
                       <span />
                       <span />
                       <span />

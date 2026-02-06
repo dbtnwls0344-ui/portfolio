@@ -1,15 +1,24 @@
 import "./TextSection.css";
 import aboutIconWhite from "../assets/images/about-icon-star-white.svg";
 
-function TextSection() {
+function TextSection({ variant = "default" }) {
+  const isProf = variant === "prof";
+  const title = isProf ? "ABOUT ME" : "TEXT SECTION";
+  const subtitle = isProf
+    ? "I sense experiences, translate meaning, and build structure."
+    : "I sense experiences, translate meaning, and build structure.";
+
   return (
-    <section className="text-section section" id="text">
-      <img
+    <section
+      className={`text-section section${isProf ? " text-section--prof" : ""}`}
+      id={isProf ? "about-me" : "text"}
+    >
+      {/* <img
         className="text-section__star text-section__star--hero"
         src={aboutIconWhite}
         alt=""
         aria-hidden
-      />
+      /> */}
       <div className="text-section__inner">
         <div className="text-section__title-wrap">
           <img
@@ -18,16 +27,16 @@ function TextSection() {
             alt=""
             aria-hidden
           />
-          <h2 className="text-section__title">TEXT SECTION</h2>
+          <h2 className="text-section__title">{title}</h2>
         </div>
         <p className="text-section__subtitle">
-          I sense experiences, translate meaning, and build structure.
-          <img
+          {subtitle}
+          {/* <img
             className="text-section__star text-section__star--spark"
             src={aboutIconWhite}
             alt=""
             aria-hidden
-          />
+          /> */}
         </p>
       </div>
     </section>

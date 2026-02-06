@@ -1,4 +1,12 @@
-﻿/* sticky 깨짐 방지 */
+﻿/* =========================
+   ABOUT SECTION BASE
+   ========================= */
+
+.about {
+  background: #dfdfdf; /* 👈 원하는 배경색 */
+}
+
+/* sticky 깨짐 방지 */
 .about,
 .about__scrolly {
   overflow: visible;
@@ -8,15 +16,22 @@
   position: relative;
 }
 
-/* 고정 캔버스 */
+/* =========================
+   STICKY PANEL
+   ========================= */
+
 .about__panel {
   position: sticky;
   top: 0;
   height: 100vh;
   padding: 120px;
+  will-change: transform, opacity;
 }
 
-/* 좌측 상단 타이틀 */
+/* =========================
+   TITLE
+   ========================= */
+
 .about__title {
   position: absolute;
   top: 120px;
@@ -25,26 +40,48 @@
   gap: 12px;
 }
 
-.about__title h3 {
-  font-size: 140px;
-  margin: 0;
-  font-weight: 500;
+.about__title img {
+  width: 53px;
 }
 
-/* 좌측 본문 */
+.about__title h3 {
+  color: #9c2020;
+  font-size: clamp(3rem, 8vw, 8.75rem);
+  margin: 0;
+  font-weight: 600;
+  padding-left: 80px;
+  letter-spacing: -2px;
+  line-height: 1.1;
+}
+
+.about__title h3:lang(ko) {
+  line-height: 1.32;
+}
+
+/* =========================
+   BODY TEXT
+   ========================= */
+
 .about__body {
   position: absolute;
   top: 520px;
   left: 120px;
   max-width: 520px;
-  line-height: 1.8;
+
+  color: #9c2020;
+  font-size: 24px;
+  line-height: 1.32;
+  letter-spacing: -0.02em;
 }
 
 .about__body p {
   margin: 0;
 }
 
-/* 우측 하단 이미지 */
+/* =========================
+   IMAGE
+   ========================= */
+
 .about__image {
   position: absolute;
   right: 120px;
@@ -58,7 +95,10 @@
   display: block;
 }
 
-/* ⭐ 인디케이터 */
+/* =========================
+   INDICATOR
+   ========================= */
+
 .about__indicator {
   position: absolute;
   right: 32px;
@@ -99,12 +139,18 @@
   opacity: 0.6;
 }
 
-/* 스크롤 길이 */
+/* =========================
+   SCROLL LENGTH
+   ========================= */
+
 .about__step {
   height: 100vh;
 }
 
-/* 모바일 */
+/* =========================
+   MOBILE
+   ========================= */
+
 @media (max-width: 980px) {
   .about__panel {
     position: static;

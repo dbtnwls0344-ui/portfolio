@@ -1,4 +1,8 @@
-﻿.project-section {
+/* =========================
+   SECTION
+   ========================= */
+
+.project-section {
   background: #9c2020;
   color: #ffffff;
   position: relative;
@@ -6,21 +10,19 @@
 }
 
 .project-section__stage {
-  width: min(1200px, 100%);
-  margin: 0 auto;
-  padding: clamp(100px, 14vw, 160px) 24px clamp(140px, 16vw, 200px);
   display: grid;
   gap: 48px;
 }
 
 .project-section__title {
   margin: 0;
-  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  font-size: clamp(3rem, 8vw, 8.75rem);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  letter-spacing: -2px;
   display: inline-flex;
   align-items: center;
   gap: 16px;
+  line-height: 1.1;
 }
 
 .project-section__star {
@@ -29,37 +31,43 @@
 }
 
 .project-section__subtitle {
-  margin: 12px 0 0 0;
-  font-size: 1rem;
-  letter-spacing: 0.12em;
+  margin-top: 12px;
+  font-size: clamp(1rem, 2.4vw, 1.75rem);
+  letter-spacing: -2px;
   text-transform: uppercase;
   font-weight: 600;
 }
 
+/* =========================
+   FOLDER BASE
+   ========================= */
+
 .project-folder {
-  --folder-width: 1143px;
-  --lid-height: 445px;
-  --body-height: 440px;
+  --folder-width: 1108px;
+  --lid-height: 413px;
+  --body-height: 460px;
   --file-width: 1074px;
-  --body-offset: -33px;
-  --string-top: -260px;
-  --string-closed-x: -50%;
-  --string-closed-y: 0px;
-  --string-closed-rotate: 0deg;
-  --string-closed-scale-x: 1;
-  --string-closed-scale-y: 1;
+  --body-offset: -120px;
+  --shadow-soft: 0 2.45px 12.04px rgba(0, 0, 0, 0.07);
+  --shadow-tight: 1.72px 1.72px 1.81px rgba(0, 0, 0, 0.07);
+
+  --string-top: 0px;
   --string-open-x: -140%;
   --string-open-y: 18px;
   --string-open-rotate: -14deg;
-  --string-open-scale-x: 1;
-  --string-open-scale-y: 1;
-  --string-stroke-closed: 16;
-  --string-stroke-open: 9;
+  --file-height: clamp(220px, 18vw, 280px);
+
   position: relative;
   width: min(var(--folder-width), 100%);
   margin: 0 auto;
   padding-top: 160px;
+
+  perspective: 1200px;
 }
+
+/* =========================
+   TOGGLE
+   ========================= */
 
 .project-folder__toggle {
   position: absolute;
@@ -71,40 +79,59 @@
   border: none;
   cursor: pointer;
   z-index: 6;
-  outline: none;
+  transition: transform 0.6s ease;
 }
 
-.project-folder__toggle:focus-visible {
-  outline: none;
-}
-
-.project-folder__lid,
-.project-folder__body {
-  width: 100%;
-  position: relative;
-}
+/* =========================
+   LID
+   ========================= */
 
 .project-folder__lid {
+  position: relative;
   height: var(--lid-height);
   transform-origin: bottom center;
   transition: transform 0.6s ease;
-  overflow: visible;
-  z-index: 2;
+  z-index: 4;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
 }
 
+/* =========================
+   BODY (중요)
+   ========================= */
+
 .project-folder__body {
+  position: relative;
   height: var(--body-height);
   margin-top: var(--body-offset);
-  overflow: hidden;
+  overflow: visible;
   z-index: 1;
+  border-radius: 8px;
 }
+
+/* 바디 이미지(회색 판)는 항상 파일 위 */
+.project-folder__body > .project-folder__panel {
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* =========================
+   PANEL IMG
+   ========================= */
 
 .project-folder__panel {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+  border-radius: 8px;
 }
+
+/* =========================
+   STRING
+   ========================= */
 
 .project-folder__string {
   position: absolute;
@@ -113,286 +140,229 @@
   transform: translateX(-50%);
   width: 100%;
   height: var(--lid-height);
-  z-index: 3;
   pointer-events: none;
+  z-index: 5;
 }
 
 .project-folder__string-svg {
   position: absolute;
-  display: block;
   width: 678px;
-  height: 946px;
-  left: 53.25%;
+  height: 1000px;
+  left: 71.25%;
   top: var(--string-top);
-  transform: translate(var(--string-closed-x), var(--string-closed-y))
-    rotate(var(--string-closed-rotate))
-    scale(var(--string-closed-scale-x), var(--string-closed-scale-y));
   transform-origin: 50% 0%;
-  max-width: none;
-  max-height: none;
-  filter: drop-shadow(0 10px 10px rgba(0, 0, 0, 0.35));
   transition: transform 1s ease;
 }
 
-.project-folder__string-path {
-  stroke-width: var(--string-stroke-closed);
-  transition: stroke-width 1s ease;
+.project-folder--open .project-folder__string-svg {
+  transform: translate(var(--string-open-x), var(--string-open-y))
+    rotate(var(--string-open-rotate));
 }
+
+/* =========================
+   BUTTONS
+   ========================= */
 
 .project-folder__button {
   position: absolute;
   left: 50%;
-  width: 93px;
-  height: 92px;
   transform: translate(-50%, -50%);
   pointer-events: none;
-  z-index: 4;
+  z-index: 5;
 }
 
 .project-folder__button--top {
-  top: calc(var(--lid-height) * 0.62);
+  top: calc(var(--lid-height) * 1);
   transition: transform 0.6s ease;
 }
 
 .project-folder__button--bottom {
   top: calc(
-    var(--lid-height) + var(--body-offset) + (var(--body-height) * 0.18)
+    var(--lid-height) + var(--body-offset) + (var(--body-height) * 0.7)
   );
 }
+
+/* =========================
+   OPEN STATE
+   ========================= */
+
+.project-folder--open .project-folder__lid {
+  transform: translateY(-300px) rotateX(18deg);
+}
+
+.project-folder--open .project-folder__toggle {
+  transform: translateY(-300px);
+}
+
+.project-folder--open .project-folder__button--top {
+  transform: translate(-50%, -50%) translateY(-228px);
+}
+
+/* =========================
+   SLOT (파일 영역, 바디 안)
+   ========================= */
 
 .project-folder__slot {
   position: absolute;
   left: 50%;
-  top: 8%;
+  top: -20%;
   transform: translateX(-50%);
   width: min(var(--file-width), 94%);
-  height: 78%;
+  height: 72%;
+
   opacity: 0;
   pointer-events: none;
-  overflow: hidden;
+  overflow: visible;
+
+  z-index: 4;
   transition:
     opacity 0.4s ease,
     transform 0.4s ease;
-  z-index: 1;
-}
-
-.project-folder__files {
-  display: grid;
-  gap: 12px;
-  transform: translateY(6px);
-  transition: transform 0.4s ease;
-}
-
-.project-folder--open .project-folder__lid {
-  transform: translateY(-90px) rotateX(18deg);
-}
-
-.project-folder--open .project-folder__button--top {
-  transform: translate(-50%, -50%) translateY(-90px);
 }
 
 .project-folder--open .project-folder__slot {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(-50%, -6px);
+  transform: translateX(-50%) translateY(10px);
 }
 
-.project-folder--open .project-folder__files {
-  transform: translateY(0);
+/* =========================
+   FILE STACK WRAPPER
+   ========================= */
+
+.project-folder__files {
+  position: relative;
+  width: 100%;
+  height: 100%;
 }
 
-.project-folder--open .project-folder__string-svg {
-  transform: translate(var(--string-open-x), var(--string-open-y))
-    rotate(var(--string-open-rotate))
-    scale(var(--string-open-scale-x), var(--string-open-scale-y));
-}
-
-.project-folder--open .project-folder__string-path {
-  stroke-width: var(--string-stroke-open);
-}
+/* =========================
+   FILE CARD (겹침 + 순서)
+   ========================= */
 
 .project-file {
+  --stack-gap: 30px;
+  --lift: 14px;
+  --stack-y: 18px;
+  --tag-lift: 10px;
+  --tag-height: 48px;
+
+  position: absolute;
+  left: 50%;
+  top: calc(0px + (var(--file-index) * var(--stack-y)));
+  transform: translateX(-50%);
+  width: 100%;
+  height: var(--file-height);
+
+  z-index: calc(var(--file-index) + 1);
+
   border: none;
   background: transparent;
   padding: 0;
   cursor: pointer;
-  transform: translateY(calc(var(--file-index) * 10px));
+
+  border-radius: 18px;
+  overflow: hidden;
+
+  box-shadow: 0 16px 26px rgba(0, 0, 0, 0.25);
   transition:
     transform 0.25s ease,
     box-shadow 0.25s ease;
-  box-shadow: 0 16px 26px rgba(0, 0, 0, 0.25);
-  border-radius: 18px;
-  overflow: hidden;
 }
 
 .project-file:hover {
-  transform: translateY(calc(var(--file-index) * 10px - 12px));
-  box-shadow: 0 24px 30px rgba(0, 0, 0, 0.3);
+  transform: translateX(-50%) translateY(calc(var(--lift) * -1));
+  box-shadow: 0 28px 34px rgba(0, 0, 0, 0.32);
 }
 
-.project-file__thumb {
-  width: 100%;
-  height: auto;
-  display: block;
+.project-file:disabled {
+  cursor: default;
 }
 
-.project-section--modal .project-section__stage {
-  filter: blur(6px);
-  transition: filter 0.3s ease;
-}
-
-.project-modal {
-  position: fixed;
-  inset: 0;
-  z-index: 20;
-  display: grid;
-  place-items: center;
-}
-
-.project-modal__overlay {
+.project-file__tag {
   position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.55);
-  backdrop-filter: blur(6px);
-  border: none;
-}
-
-.project-modal__panel {
-  position: relative;
-  z-index: 1;
-  width: min(980px, 92vw);
-  background: #0f0f0f;
-  color: #ffffff;
-  border-radius: 18px;
-  padding: 26px;
-  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
-}
-
-.project-modal__close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  color: #ffffff;
-  padding: 6px 12px;
-  border-radius: 999px;
-  cursor: pointer;
-  font-size: 0.75rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.project-modal__content {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
-  gap: 28px;
+  top: 0;
+  left: 24px;
+  display: inline-flex;
   align-items: center;
+  height: var(--tag-height);
+  padding: 0 22px;
+  border-radius: 22px 22px 0 0;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  transform: translateY(0);
+  transition: transform 0.25s ease;
+  pointer-events: auto;
+  color: #fff;
+  background: #141414;
 }
 
-.project-modal__image {
-  position: relative;
-  background: #f7f7f7;
-  border-radius: 16px;
-  overflow: hidden;
-  min-height: 260px;
+.project-file__tag:hover {
+  transform: translateY(calc(var(--tag-lift) * -1));
 }
 
-.project-modal__image img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  display: block;
-  background: #ffffff;
-}
-
-.project-modal__badge {
+.project-file__card {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  background: rgba(0, 0, 0, 0.78);
+  inset: 0;
+  border-radius: 18px;
+  background: #e8e2e2;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+.project-file__card--art {
+  background: #ded6d6;
+}
+
+.project-file__card--monami {
+  background: #0f0f0f;
+}
+
+.project-file__card--personal {
+  background: #f4f1f1;
+}
+
+.project-file__card--dugout {
+  background: #7a0b0b;
+}
+
+.project-file__tag--monami {
+  background: #0a0a0a;
   color: #ffffff;
-  padding: 6px 10px;
-  border-radius: 999px;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
 }
 
-.project-modal__info h3 {
-  margin: 0 0 10px 0;
-  font-size: 1.4rem;
+.project-file__tag--dugout {
+  background: #7a0b0b;
+  color: #f2f2f2;
 }
 
-.project-modal__category {
-  margin: 0 0 16px 0;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.65);
+.project-file__tag--art {
+  background: #e6e0e0;
+  color: #0a9f62;
 }
 
-.project-modal__summary {
-  margin: 0 0 18px 0;
-  line-height: 1.7;
-  color: rgba(255, 255, 255, 0.8);
+.project-file__tag--personal {
+  background: #f4f1f1;
+  color: #9c2020;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  padding-right: 28px;
 }
 
-.project-modal__meta p {
-  margin: 0 0 8px 0;
-  font-size: 0.85rem;
-}
-
-.project-modal__bars {
-  display: grid;
-  gap: 8px;
-}
-
-.project-modal__bars span {
-  display: block;
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.project-modal__bars span:nth-child(2) {
-  width: 80%;
-}
-
-.project-modal__bars span:nth-child(3) {
-  width: 65%;
-}
+/* =========================
+   RESPONSIVE
+   ========================= */
 
 @media (max-width: 1100px) {
   .project-folder {
     --folder-width: 92vw;
     --string-top: -22vw;
-    --string-open-y: 2vw;
-  }
-
-  .project-folder__button {
-    width: clamp(64px, 10vw, 90px);
-    height: auto;
   }
 
   .project-folder__string-svg {
     width: 60vw;
     height: auto;
-  }
-}
-
-@media (max-width: 900px) {
-  .project-modal__content {
-    grid-template-columns: 1fr;
-  }
-
-  .project-folder {
-    padding-top: 120px;
-  }
-}
-
-@media (max-width: 720px) {
-  .project-section__title {
-    font-size: clamp(2.2rem, 9vw, 3.6rem);
   }
 }

@@ -23,7 +23,13 @@ export default function AboutSection() {
 
   const blocks = [
     {
-      title: "Sensing Art & Observation",
+      title: (
+        <>
+          Sensing <br />
+          Art & Observation
+        </>
+      ),
+      altTitle: "Sensing Art & Observation",
       body:
         "미술을 전공하며 이미지를 빠르게 소비하기보다 오래 관찰하고 " +
         "축적하는 방식에 익숙해졌습니다.",
@@ -32,19 +38,21 @@ export default function AboutSection() {
     },
     {
       title: "Communication & Mediation",
+      altTitle: "Communication & Mediation",
       body: "사람과 사람, 사람과 서비스 사이의 맥락을 정리하고 전달하는 일을 좋아합니다.",
       image: aboutImage02,
       icon: aboutIconStarWhite,
     },
     {
       title: "Building UIUX & Frontend",
+      altTitle: "Building UIUX & Frontend",
       body: "리서치부터 프로토타입, 프론트엔드 구현까지 이어지는 흐름을 즐깁니다.",
       image: aboutImage03,
       icon: aboutIconStarRed,
     },
   ];
 
-  /* 클릭 시 해당 step 위치로 스크롤 */
+  /* 인디케이터 클릭 → 해당 step으로 스크롤 */
   const scrollToIndex = (index) => {
     const steps = stepsRef.current.filter(Boolean);
     const step = steps[index];
@@ -71,9 +79,7 @@ export default function AboutSection() {
       if (swapTlRef.current) swapTlRef.current.kill();
 
       swapTlRef.current = gsap
-        .timeline({
-          defaults: { ease: "power2.out" },
-        })
+        .timeline({ defaults: { ease: "power2.out" } })
         .to(panel, { autoAlpha: 0, y: 18, duration: 0.18 })
         .add(() => {
           flushSync(() => setActiveIndex(nextIndex));
@@ -91,7 +97,6 @@ export default function AboutSection() {
         trigger: step,
         start: "top 55%",
         end: "bottom 55%",
-        markers: false, // 필요하면 true
         onEnter: () => swapTo(index),
         onEnterBack: () => swapTo(index),
       }),
@@ -99,9 +104,13 @@ export default function AboutSection() {
 
     ScrollTrigger.refresh();
 
+    const onResize = () => ScrollTrigger.refresh();
+    window.addEventListener("resize", onResize);
+
     return () => {
       triggers.forEach((t) => t.kill());
       if (swapTlRef.current) swapTlRef.current.kill();
+      window.removeEventListener("resize", onResize);
     };
   }, []);
 
@@ -125,10 +134,10 @@ export default function AboutSection() {
 
           {/* 우측 하단 이미지 */}
           <div className="about__image">
-            <img src={active.image} alt={active.title} />
+            <img src={active.image} alt={active.altTitle} />
           </div>
 
-          {/* ⭐ 인디케이터 */}
+          {/* 인디케이터 */}
           <nav className="about__indicator">
             {blocks.map((_, i) => (
               <button

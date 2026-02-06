@@ -1,5 +1,5 @@
 .clone-section {
-  background: #9f1d22;
+  background: #9c2020;
   color: #fff;
   padding: 120px 7vw;
 }
@@ -16,7 +16,7 @@
 }
 
 .clone-section__title {
-  font-size: clamp(2.8rem, 6vw, 5.4rem);
+  font-size: clamp(3rem, 8vw, 8.75rem);
   line-height: 0.95;
   margin-bottom: 28px;
   color: #fff;
@@ -27,6 +27,7 @@
 }
 
 .clone-section__copy {
+  font-size: 22px;
   display: grid;
   gap: 16px;
   max-width: 440px;
@@ -120,7 +121,8 @@
   width: 100%;
   aspect-ratio: 16 / 9;
   border-radius: 14px;
-  background-image: var(--preview-image),
+  background-image:
+    var(--preview-image),
     linear-gradient(140deg, rgba(255, 255, 255, 0.16), rgba(0, 0, 0, 0.2));
   background-size: cover;
   background-position: center;

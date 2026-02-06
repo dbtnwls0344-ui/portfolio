@@ -6,7 +6,7 @@
 .section {
   background: #dfdfdf;
   position: relative;
-  padding: 110px 7vw;
+  padding: 110px clamp(24px, 6vw, 60px);
   overflow: hidden;
 }
 
@@ -546,7 +546,7 @@ p {
 
 @media (max-width: 720px) {
   .section {
-    padding: 90px 6vw;
+    padding: 90px clamp(20px, 6vw, 60px);
   }
 
   .profile__card {

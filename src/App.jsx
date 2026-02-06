@@ -7,18 +7,27 @@ import TextSection from "./sections/TextSection";
 import CloneSection from "./sections/CloneSection";
 import ArtworksSection from "./sections/ArtworksSection";
 import ProjectSection from "./sections/ProjectSection";
+import SkillsSection from "./sections/SkillsSection";
+import QaSection from "./sections/QaSection";
+import ContactSection from "./sections/ContactSection";
+import ObserveSection from "./sections/ObserveSection";
 
 function App() {
   return (
     <div className="page">
       <HeroSection />
       <ProfileSection />
+      <TextSection variant="prof" />
       <AboutSection />
+      <ObserveSection />
       <PhilosophySection />
       <TextSection />
+      <ProjectSection />
       <CloneSection />
       <ArtworksSection />
-      <ProjectSection />
+      <SkillsSection />
+      <QaSection />
+      <ContactSection />
     </div>
   );
 }

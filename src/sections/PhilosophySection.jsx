@@ -4,6 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./PhilosophySection.css";
 import aboutIconWhite from "../assets/images/about-icon-star-white.svg";
 import aboutIconRed from "../assets/images/about-icon-star-red.svg";
+import philosophyBigD from "../assets/images/philosophy-big-d.svg";
 
 function PhilosophySection() {
   const sectionRef = useRef(null);
@@ -33,7 +34,7 @@ function PhilosophySection() {
 
     const setBaseColors = () => {
       gsap.to(section, {
-        "--philo-bg": "#d9d7d4",
+        "--philo-bg": "#dfdfdf",
         "--philo-text": "#b11226",
         "--philo-accent": "#b11226",
         "--philo-border": "rgba(177, 18, 38, 0.35)",
@@ -72,53 +73,57 @@ function PhilosophySection() {
             />
           </span>
           <p>
-            I design by focusing on what remains after the experience,
-            not just what appears on the screen.
+            I design by focusing on what remains after the experience, not just
+            what appears on the screen.
           </p>
         </div>
 
         <div className="philosophy__grid">
           <div className="philosophy__left" aria-hidden="true">
             <div className="philosophy__rail">Design Philosophy</div>
-            <div className="philosophy__dropcap">D</div>
+            <img
+              className="philosophy__dropcap-image"
+              src={philosophyBigD}
+              alt=""
+              aria-hidden="true"
+            />
           </div>
 
           <div className="philosophy__list">
             <div className="philosophy__item">
               <h3>Design begins after use</h3>
-              <p>°æÇèÀº »ç¿ëÀÌ ³¡³­ µÚ¿¡ ¿Ï¼ºµÈ´Ù°í »ý°¢ÇÕ´Ï´Ù.</p>
+              <p>ê²½í—˜?€ ?¬ìš©???ë‚œ ?¤ì— ?„ì„±?œë‹¤ê³??ê°?©ë‹ˆ??</p>
               <p>
-                µðÀÚÀÎÀÇ ¿ªÇÒÀº È­¸éÀÌ º¸ÀÌ´Â ¼ø°£¿¡ ¸Ó¹«¸£Áö ¾Ê´Â´Ù°í ¹Ï½À´Ï´Ù.
-                Àú´Â »ç¿ëÀÌ ³¡³­ ÀÌÈÄ¿¡µµ ÀÌÇØ¿Í °¨°¢ÀÌ ³²¾Æ ÀÖ´Â »óÅÂ¸¦ ±âÁØÀ¸·Î
-                °æÇèÀ» ¼³°èÇÕ´Ï´Ù.
+                ?”ìž?¸ì˜ ??• ?€ ?”ë©´??ë³´ì´???œê°„?ë§Œ ë¨¸ë¬´ë¥´ì? ?ŠëŠ”?¤ê³ 
+                ë¯¿ìŠµ?ˆë‹¤. ?€???¬ìš©???ë‚œ ?´í›„?ë„ ?´í•´?€ ê°ê°???¨ì•„ ?ˆëŠ”
+                ?íƒœë¥?ê¸°ì??¼ë¡œ ê²½í—˜???¤ê³„?©ë‹ˆ??
               </p>
             </div>
             <div className="philosophy__item">
               <h3>Structure defines choice</h3>
-              <p>±¸Á¶´Â »ç¿ëÀÚÀÇ ¼±ÅÃÀ» ¸¸µç´Ù°í »ý°¢ÇÕ´Ï´Ù.</p>
+              <p>êµ¬ì¡°???¬ìš©?ì˜ ? íƒ ??ë§Œë“ ?¤ê³  ?ê°?©ë‹ˆ??</p>
               <p>
-                ÇüÅÂº¸´Ù ¸ÕÀú ±¸Á¶¸¦ Á¤ÀÇÇÏ´Â °ÍÀÌ
-                ¸íÈ®ÇÑ ¼±ÅÃ°ú ÀÏ°üµÈ Èå¸§À» ¸¸µç´Ù°í ¹Ï½À´Ï´Ù.
-                Àú´Â ½Ã°¢Àû ¿Ï¼ºµµº¸´Ù, ÆÇ´ÜÀÌ °¡´ÉÇÑ ±¸Á¶¸¦ ¿ì¼±ÇÕ´Ï´Ù.
-              </p>
+                ?•íƒœë³´ë‹¤ ë¨¼ì? êµ¬ì¡°ë¥??•ì˜?˜ëŠ” ê²ƒì´
+                ëª…í™•??? íƒê³??¼ê????ë¦„??ë§Œë“ ?¤ê³  ë¯¿ìŠµ?ˆë‹¤.
+                ?€???œê°???„ì„±?„ë³´?? ?ë‹¨??ê°€?¥í•œ êµ¬ì¡°ë¥??°ì„ ?©ë‹ˆ??</p>
             </div>
             <div className="philosophy__item">
               <h3>Observation precedes design</h3>
-              <p>°üÂûÀº ¼³°èº¸´Ù ¾Õ¼±´Ù°í »ý°¢ÇÕ´Ï´Ù.</p>
+              <p>ê´€ì°°ì? ?¤ê³„ë³´ë‹¤ ?žì„ ?¤ê³  ?ê°?©ë‹ˆ??</p>
               <p>
-                »ç¿ëÀÚ°¡ ¾î¶»°Ô Çàµ¿ÇØ¾ß ÇÏ´ÂÁö¸¦ °¡Á¤ÇÏ±âº¸´Ù,
-                ½ÇÁ¦ ¹ÝÀÀ°ú Èå¸§À» °üÂûÇÏ´Â °Í¿¡¼­ ¼³°è¸¦ ½ÃÀÛÇÕ´Ï´Ù.
-                ÀÌ °üÂûÀº ¸ðµç µðÀÚÀÎ ÆÇ´ÜÀÇ Ãâ¹ßÁ¡ÀÌ µË´Ï´Ù.
+                ?¬ìš©?ê? ?´ë–»ê²??‰ë™?´ì•¼ ?˜ëŠ”ì§€ë¥?ê°€?•í•˜ê¸°ë³´??
+                ?¤ì œ ë°˜ì‘ê³??ë¦„??ê´€ì°°í•˜??ê²ƒì—???¤ê³„ë¥??œìž‘?©ë‹ˆ??
+                ??ê´€ì°°ì? ëª¨ë“  ?”ìž???ë‹¨??ì¶œë°œ?ì´ ?©ë‹ˆ??
               </p>
             </div>
             <div className="philosophy__item">
               <h3>Clarity over complexity</h3>
-              <p>º¹ÀâÇÔº¸´Ù ¸íÈ®ÇÔÀ» ¿ì¼±ÇÕ´Ï´Ù.</p>
+              <p>ë³µìž¡?¨ë³´??ëª…í™•?¨ì„ ?°ì„ ?©ë‹ˆ??</p>
               <p>
-                ¸¹Àº ±â´ÉÀÌ³ª ÀåÄ¡º¸´Ù,
-                »ç¿ëÀÚ°¡ ¸Á¼³ÀÌÁö ¾Ê°í ÀÌÇØÇÒ ¼ö ÀÖ´Â »óÅÂ¸¦ ´õ Áß¿äÇÏ°Ô »ý°¢ÇÕ´Ï´Ù.
-                Àú´Â ¹®Á¦¸¦ ´Ü¼øÈ­ÇÏ´Â °ÍÀÌ ¾Æ´Ï¶ó,
-                ºÒÇÊ¿äÇÑ º¹ÀâÇÔÀ» °È¾î³»´Â ¹æÇâÀ¸·Î µðÀÚÀÎÇÕ´Ï´Ù.
+                ë§Žì? ê¸°ëŠ¥?´ë‚˜ ?¥ì¹˜ë³´ë‹¤,
+                ?¬ìš©?ê? ë§ì„¤?´ì? ?Šê³  ?´í•´?????ˆëŠ” ?íƒœë¥???ì¤‘ìš”?˜ê²Œ ?ê°?©ë‹ˆ??
+                ?€??ë¬¸ì œë¥??¨ìˆœ?”í•˜??ê²ƒì´ ?„ë‹ˆ??
+                ë¶ˆí•„?”í•œ ë³µìž¡?¨ì„ ê±·ì–´?´ëŠ” ë°©í–¥?¼ë¡œ ?”ìž?¸í•©?ˆë‹¤.
               </p>
             </div>
           </div>
@@ -129,3 +134,4 @@ function PhilosophySection() {
 }
 
 export default PhilosophySection;
+
