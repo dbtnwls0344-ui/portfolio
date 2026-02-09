@@ -1,0 +1,629 @@
+﻿/* =========================
+   SECTION (전역 .section 영향 차단)
+   ========================= */
+
+.project-section.section {
+  background: #9c2020;
+  color: #ffffff;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-section__stage {
+  display: grid;
+  gap: 48px;
+}
+
+.project-section__header {
+  width: min(1108px, 100%);
+  margin: 0 auto;
+}
+
+.project-section__title {
+  margin: 0;
+  font-size: clamp(3rem, 8vw, 8.75rem);
+  font-weight: 700;
+  letter-spacing: -2px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  line-height: 1.1;
+}
+
+.project-section__star {
+  width: 28px;
+  height: 28px;
+}
+
+.project-section__subtitle {
+  margin-top: 12px;
+  font-size: clamp(1rem, 2.4vw, 1.75rem);
+  letter-spacing: -2px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* =========================
+   FOLDER BASE
+   ========================= */
+
+.project-folder {
+  --folder-scale: 0.86;
+  --folder-width: calc(1108px * var(--folder-scale));
+  --lid-height: calc(413px * var(--folder-scale));
+  --body-height: calc(460px * var(--folder-scale));
+  --file-width: calc(1074px * var(--folder-scale));
+  --body-offset: calc(-38px * var(--folder-scale));
+  --folder-top-pad: calc(160px * var(--folder-scale));
+  --string-top: calc(344px * var(--folder-scale));
+  --string-width: calc(678px * var(--folder-scale));
+  --string-height: calc(1000px * var(--folder-scale));
+  --string-open-y: calc(-510px * var(--folder-scale));
+  --open-rise: calc(-300px * var(--folder-scale));
+  --slot-open-y: calc(10px * var(--folder-scale));
+  --file-stack-y: calc(64px * var(--folder-scale));
+  --file-hover-y: calc(-12px * var(--folder-scale));
+  --tag-offset-y: calc(-24px * var(--folder-scale));
+
+  --file-height: clamp(
+    calc(220px * var(--folder-scale)),
+    calc(18vw * var(--folder-scale)),
+    calc(280px * var(--folder-scale))
+  );
+  --tag-height: calc(48px * var(--folder-scale));
+
+  position: relative;
+  width: min(var(--folder-width), 100%);
+  margin: 0 auto;
+  padding-top: var(--folder-top-pad);
+
+  perspective: 1200px;
+}
+
+/* =========================
+   TOGGLE
+   ========================= */
+
+.project-folder__toggle {
+  position: absolute;
+  top: var(--folder-top-pad);
+  left: 0;
+  width: 100%;
+  height: var(--lid-height);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  z-index: 6;
+  transition: transform 0.6s ease;
+}
+
+/* =========================
+   STRING
+   ========================= */
+
+.project-folder__string {
+  position: absolute;
+  top: var(--string-top);
+  left: 25%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: var(--lid-height);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.project-folder__string-svg {
+  position: absolute;
+  top: 0;
+  width: var(--string-width);
+  height: var(--string-height);
+  left: 71.25%;
+  transform-box: view-box;
+  transform-origin: 50% 0%;
+  transform: translate(0, 0) rotate(0deg);
+  transition: transform 0.55s cubic-bezier(0.06, 0.57, 0.2, 1);
+}
+
+.project-folder__string-path {
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.project-folder--open .project-folder__string-svg {
+  transform: translate(-95%, var(--string-open-y)) rotate(0deg);
+}
+
+/* =========================
+   LID
+   ========================= */
+
+.project-folder__lid {
+  position: relative;
+  height: var(--lid-height);
+  transform-origin: bottom center;
+  transition: transform 0.6s ease;
+  z-index: 4;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow:
+    0 24px 40px rgba(0, 0, 0, 0.35),
+    0 6px 14px rgba(0, 0, 0, 0.25);
+}
+
+/* =========================
+   BODY
+   ========================= */
+
+.project-folder__body {
+  position: relative;
+  height: var(--body-height);
+  margin-top: var(--body-offset);
+  z-index: 1;
+}
+
+.project-folder__body > .project-folder__panel {
+  position: relative;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* =========================
+   PANEL IMG
+   ========================= */
+
+.project-folder__panel {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.project-folder__button {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.project-folder__button--top {
+  top: var(--lid-height);
+  transition: transform 0.6s ease;
+}
+
+.project-folder__button--bottom {
+  top: calc(
+    var(--lid-height) + var(--body-offset) + (var(--body-height) * 0.7)
+  );
+}
+
+/* =========================
+   OPEN STATE
+   ========================= */
+
+.project-folder--open .project-folder__lid {
+  transform: translateY(var(--open-rise)) rotateX(18deg);
+}
+
+.project-folder--open .project-folder__toggle {
+  transform: translateY(var(--open-rise));
+}
+
+.project-folder--open .project-folder__button--top {
+  transform: translate(-50%, -50%) translateY(var(--open-rise));
+}
+
+/* =========================
+   SLOT (파일 영역 기준점)
+   ========================= */
+
+.project-folder__slot {
+  position: absolute;
+  left: 50%;
+  top: -51%; /* ❗ -35% → 안정값 */
+  transform: translateX(-50%);
+  width: min(var(--file-width), 94%);
+  height: 100%;
+
+  opacity: 0;
+  pointer-events: none;
+  overflow: visible;
+
+  z-index: 2;
+
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.project-folder--open .project-folder__slot {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(var(--slot-open-y));
+}
+
+/* =========================
+   FILE STACK WRAPPER
+   ========================= */
+
+.project-folder__files {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* =========================
+   FILE CARD (겹쳐진 탭 스택)
+   ========================= */
+
+.project-file {
+  --tag-lift: calc(14px * var(--folder-scale));
+
+  position: absolute;
+  left: 50%;
+  top: calc(var(--file-index) * var(--file-stack-y));
+  transform: translateX(-50%);
+  width: 100%;
+  height: var(--file-height);
+
+  z-index: calc(var(--file-index) + 1);
+
+  border: none;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+
+  border-radius: calc(18px * var(--folder-scale));
+  overflow: visible;
+  transition: transform 0.22s ease;
+}
+
+.project-file:disabled {
+  cursor: default;
+}
+
+.project-file:not(:disabled):hover,
+.project-file:not(:disabled):focus-visible {
+  transform: translateX(-50%) translateY(var(--file-hover-y));
+}
+
+/* 카드 본체 */
+.project-file__card {
+  position: absolute;
+  inset: 0;
+  border-radius: calc(18px * var(--folder-scale));
+  background: var(--card-bg, #e8e2e2);
+
+  box-shadow:
+    0 18px 34px rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================
+   TAG (이름 탭만 인터랙션)
+   ========================= */
+
+.project-file__tag {
+  position: absolute;
+  top: 0;
+  left: calc(28px * var(--folder-scale));
+  transform: translateY(var(--tag-offset-y));
+  width: calc(200px * var(--folder-scale));
+  height: var(--tag-height);
+  padding: 0 calc(22px * var(--folder-scale));
+
+  display: inline-flex;
+  align-items: center;
+
+  border-radius: calc(9px * var(--folder-scale))
+    calc(38px * var(--folder-scale)) 0 0;
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+
+  color: #fff;
+  background: var(--tag-bg, #141414);
+
+  box-shadow: none;
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease;
+}
+
+.project-file__tag:hover {
+  transform: translateY(calc(var(--tag-offset-y) - var(--tag-lift)));
+}
+
+/* =========================
+   CARD COLOR PRESETS
+   ========================= */
+
+.project-file__card--monami {
+  --card-bg: #0f0f0f;
+  border-radius: 0 calc(18px * var(--folder-scale)) 0 0;
+}
+.project-file__card--art {
+  --card-bg: #ded6d6;
+}
+.project-file__card--personal {
+  --card-bg: #f4f1f1;
+}
+.project-file__card--dugout {
+  --card-bg: #7a0b0b;
+}
+
+/* =========================
+   TAG COLOR PRESETS
+   ========================= */
+
+.project-file__tag--monami {
+  color: #ffffff;
+  left: 0px;
+  --tag-bg: #0f0f0f;
+}
+.project-file__tag--dugout {
+  color: #f2f2f2;
+  left: calc(195px * var(--folder-scale));
+  --tag-bg: #7a0b0b;
+}
+.project-file__tag--art {
+  color: #0a9f62;
+  left: calc(395px * var(--folder-scale));
+  --tag-bg: #ded6d6;
+}
+.project-file__tag--personal {
+  color: #9c2020;
+  left: calc(600px * var(--folder-scale));
+  --tag-bg: #f4f1f1;
+  text-transform: none;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  padding-right: calc(28px * var(--folder-scale));
+}
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1100px) {
+  .project-folder {
+    --folder-width: calc(92vw * var(--folder-scale));
+  }
+
+  .project-folder__string-svg {
+    width: calc(60vw * var(--folder-scale));
+    height: auto;
+  }
+
+  .project-file__tag--dugout {
+    left: calc(150px * var(--folder-scale));
+  }
+
+  .project-file__tag--art {
+    left: calc(300px * var(--folder-scale));
+  }
+
+  .project-file__tag--personal {
+    left: calc(455px * var(--folder-scale));
+  }
+}
+
+@media (max-width: 860px) {
+  .project-file__tag--dugout {
+    left: calc(110px * var(--folder-scale));
+  }
+
+  .project-file__tag--art {
+    left: calc(220px * var(--folder-scale));
+  }
+
+  .project-file__tag--personal {
+    left: calc(330px * var(--folder-scale));
+  }
+}
+
+/* =========================
+   MODAL
+   ========================= */
+
+.project-section--modal .project-section__stage {
+  filter: blur(6px);
+  transform: scale(0.985);
+  transition:
+    filter 0.3s ease,
+    transform 0.3s ease;
+}
+
+.project-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+.project-modal__overlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: rgba(20, 8, 8, 0.62);
+  backdrop-filter: blur(10px);
+  cursor: pointer;
+}
+
+.project-modal__panel {
+  position: relative;
+  width: min(1120px, 94vw);
+  background: #0b0b0b;
+  color: #f2f2f2;
+  border-radius: 22px;
+  padding: clamp(24px, 3vw, 40px);
+  box-shadow:
+    0 22px 60px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+  z-index: 1;
+}
+
+.project-modal__panel--monami {
+  background: linear-gradient(160deg, #111111 0%, #050505 100%);
+}
+
+.project-modal__panel--uiux {
+  background: linear-gradient(160deg, #7a0b0b 0%, #311919 100%);
+}
+
+.project-modal__panel--art {
+  background: linear-gradient(160deg, #c0e7ca 0%, #ded6d6 100%);
+}
+
+.project-modal__panel--personal {
+  background: linear-gradient(160deg, #e6c9c9 0%, #f4f1f1 100%);
+}
+
+.project-modal__close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  border: none;
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  font-size: 0.9rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.project-modal__content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+  gap: clamp(20px, 3vw, 42px);
+  align-items: start;
+}
+
+.project-modal__image {
+  position: relative;
+}
+
+.project-modal__image img {
+  width: 100%;
+  display: block;
+  border-radius: 16px;
+  background: #f1f1f1;
+}
+
+.project-modal__badge {
+  position: absolute;
+  top: -14px;
+  left: 18px;
+  background: #ffffff;
+  color: #121212;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.4em;
+  padding: 6px 12px;
+  border-radius: 10px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+}
+
+.project-modal__info h3 {
+  margin: 0 0 14px;
+  font-size: clamp(1.4rem, 2.6vw, 2rem);
+}
+
+.project-modal__info {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.project-modal__category {
+  margin: 0 0 18px;
+  font-size: 0.95rem;
+  opacity: 0.7;
+}
+
+.project-modal__summary {
+  margin: 0 0 22px;
+  line-height: 1.65;
+  font-size: 0.98rem;
+}
+
+.project-modal__meta p {
+  margin: 0 0 10px;
+  font-weight: 600;
+}
+
+.project-modal__bars {
+  display: grid;
+  gap: 10px;
+}
+
+.project-modal__bars span {
+  display: block;
+  height: 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ffffff, #cfcfcf);
+  opacity: 0.9;
+}
+
+.project-modal__bars span:nth-child(1) {
+  width: 92%;
+}
+
+.project-modal__bars span:nth-child(2) {
+  width: 86%;
+}
+
+.project-modal__bars span:nth-child(3) {
+  width: 72%;
+}
+
+.project-modal__actions {
+  margin-top: auto;
+  padding-top: 28px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.project-modal__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 122px;
+  height: 42px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: #111;
+  background: #fff;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    background-color 0.2s ease;
+}
+
+.project-modal__link:hover,
+.project-modal__link:focus-visible {
+  transform: translateY(-1px);
+  background: #f2f2f2;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 860px) {
+  .project-modal__content {
+    grid-template-columns: 1fr;
+  }
+
+  .project-modal__badge {
+    left: 12px;
+  }
+}
