@@ -9,12 +9,12 @@
 
 .text-section--prof {
   background: #dfdfdf;
-  color: #b11226;
+  color: #9c2121;
 }
 
 .text-section--prof .text-section__title,
 .text-section--prof .text-section__subtitle {
-  color: #b11226;
+  color: #9c2121;
 }
 
 .text-section--prof::after {

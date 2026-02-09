@@ -3,7 +3,7 @@
   display: flex;
   align-items: flex-start;
   background: #dfdfdf;
-  color: #a61e24;
+  color: #9c2121;
   padding-top: 20px;
   margin-bottom: 300px;
 }
@@ -30,7 +30,7 @@
   font-weight: 900;
   margin: 0 0 -2px 0;
   -webkit-text-stroke: 3px #6d1a1a;
-  color: #a61e24;
+  color: #9c2121;
   white-space: nowrap;
 }
 
@@ -40,7 +40,7 @@
   margin: 0;
   letter-spacing: -2;
   line-height: 1.32;
-  color: #a61e24;
+  color: #9c2121;
 }
 
 /* 카드 영역: 가운데 */
@@ -121,7 +121,7 @@
   font-size: 22px;
   font-weight: 600;
   letter-spacing: 0.1em;
-  color: #a61e24;
+  color: #9c2121;
 }
 
 @media (max-width: 980px) {

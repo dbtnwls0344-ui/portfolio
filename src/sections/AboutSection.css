@@ -4,6 +4,7 @@
 
 .about {
   background: #dfdfdf;
+  --about-image-width: min(40rem, 45vw);
   padding-inline: var(--section-gutter);
   margin-bottom: 400px;
 }
@@ -37,8 +38,13 @@
   position: absolute;
   top: clamp(88px, 11vh, 120px);
   left: 0;
+  z-index: 3;
   display: grid;
   gap: 12px;
+  max-width: min(
+    68rem,
+    calc(100% - var(--about-image-width) - clamp(1.5rem, 3vw, 3.5rem))
+  );
 }
 
 .about__title img {
@@ -46,13 +52,14 @@
 }
 
 .about__title h3 {
-  color: #9c2020;
-  font-size: clamp(3rem, 8vw, 8.75rem);
+  color: #9c2121;
+  font-size: clamp(2.6rem, 6.8vw, 7.2rem);
   margin: 0;
   font-weight: 600;
   padding-left: 0;
   letter-spacing: -2px;
   line-height: 1.1;
+  text-wrap: balance;
 }
 
 .about__title h3:lang(ko) {
@@ -68,8 +75,9 @@
   left: 0;
   right: 0;
   bottom: clamp(72px, 10vh, 120px);
+  z-index: 2;
   display: grid;
-  grid-template-columns: minmax(300px, 1fr) minmax(360px, min(640px, 45vw));
+  grid-template-columns: minmax(18rem, 1fr) minmax(20rem, var(--about-image-width));
   align-items: end;
   justify-content: space-between;
   gap: clamp(24px, 3vw, 56px);
@@ -80,9 +88,9 @@
    ========================= */
 
 .about__body {
-  max-width: min(800px, 40vw);
+  max-width: min(50rem, 100%);
 
-  color: #9c2020;
+  color: #9c2121;
   font-size: clamp(1.1rem, 1.8vw, 1.5rem);
   line-height: 1.32;
   letter-spacing: -0.02em;
@@ -91,8 +99,8 @@
 .about__body p {
   padding-left: 42px;
   margin: 0;
-  color: #9c2020;
-  font-size: 24px;
+  color: #9c2121;
+  font-size: clamp(1.1rem, 1.9vw, 1.4rem);
   line-height: 1.32;
   letter-spacing: -0.02em;
 }
@@ -103,7 +111,7 @@
 
 .about__image {
   position: relative;
-  width: min(640px, 45vw);
+  width: var(--about-image-width);
   justify-self: end;
   overflow: visible;
 }
@@ -119,7 +127,7 @@
   right: 0;
   z-index: 2;
   margin: 0;
-  color: #9c2020;
+  color: #9c2121;
   font-size: clamp(0.72rem, 0.9vw, 1rem);
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -184,8 +192,12 @@
    ========================= */
 
 @media (max-width: 1200px) {
+  .about {
+    --about-image-width: min(35rem, 47vw);
+  }
+
   .about__title h3 {
-    font-size: clamp(2.5rem, 7.8vw, 7rem);
+    font-size: clamp(2.2rem, 6.8vw, 5.8rem);
   }
 
   .about__content {

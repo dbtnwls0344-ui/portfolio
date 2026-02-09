@@ -149,15 +149,7 @@ function ProjectSection() {
     >
       <div className="project-section__stage">
         <div className="project-section__header">
-          <h2 className="project-section__title">
-            PROJECT
-            <img
-              className="project-section__star"
-              src={aboutIconWhite}
-              alt=""
-              aria-hidden
-            />
-          </h2>
+          <h2 className="project-section__title">PROJECT:✸</h2>
           <p className="project-section__subtitle">
             From observation to interaction.
           </p>

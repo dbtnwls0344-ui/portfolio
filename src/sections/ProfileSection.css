@@ -205,7 +205,7 @@
   height: 72%;
   display: block;
   gap: 8px;
-  color: #000000;
+  color: #000;
   font-size: 0.8rem;
   line-height: 1.4;
 }
@@ -237,12 +237,12 @@
 
 .profile__period {
   font-weight: 600;
-  color: #000000;
+  color: #000;
   font-size: 0.7rem;
 }
 
 .profile__detail {
-  color: #000000;
+  color: #000;
   font-size: 0.9rem;
 }
 
