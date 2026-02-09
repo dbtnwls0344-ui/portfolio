@@ -15,8 +15,7 @@
 }
 
 .project-section__header {
-  width: min(1108px, 100%);
-  margin: 0 auto;
+  gap: 6px;
 }
 
 .project-section__title {
@@ -53,7 +52,7 @@
   --lid-height: calc(413px * var(--folder-scale));
   --body-height: calc(460px * var(--folder-scale));
   --file-width: calc(1074px * var(--folder-scale));
-  --body-offset: calc(-38px * var(--folder-scale));
+  --body-offset: calc(-20px * var(--folder-scale));
   --folder-top-pad: calc(160px * var(--folder-scale));
   --string-top: calc(344px * var(--folder-scale));
   --string-width: calc(678px * var(--folder-scale));
@@ -198,7 +197,7 @@
 
 .project-folder__button--bottom {
   top: calc(
-    var(--lid-height) + var(--body-offset) + (var(--body-height) * 0.7)
+    var(--lid-height) + var(--body-offset) + (var(--body-height) * 0.64)
   );
 }
 
@@ -225,7 +224,7 @@
 .project-folder__slot {
   position: absolute;
   left: 50%;
-  top: -51%; /* ❗ -35% → 안정값 */
+  top: -56%; /* ❗ -35% → 안정값 */
   transform: translateX(-50%);
   width: min(var(--file-width), 94%);
   height: 100%;

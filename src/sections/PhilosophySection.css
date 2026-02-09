@@ -14,22 +14,25 @@
 }
 
 .philosophy__inner {
-  width: min(1600px, 100%);
-  margin: 0 auto;
+  width: min(1800px, 100%);
   display: grid;
   gap: 48px;
+  margin-bottom: 300px;
 }
 
 .philosophy__quote {
   display: grid;
   gap: 18px;
-  justify-items: start;
   font-size: clamp(1.6rem, 3.5vw, 2.6rem);
   font-weight: 500;
   line-height: 1.4;
+  margin-bottom: 80px;
 }
 
 .philosophy__quote p {
+  color: #fff;
+  font-size: 64px;
+  text-align: right;
   margin: 0;
   color: inherit;
 }
@@ -56,9 +59,9 @@
 .philosophy__grid {
   width: 1800px;
   display: grid;
-  grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.55fr);
+  grid-template-columns: minmax(0, 0.4fr) minmax(0, 0.6fr);
   gap: 40px;
-  align-items: start;
+  align-items: center;
 }
 
 .philosophy__left {

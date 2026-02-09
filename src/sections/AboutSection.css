@@ -1,13 +1,14 @@
-﻿/* =========================
+/* =========================
    ABOUT SECTION BASE
    ========================= */
 
 .about {
-  background: #dfdfdf; /* 👈 원하는 배경색 */
+  background: #dfdfdf;
   padding-inline: var(--section-gutter);
+  margin-bottom: 400px;
 }
 
-/* sticky 깨짐 방지 */
+/* sticky ���� ���� */
 .about,
 .about__scrolly {
   overflow: visible;
@@ -59,14 +60,27 @@
 }
 
 /* =========================
+   CONTENT
+   ========================= */
+
+.about__content {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(72px, 10vh, 120px);
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(360px, min(640px, 45vw));
+  align-items: end;
+  justify-content: space-between;
+  gap: clamp(24px, 3vw, 56px);
+}
+
+/* =========================
    BODY TEXT
    ========================= */
 
 .about__body {
-  position: absolute;
-  top: clamp(420px, 52vh, 520px);
-  left: 0;
-  max-width: min(520px, 40vw);
+  max-width: min(800px, 40vw);
 
   color: #9c2020;
   font-size: clamp(1.1rem, 1.8vw, 1.5rem);
@@ -75,7 +89,12 @@
 }
 
 .about__body p {
+  padding-left: 42px;
   margin: 0;
+  color: #9c2020;
+  font-size: 24px;
+  line-height: 1.32;
+  letter-spacing: -0.02em;
 }
 
 /* =========================
@@ -83,16 +102,29 @@
    ========================= */
 
 .about__image {
-  position: absolute;
-  right: 0;
-  bottom: clamp(72px, 10vh, 120px);
+  position: relative;
   width: min(640px, 45vw);
-  overflow: hidden;
+  justify-self: end;
+  overflow: visible;
 }
 
 .about__image img {
   width: 100%;
   display: block;
+}
+
+.about__image-caption {
+  position: absolute;
+  top: -4px;
+  right: 0;
+  z-index: 2;
+  margin: 0;
+  color: #9c2020;
+  font-size: clamp(0.72rem, 0.9vw, 1rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  transform: translateY(-100%);
+  pointer-events: none;
 }
 
 /* =========================
@@ -101,7 +133,7 @@
 
 .about__indicator {
   position: absolute;
-  right: clamp(12px, 2vw, 32px);
+  left: clamp(12px, 2vw, 10px);
   top: 50%;
   transform: translateY(-50%);
   display: grid;
@@ -156,8 +188,12 @@
     font-size: clamp(2.5rem, 7.8vw, 7rem);
   }
 
+  .about__content {
+    bottom: clamp(72px, 8vh, 104px);
+    gap: clamp(20px, 2.6vw, 40px);
+  }
+
   .about__body {
-    top: clamp(360px, 50vh, 460px);
     max-width: min(460px, 44vw);
   }
 
@@ -176,8 +212,8 @@
   }
 
   .about__title,
+  .about__content,
   .about__body,
-  .about__image,
   .about__indicator {
     position: static;
     transform: none;
@@ -192,12 +228,23 @@
     letter-spacing: -1px;
   }
 
+  .about__content {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
   .about__body {
     max-width: 100%;
     font-size: clamp(1rem, 3.6vw, 1.3rem);
   }
 
+  .about__body p {
+    padding-left: 0;
+  }
+
   .about__image {
+    position: relative;
     width: 100%;
     max-width: min(680px, 100%);
     justify-self: start;

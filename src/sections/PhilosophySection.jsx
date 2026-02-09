@@ -21,9 +21,9 @@ function PhilosophySection() {
     const setSwapColors = () => {
       gsap.to(section, {
         "--philo-bg": "#9c2020",
-        "--philo-text": "#d9d7d4",
+        "--philo-text": "#ffffff",
         "--philo-accent": "#ffffff",
-        "--philo-border": "rgba(217, 215, 212, 0.35)",
+        "--philo-border": "rgba(255, 255, 255, 0.35)",
         "--philo-star-a": 0,
         "--philo-star-b": 1,
         duration: swapDuration,
@@ -84,8 +84,8 @@ function PhilosophySection() {
             />
           </span>
           <p>
-            I design by focusing on what remains after the experience, not just
-            what appears on the screen.
+            I design by focusing on what remains after the experience,
+            <br /> not just what appears on the screen.
           </p>
         </div>
 

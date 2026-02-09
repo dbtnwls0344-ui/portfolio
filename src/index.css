@@ -4,7 +4,7 @@
   --serif: "Pretendard Variable", "Pretendard", "Noto Sans KR", sans-serif;
   --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", sans-serif;
   --mono: "Pretendard Variable", "Pretendard", "Noto Sans KR", monospace;
-  --sand: #efe9e4;
+  --sand: #dfdfdf;
   --paper: #f7f3f0;
   --ink: #221c1a;
   --ink-muted: #5a4f49;
@@ -60,3 +60,4 @@ button {
   white-space: nowrap;
   border: 0;
 }
+

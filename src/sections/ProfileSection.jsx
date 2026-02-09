@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./ProfileSection.css";
 import profileFolderClosed from "../assets/images/profile-folder-closed.png";
 import profileBoardLeft from "../assets/images/profile-board-left.png";
@@ -9,16 +9,47 @@ import binderClip from "../assets/images/binder-clip.png";
 
 function ProfileSection() {
   const [isOpen, setIsOpen] = useState(false);
+  const [hasEntered, setHasEntered] = useState(
+    () => typeof window !== "undefined" && !("IntersectionObserver" in window),
+  );
+  const [isInView, setIsInView] = useState(false);
+  const sectionRef = useRef(null);
+
+  useEffect(() => {
+    const target = sectionRef.current;
+
+    if (!target) {
+      return undefined;
+    }
+
+    if (!("IntersectionObserver" in window)) return undefined;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setHasEntered(true);
+          setIsInView(true);
+        } else {
+          setIsInView(false);
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(target);
+
+    return () => observer.disconnect();
+  }, []);
 
   const toggleOpen = () => {
     setIsOpen((prev) => !prev);
   };
 
   return (
-    <section className="profile section" id="profile">
+    <section className="profile section" id="profile" ref={sectionRef}>
       <div className="profile__inner">
         <button
-          className={`profile__stage ${isOpen ? "is-open" : ""}`}
+          className={`profile__stage ${isOpen ? "is-open" : ""} ${hasEntered ? "has-entered" : ""} ${isInView ? "is-entered" : ""}`}
           type="button"
           onClick={toggleOpen}
           aria-pressed={isOpen}

@@ -73,15 +73,14 @@ function CloneSection() {
           `r`n{" "}
           <div className="clone-section__copy">
             <p>
-              ?�론코딩?� ?�면??그�?�???��???�업???�니?? ?�비?�의 구조?�
-              ?�름??분석?�는 과정?�라�??�각?�니??
+              ?�론코딩?�??�면??그�?�???��???�업???�니?? ?�비?�의 구조?�?              ?�름??분석?�는 과정?�라�??�각?�니??
             </p>
             <p>
               ?�제 ?�이?��? 기�??�로 ?�이?�웃 구성, ?�터?�션???�결 방식, 반응??
-              ?�경?�서??차이�?중심?�로 코드�??�구?�했?�니??
+              ?�경?�서??차이�?중심?�로 코드�??�구?�했?�니??
             </p>
             <p>
-              ?��? ?�해 ?�각??구현보다 ?�계 ?�도�??�해?�고 구현?�는 기�??? ?�을
+              ?��? ?�해 ?�각??구현보다 ?�계 ?�도�??�해?�고 구현?�는 기�??? ?�을
               ???�었?�니??
             </p>
           </div>
@@ -118,23 +117,19 @@ function CloneSection() {
                   >
                     <div className="clone-item__panel-inner">
                       <span className="clone-item__note">{project.note}</span>
-                      <div
+                      <a
                         className="clone-item__image"
+                        href={project.href}
+                        target="_blank"
+                        rel="noreferrer noopener"
                         style={{
                           "--preview-image": project.preview
                             ? `url(${project.preview})`
                             : "none",
                         }}
-                        role="img"
-                        aria-label={`${project.label} 미리보기`}
+                        aria-label={`${project.label} �̸�����`}
                       >
-                        <a
-                          className="clone-item__read-more"
-                          href={project.href}
-                          target="_blank"
-                          rel="noreferrer noopener"
-                          aria-label={`${project.label} 미리보기`}
-                        >
+                        <span className="clone-item__read-more" aria-hidden="true">
                           <span className="clone-item__read-more-text">
                             Read more
                           </span>
@@ -144,8 +139,8 @@ function CloneSection() {
                           >
                             -&gt;
                           </span>
-                        </a>
-                      </div>
+                        </span>
+                      </a>
                     </div>
                   </div>
                 </li>
@@ -159,3 +154,5 @@ function CloneSection() {
 }
 
 export default CloneSection;
+
+

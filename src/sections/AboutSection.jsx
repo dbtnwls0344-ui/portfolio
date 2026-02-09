@@ -30,25 +30,27 @@ export default function AboutSection() {
         </>
       ),
       altTitle: "Sensing Art & Observation",
-      body:
-        "미술을 전공하며 이미지를 빠르게 소비하기보다 오래 관찰하고 " +
-        "축적하는 방식에 익숙해졌습니다.",
+      body: "미술을 전공하며 이미지를 빠르게 소비하기보다,오래 관찰하고 축적하는 방식에 익숙해졌습니다.Luxun Academy에서는 손을 통해 사고하는 밀도 있는 작업 과정을,홍익대학교 대학원에서는 감각을 해석하고 구조화하는 과정을 경험했습니다.이 시기를 통해 시각적 완성도 이전에‘왜 이 형태가 필요한가’를 먼저 고민하는 태도가 형성되었습니다.",
       image: aboutImage01,
       icon: aboutIconStarRed,
+      caption: "Luxun Academy of Fine Arts · Hongik University Graduate School",
     },
     {
       title: "Communication & Mediation",
       altTitle: "Communication & Mediation",
-      body: "사람과 사람, 사람과 서비스 사이의 맥락을 정리하고 전달하는 일을 좋아합니다.",
+      body: "문화예술교육사 과정과 아동 대상 교육, 그리고 전시 현장에서의 갤러리 통역 경험을 통해 같은 내용도 대상에 따라 전혀 다르게 전달되어야 한다는 것을 체감했습니다. 상대의 반응을 기준으로 설명의 깊이와 방식을 조율하는 과정은 이후 사용자 관점에서 경험을 설계하는 사고의 기반이 되었습니다. 이 경험들은 ‘전달’과 ‘이해’ 사이의 간극을 인식하게 만든 중요한 전환점이었습니다.",
       image: aboutImage02,
       icon: aboutIconStarWhite,
+      caption:
+        "Cultural Arts Education · Children’s Education · Gallery Interpretation",
     },
     {
       title: "Building UIUX & Frontend",
       altTitle: "Building UIUX & Frontend",
-      body: "리서치부터 프로토타입, 프론트엔드 구현까지 이어지는 흐름을 즐깁니다.",
+      body: "이젠아카데미 프론트엔드 과정을 통해 감각과 소통을 실제 인터페이스로 구현하는 방법을 익혔습니다. HTML, CSS, JavaScript, React 기반의 프로젝트 경험을 통해 화면 구성과 사용자 흐름을 구조적으로 설계하는 훈련을 반복했습니다. 이전의 관찰과 조율 경험은 이 단계에서 사용자 중심의 UIUX 설계로 구체화되었습니다.",
       image: aboutImage03,
       icon: aboutIconStarRed,
+      caption: "EZEN Academy · UIUX & Frontend",
     },
   ];
 
@@ -127,14 +129,17 @@ export default function AboutSection() {
             <h3>{active.title}</h3>
           </div>
 
-          {/* 좌측 본문 */}
-          <div className="about__body">
-            <p>{active.body}</p>
-          </div>
+          <div className="about__content">
+            {/* 좌측 본문 */}
+            <div className="about__body">
+              <p>{active.body}</p>
+            </div>
 
-          {/* 우측 하단 이미지 */}
-          <div className="about__image">
-            <img src={active.image} alt={active.altTitle} />
+            {/* 우측 하단 이미지 */}
+            <div className="about__image">
+              <p className="about__image-caption">{active.caption}</p>
+              <img src={active.image} alt={active.altTitle} />
+            </div>
           </div>
 
           {/* 인디케이터 */}

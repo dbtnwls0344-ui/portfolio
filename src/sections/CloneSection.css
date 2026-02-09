@@ -118,6 +118,7 @@
 }
 
 .clone-item__image {
+  display: block;
   position: relative;
   overflow: hidden;
   width: 100%;
@@ -130,6 +131,13 @@
   background-position: center;
   box-shadow: 0 24px 50px rgba(0, 0, 0, 0.35);
   animation: cloneFade 0.35s ease;
+  text-decoration: none;
+  color: inherit;
+}
+
+.clone-item__image:focus-visible {
+  outline: 2px solid rgba(255, 255, 255, 0.9);
+  outline-offset: 3px;
 }
 
 .clone-item__read-more {
@@ -152,8 +160,8 @@
     border-color 0.2s ease;
 }
 
-.clone-item__read-more:hover,
-.clone-item__read-more:focus-visible {
+.clone-item__image:hover .clone-item__read-more,
+.clone-item__image:focus-visible .clone-item__read-more {
   background: rgba(0, 0, 0, 0.68);
   border-color: rgba(255, 255, 255, 0.72);
   transform: translateY(-2px);
