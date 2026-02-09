@@ -1,4 +1,4 @@
-﻿import { useState } from "react";
+import { useState } from "react";
 import "./ContactSection.css";
 import contactCover from "../assets/images/contact-cover.png";
 import contactPhoto from "../assets/images/contact-photo.png";
@@ -32,7 +32,6 @@ function ContactSection() {
             <img src={notePaperTape} alt="" />
             <div className="contact-note__qr">
               <img src={contactQr} alt="Instagram QR" />
-              <span>YSOO_JIN_B</span>
             </div>
           </div>
 

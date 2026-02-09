@@ -7,7 +7,7 @@
 
 .qa-section__inner {
   width: min(1120px, 100%);
-  margin: 0 auto;
+  margin: 0 auto 200px;
 }
 
 .qa-section__header {

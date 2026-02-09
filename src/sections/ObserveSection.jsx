@@ -118,8 +118,10 @@ function ObserveSection() {
   const [activeFolder, setActiveFolder] = useState(null);
   const [scatterSeed, setScatterSeed] = useState(1);
   const [itemPositions, setItemPositions] = useState([]);
+  const [draggingIndex, setDraggingIndex] = useState(null);
   const galleryRef = useRef(null);
   const pointerRef = useRef({ x: 0, y: 0, active: false });
+  const dragRef = useRef(null);
   const rafRef = useRef(null);
 
   const scatterLayout = useMemo(() => {
@@ -152,6 +154,8 @@ function ObserveSection() {
 
   const handleClose = () => {
     pointerRef.current = { x: 0, y: 0, active: false };
+    dragRef.current = null;
+    setDraggingIndex(null);
     if (rafRef.current) {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
@@ -168,13 +172,22 @@ function ObserveSection() {
 
     const rect = gallery.getBoundingClientRect();
     const pointer = pointerRef.current;
-    const radius = 180;
-    const repelPower = 1.25;
+    const radius = 210;
+    const repelPower = 1.05;
+    const response = 0.085;
+    const coasting = 0.94;
+    const maxSpeed = 5.2;
+    const bounce = 0.72;
+    const draggedIndex = dragRef.current?.index ?? -1;
 
     setItemPositions((prev) =>
-      prev.map((item) => {
-        let ax = 0;
-        let ay = 0;
+      prev.map((item, index) => {
+        if (index === draggedIndex) {
+          return item;
+        }
+
+        let targetVx = 0;
+        let targetVy = 0;
 
         if (pointer.active) {
           const itemX = rect.width / 2 + item.x;
@@ -184,19 +197,41 @@ function ObserveSection() {
           const dist = Math.hypot(dx, dy);
 
           if (dist < radius && dist > 0.001) {
-            const force = ((radius - dist) / radius) ** 2;
-            ax += (dx / dist) * force * repelPower;
-            ay += (dy / dist) * force * repelPower;
+            const force = ((radius - dist) / radius) ** 1.8;
+            const speed = force * repelPower * maxSpeed;
+            targetVx = (dx / dist) * speed;
+            targetVy = (dy / dist) * speed;
           }
         }
 
-        const nextVx = (item.vx + ax) * 0.92;
-        const nextVy = (item.vy + ay) * 0.92;
+        const reverseX = targetVx !== 0 && Math.sign(targetVx) !== Math.sign(item.vx);
+        const reverseY = targetVy !== 0 && Math.sign(targetVy) !== Math.sign(item.vy);
+        const brakeX = reverseX ? 0.8 : 1;
+        const brakeY = reverseY ? 0.8 : 1;
+        let nextVx = (item.vx * brakeX + (targetVx - item.vx) * response) * coasting;
+        let nextVy = (item.vy * brakeY + (targetVy - item.vy) * response) * coasting;
         const halfW = rect.width / 2 - 90;
         const halfH = rect.height / 2 - 90;
-        const nextX = Math.max(-halfW, Math.min(halfW, item.x + nextVx));
-        const nextY = Math.max(-halfH, Math.min(halfH, item.y + nextVy));
-        const nextR = item.r + nextVx * 0.6;
+        let nextX = item.x + nextVx;
+        let nextY = item.y + nextVy;
+
+        if (nextX > halfW) {
+          nextX = halfW;
+          nextVx *= -bounce;
+        } else if (nextX < -halfW) {
+          nextX = -halfW;
+          nextVx *= -bounce;
+        }
+
+        if (nextY > halfH) {
+          nextY = halfH;
+          nextVy *= -bounce;
+        } else if (nextY < -halfH) {
+          nextY = -halfH;
+          nextVy *= -bounce;
+        }
+
+        const nextR = (item.r + nextVx * 0.7) * 0.985;
 
         return {
           x: nextX,
@@ -214,6 +249,73 @@ function ObserveSection() {
   const ensureRepelLoop = () => {
     if (rafRef.current) return;
     rafRef.current = requestAnimationFrame(animateRepel);
+  };
+
+  const handleItemPointerDown = (index) => (event) => {
+    if (event.pointerType === "mouse" && event.button !== 0) return;
+    const gallery = galleryRef.current;
+    if (!gallery) return;
+
+    event.preventDefault();
+    const rect = gallery.getBoundingClientRect();
+    dragRef.current = {
+      index,
+      pointerId: event.pointerId,
+      lastX: event.clientX,
+      lastY: event.clientY,
+      lastTime: performance.now(),
+      halfW: rect.width / 2 - 90,
+      halfH: rect.height / 2 - 90,
+    };
+    setDraggingIndex(index);
+    event.currentTarget.setPointerCapture?.(event.pointerId);
+    ensureRepelLoop();
+  };
+
+  const handleItemPointerMove = (index) => (event) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    if (drag.index !== index || drag.pointerId !== event.pointerId) return;
+
+    event.preventDefault();
+    const now = performance.now();
+    const dt = Math.max(8, now - drag.lastTime);
+    const dx = event.clientX - drag.lastX;
+    const dy = event.clientY - drag.lastY;
+    const instantVx = dx * (16 / dt);
+    const instantVy = dy * (16 / dt);
+
+    drag.lastX = event.clientX;
+    drag.lastY = event.clientY;
+    drag.lastTime = now;
+
+    setItemPositions((prev) =>
+      prev.map((item, itemIndex) => {
+        if (itemIndex !== index) return item;
+
+        const nextX = Math.max(-drag.halfW, Math.min(drag.halfW, item.x + dx));
+        const nextY = Math.max(-drag.halfH, Math.min(drag.halfH, item.y + dy));
+
+        return {
+          ...item,
+          x: nextX,
+          y: nextY,
+          vx: instantVx,
+          vy: instantVy,
+          r: Math.max(-28, Math.min(28, item.r + instantVx * 0.35)),
+        };
+      }),
+    );
+  };
+
+  const handleItemPointerUp = (index) => (event) => {
+    const drag = dragRef.current;
+    if (!drag) return;
+    if (drag.index !== index || drag.pointerId !== event.pointerId) return;
+
+    dragRef.current = null;
+    setDraggingIndex(null);
+    event.currentTarget.releasePointerCapture?.(event.pointerId);
   };
 
   const handleMouseMove = (event) => {
@@ -252,6 +354,12 @@ function ObserveSection() {
     },
     [],
   );
+
+  useEffect(() => {
+    if (activeFolder) {
+      ensureRepelLoop();
+    }
+  }, [activeFolder, scatterLayout.length]);
 
   return (
     <section
@@ -344,8 +452,14 @@ function ObserveSection() {
             <div className="observe-modal__gallery" ref={galleryRef}>
               {activeFolder.images.map((src, index) => (
                 <div
-                  className="observe-modal__item"
+                  className={`observe-modal__item${
+                    draggingIndex === index ? " is-dragging" : ""
+                  }`}
                   key={`${activeFolder.id}-${src}-${scatterSeed}`}
+                  onPointerDown={handleItemPointerDown(index)}
+                  onPointerMove={handleItemPointerMove(index)}
+                  onPointerUp={handleItemPointerUp(index)}
+                  onPointerCancel={handleItemPointerUp(index)}
                   style={{
                     "--i": index,
                     "--x": `${itemPositions[index]?.x ?? scatterLayout[index]?.x ?? 0}px`,

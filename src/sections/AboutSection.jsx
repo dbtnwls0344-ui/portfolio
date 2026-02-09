@@ -153,9 +153,7 @@ export default function AboutSection() {
                 }`}
                 onClick={() => scrollToIndex(i)}
                 aria-label={`Go to section ${i + 1}`}
-              >
-                <img src={aboutIconStarRed} alt="" aria-hidden />
-              </button>
+              />
             ))}
           </nav>
         </div>

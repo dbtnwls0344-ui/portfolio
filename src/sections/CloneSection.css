@@ -1,7 +1,7 @@
 .clone-section {
   background: #9c2020;
   color: #fff;
-  padding: 120px var(--section-gutter);
+  padding: 200px var(--section-gutter) 300px;
 }
 
 .clone-section p {

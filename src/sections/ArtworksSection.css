@@ -6,6 +6,7 @@
   color: #fff;
   padding: 120px var(--section-gutter, 7vw) 150px;
   text-align: center;
+  padding-bottom: 300px;
 }
 
 .artworks-section__header {
