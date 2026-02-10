@@ -1,4 +1,16 @@
 .text-section {
+  --bg-icon-a: url("../assets/bg-images/blur-white-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-white-circle.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-white-star.svg");
+  --bg-pos-a: 7% 18%;
+  --bg-pos-b: 92% 15%;
+  --bg-pos-c: 88% 86%;
+  --bg-size-a: clamp(72px, 8vw, 142px);
+  --bg-size-b: clamp(160px, 18vw, 280px);
+  --bg-size-c: clamp(66px, 7vw, 120px);
+  --bg-opacity: 0.3;
+  --bg-opacity-mobile: 0.2;
+
   position: relative;
   background: #9c2020;
   color: #ffffff;
@@ -8,6 +20,12 @@
 }
 
 .text-section--prof {
+  --bg-icon-a: url("../assets/bg-images/blur-red-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-red-circle.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-red-circle.svg");
+  --bg-opacity: 0.22;
+  --bg-opacity-mobile: 0.16;
+
   background: #dfdfdf;
   color: #9c2121;
 }
@@ -48,10 +66,12 @@
 }
 
 .text-section__subtitle {
+  color: #ffffff;
   margin: 0;
+  font-family: var(--display);
   font-size: clamp(1rem, 2.4vw, 1.75rem);
   font-weight: 600;
-  letter-spacing: -2px;
+  letter-spacing: 0.07em;
   line-height: 1.1;
   text-transform: uppercase;
   display: inline-flex;
@@ -59,8 +79,7 @@
   gap: 10px;
 }
 
-.text-section__title:lang(ko),
-.text-section__subtitle:lang(ko) {
+.text-section__title:lang(ko) {
   line-height: 1.32;
 }
 
@@ -95,6 +114,6 @@
   }
 
   .text-section__subtitle {
-    letter-spacing: 0.08em;
+    letter-spacing: 0.07em;
   }
 }

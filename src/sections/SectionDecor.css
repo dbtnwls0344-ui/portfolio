@@ -1,0 +1,79 @@
+:is(
+  .hero,
+  .profile.section,
+  .text-section,
+  .about,
+  .observe-section,
+  .philosophy,
+  .project-section.section,
+  .clone-section,
+  .artworks-section,
+  .skills-section,
+  .qa-section,
+  .contact-section
+) {
+  position: relative;
+  isolation: isolate;
+}
+
+:is(
+  .hero,
+  .profile.section,
+  .text-section,
+  .about,
+  .observe-section,
+  .philosophy,
+  .project-section.section,
+  .clone-section,
+  .artworks-section,
+  .skills-section,
+  .qa-section,
+  .contact-section
+)::before {
+  content: "";
+  position: absolute;
+  inset: -4% -2%;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    var(--bg-icon-a, none),
+    var(--bg-icon-b, none),
+    var(--bg-icon-c, none);
+  background-repeat: no-repeat;
+  background-position:
+    var(--bg-pos-a, 6% 10%),
+    var(--bg-pos-b, 92% 16%),
+    var(--bg-pos-c, 84% 84%);
+  background-size:
+    var(--bg-size-a, clamp(72px, 8vw, 150px)),
+    var(--bg-size-b, clamp(160px, 18vw, 280px)),
+    var(--bg-size-c, clamp(64px, 7vw, 130px));
+  opacity: var(--bg-opacity, 0.34);
+}
+
+@media (max-width: 900px) {
+  :is(
+    .hero,
+    .profile.section,
+    .text-section,
+    .about,
+    .observe-section,
+    .philosophy,
+    .project-section.section,
+    .clone-section,
+    .artworks-section,
+    .skills-section,
+    .qa-section,
+    .contact-section
+  )::before {
+    background-position:
+      var(--bg-pos-a-mobile, var(--bg-pos-a, 8% 10%)),
+      var(--bg-pos-b-mobile, var(--bg-pos-b, 90% 22%)),
+      var(--bg-pos-c-mobile, var(--bg-pos-c, 84% 88%));
+    background-size:
+      var(--bg-size-a-mobile, clamp(64px, 16vw, 120px)),
+      var(--bg-size-b-mobile, clamp(120px, 34vw, 220px)),
+      var(--bg-size-c-mobile, clamp(56px, 14vw, 110px));
+    opacity: var(--bg-opacity-mobile, 0.24);
+  }
+}

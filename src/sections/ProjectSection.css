@@ -3,6 +3,18 @@
    ========================= */
 
 .project-section.section {
+  --bg-icon-a: url("../assets/bg-images/blur-white-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-white-circle.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-white-star.svg");
+  --bg-pos-a: 6% 10%;
+  --bg-pos-b: 92% 22%;
+  --bg-pos-c: 10% 88%;
+  --bg-size-a: clamp(74px, 8vw, 140px);
+  --bg-size-b: clamp(170px, 19vw, 290px);
+  --bg-size-c: clamp(64px, 6.5vw, 114px);
+  --bg-opacity: 0.28;
+  --bg-opacity-mobile: 0.2;
+
   background: #9c2020;
   color: #ffffff;
   position: relative;
@@ -36,8 +48,10 @@
 
 .project-section__subtitle {
   margin-top: 12px;
+  font-family: var(--display);
   font-size: clamp(1rem, 2.4vw, 1.75rem);
-  letter-spacing: -2px;
+  letter-spacing: 0.07em;
+  line-height: 1.1;
   text-transform: uppercase;
   font-weight: 600;
   color: #ffffff;
@@ -425,6 +439,69 @@
 
   .project-file__tag--personal {
     left: calc(330px * var(--folder-scale));
+  }
+}
+
+@media (max-width: 720px) {
+  .project-section__stage {
+    gap: 34px;
+  }
+
+  .project-section__title {
+    font-size: clamp(2.3rem, 10vw, 4rem);
+  }
+
+  .project-section__subtitle {
+    margin-top: 8px;
+    font-size: clamp(0.9rem, 3.4vw, 1.2rem);
+  }
+
+  .project-folder {
+    --folder-scale: 0.72;
+    --folder-width: min(96vw, 540px);
+  }
+
+  .project-folder__string-svg {
+    width: calc(56vw * var(--folder-scale));
+    left: 73%;
+  }
+
+  .project-file__tag {
+    width: calc(132px * var(--folder-scale));
+    left: calc(
+      (12px * var(--folder-scale)) +
+        (var(--file-index) * 54px * var(--folder-scale))
+    );
+    padding: 0 calc(12px * var(--folder-scale));
+    font-size: 0.72rem;
+    letter-spacing: 0.05em;
+  }
+
+  .project-file__tag--personal {
+    text-transform: none;
+    letter-spacing: 0.015em;
+    font-weight: 600;
+    padding-right: calc(12px * var(--folder-scale));
+  }
+}
+
+@media (max-width: 560px) {
+  .project-folder {
+    --folder-scale: 0.62;
+    --folder-width: 98vw;
+  }
+
+  .project-folder__slot {
+    top: -48%;
+  }
+
+  .project-file__tag {
+    width: calc(116px * var(--folder-scale));
+    left: calc(
+      (8px * var(--folder-scale)) +
+        (var(--file-index) * 48px * var(--folder-scale))
+    );
+    font-size: 0.64rem;
   }
 }
 

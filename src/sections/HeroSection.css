@@ -1,4 +1,16 @@
 .hero {
+  --bg-icon-a: url("../assets/bg-images/blur-red-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-red-circle.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-red-star.svg");
+  --bg-pos-a: 5% 14%;
+  --bg-pos-b: 93% 20%;
+  --bg-pos-c: 88% 84%;
+  --bg-size-a: clamp(72px, 7vw, 130px);
+  --bg-size-b: clamp(170px, 20vw, 320px);
+  --bg-size-c: clamp(64px, 7vw, 118px);
+  --bg-opacity: 0.3;
+  --bg-opacity-mobile: 0.2;
+
   min-height: 92vh;
   display: flex;
   align-items: flex-start;
@@ -35,11 +47,11 @@
 }
 
 .hero__subtitle {
-  font-family: var(--mono);
+  font-family: var(--display);
   font-size: 38px;
   margin: 0;
-  letter-spacing: -2;
-  line-height: 1.32;
+  letter-spacing: 0.07em;
+  line-height: 1.1;
   color: #9c2121;
 }
 

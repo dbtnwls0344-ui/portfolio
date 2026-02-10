@@ -1,4 +1,4 @@
-﻿import { useLayoutEffect, useRef, useState } from "react";
+﻿import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -15,8 +15,14 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function AboutSection() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobileLayout, setIsMobileLayout] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(max-width: 980px)").matches;
+  });
 
+  const sectionRef = useRef(null);
   const panelRef = useRef(null);
+  const mobileTrackRef = useRef(null);
   const stepsRef = useRef([]);
   const activeIndexRef = useRef(0);
   const swapTlRef = useRef(null);
@@ -56,6 +62,20 @@ export default function AboutSection() {
 
   /* 인디케이터 클릭 → 해당 step으로 스크롤 */
   const scrollToIndex = (index) => {
+    if (isMobileLayout) {
+      const track = mobileTrackRef.current;
+      if (!track) return;
+
+      track.scrollTo({
+        left: track.clientWidth * index,
+        behavior: "smooth",
+      });
+
+      activeIndexRef.current = index;
+      setActiveIndex(index);
+      return;
+    }
+
     const steps = stepsRef.current.filter(Boolean);
     const step = steps[index];
     if (!step) return;
@@ -69,7 +89,32 @@ export default function AboutSection() {
     });
   };
 
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const mediaQuery = window.matchMedia("(max-width: 980px)");
+    const syncLayout = (event) => setIsMobileLayout(event.matches);
+
+    setIsMobileLayout(mediaQuery.matches);
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", syncLayout);
+    } else {
+      mediaQuery.addListener(syncLayout);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener("change", syncLayout);
+      } else {
+        mediaQuery.removeListener(syncLayout);
+      }
+    };
+  }, []);
+
   useLayoutEffect(() => {
+    if (isMobileLayout) return undefined;
+
+    const section = sectionRef.current;
     const steps = stepsRef.current.filter(Boolean);
 
     const swapTo = (nextIndex) => {
@@ -104,6 +149,27 @@ export default function AboutSection() {
       }),
     );
 
+    const getBackgroundShift = () => {
+      if (!section) return 0;
+      const scrollRange = Math.max(section.scrollHeight - window.innerHeight, 0);
+      const baseShift = window.innerHeight * 0.55;
+      return Math.round(Math.min(Math.max(baseShift, scrollRange * 0.24), 620));
+    };
+
+    const bgTween =
+      section &&
+      gsap.to(section, {
+        "--about-bg-shift": () => `-${getBackgroundShift()}px`,
+        ease: "none",
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "bottom bottom",
+          scrub: true,
+          invalidateOnRefresh: true,
+        },
+      });
+
     ScrollTrigger.refresh();
 
     const onResize = () => ScrollTrigger.refresh();
@@ -111,36 +177,102 @@ export default function AboutSection() {
 
     return () => {
       triggers.forEach((t) => t.kill());
+      if (bgTween) bgTween.kill();
       if (swapTlRef.current) swapTlRef.current.kill();
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [isMobileLayout]);
+
+  useEffect(() => {
+    if (!isMobileLayout) return undefined;
+
+    const track = mobileTrackRef.current;
+    if (!track) return undefined;
+
+    let frameId = 0;
+    const maxIndex = blocks.length - 1;
+
+    const syncActiveFromScroll = () => {
+      if (track.clientWidth <= 0) return;
+      const next = Math.round(track.scrollLeft / track.clientWidth);
+      const clamped = Math.min(Math.max(next, 0), maxIndex);
+
+      if (clamped === activeIndexRef.current) return;
+      activeIndexRef.current = clamped;
+      setActiveIndex(clamped);
+    };
+
+    const handleScroll = () => {
+      if (frameId) cancelAnimationFrame(frameId);
+      frameId = requestAnimationFrame(syncActiveFromScroll);
+    };
+
+    track.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      track.removeEventListener("scroll", handleScroll);
+      if (frameId) cancelAnimationFrame(frameId);
+    };
+  }, [isMobileLayout, blocks.length]);
+
+  useEffect(() => {
+    if (!isMobileLayout) return;
+
+    const track = mobileTrackRef.current;
+    if (!track) return;
+
+    track.scrollLeft = track.clientWidth * activeIndexRef.current;
+  }, [isMobileLayout]);
 
   const active = blocks[activeIndex];
 
   return (
-    <section className="about" id="about">
+    <section className="about" id="about" ref={sectionRef}>
       <div className="about__scrolly">
         {/* 고정 패널 */}
-        <div className="about__panel" ref={panelRef}>
-          {/* 좌측 상단 타이틀 */}
-          <div className="about__title">
-            <img src={active.icon} alt="" aria-hidden />
-            <h3>{active.title}</h3>
-          </div>
+        <div className="about__panel" ref={isMobileLayout ? null : panelRef}>
+          {isMobileLayout ? (
+            <div className="about__mobile-track" ref={mobileTrackRef}>
+              {blocks.map((block, i) => (
+                <article className="about__mobile-slide" key={i}>
+                  <div className="about__title">
+                    <img src={block.icon} alt="" aria-hidden />
+                    <h3>{block.title}</h3>
+                  </div>
 
-          <div className="about__content">
-            {/* 좌측 본문 */}
-            <div className="about__body">
-              <p>{active.body}</p>
-            </div>
+                  <div className="about__content">
+                    <div className="about__body">
+                      <p>{block.body}</p>
+                    </div>
 
-            {/* 우측 하단 이미지 */}
-            <div className="about__image">
-              <p className="about__image-caption">{active.caption}</p>
-              <img src={active.image} alt={active.altTitle} />
+                    <div className="about__image">
+                      <p className="about__image-caption">{block.caption}</p>
+                      <img src={block.image} alt={block.altTitle} />
+                    </div>
+                  </div>
+                </article>
+              ))}
             </div>
-          </div>
+          ) : (
+            <>
+              <div className="about__title">
+                <img src={active.icon} alt="" aria-hidden />
+                <h3>{active.title}</h3>
+              </div>
+
+              <div className="about__content">
+                <div className="about__body">
+                  <p>{active.body}</p>
+                </div>
+
+                <div className="about__image">
+                  <p className="about__image-caption">{active.caption}</p>
+                  <img src={active.image} alt={active.altTitle} />
+                </div>
+              </div>
+            </>
+          )}
 
           {/* 인디케이터 */}
           <nav className="about__indicator">
@@ -158,16 +290,17 @@ export default function AboutSection() {
           </nav>
         </div>
 
-        {/* 스크롤 트리거용 더미 */}
-        <div className="about__steps" aria-hidden>
-          {blocks.map((_, i) => (
-            <div
-              key={i}
-              className="about__step"
-              ref={(el) => (stepsRef.current[i] = el)}
-            />
-          ))}
-        </div>
+        {!isMobileLayout && (
+          <div className="about__steps" aria-hidden>
+            {blocks.map((_, i) => (
+              <div
+                key={i}
+                className="about__step"
+                ref={(el) => (stepsRef.current[i] = el)}
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );

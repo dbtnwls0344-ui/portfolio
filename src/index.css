@@ -1,6 +1,9 @@
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css");
+@import url("https://fonts.googleapis.com/css2?family=Workbench&display=swap");
+@import "./sections/SectionDecor.css";
 
 :root {
+  --display: "Workbench", "Pretendard Variable", "Pretendard", "Noto Sans KR", sans-serif;
   --serif: "Pretendard Variable", "Pretendard", "Noto Sans KR", sans-serif;
   --sans: "Pretendard Variable", "Pretendard", "Noto Sans KR", sans-serif;
   --mono: "Pretendard Variable", "Pretendard", "Noto Sans KR", monospace;

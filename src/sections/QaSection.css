@@ -1,4 +1,16 @@
 .qa-section {
+  --bg-icon-a: url("../assets/bg-images/blur-white-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-white-circle.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-red-star.svg");
+  --bg-pos-a: 7% 12%;
+  --bg-pos-b: 93% 14%;
+  --bg-pos-c: 90% 84%;
+  --bg-size-a: clamp(66px, 6.8vw, 120px);
+  --bg-size-b: clamp(150px, 17vw, 260px);
+  --bg-size-c: clamp(58px, 6vw, 102px);
+  --bg-opacity: 0.24;
+  --bg-opacity-mobile: 0.16;
+
   --qa-red: #9c2121;
   --qa-white: #dfdfdf;
   --qa-top-band-height: clamp(17.5rem, 42vw, 23.9375rem);
@@ -71,16 +83,15 @@
 
 .qa-section__subtitle {
   margin: 0;
-  font-family: var(--mono);
-  letter-spacing: -0.125rem;
+  font-family: var(--display);
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   font-size: clamp(1rem, 2.4vw, 1.75rem);
   color: var(--qa-white);
   line-height: 1.1;
 }
 
-.qa-section__title:lang(ko),
-.qa-section__subtitle:lang(ko) {
+.qa-section__title:lang(ko) {
   line-height: 1.32;
 }
 

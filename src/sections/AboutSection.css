@@ -3,10 +3,28 @@
    ========================= */
 
 .about {
+  --about-bg-shift: 0px;
+  --bg-icon-a: url("../assets/bg-images/blur-red-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-red-circle.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-grey-star.svg");
+  --bg-pos-a: 8% 12%;
+  --bg-pos-b: 92% 22%;
+  --bg-pos-c: 14% 88%;
+  --bg-size-a: clamp(70px, 7vw, 126px);
+  --bg-size-b: clamp(160px, 18vw, 280px);
+  --bg-size-c: clamp(56px, 6vw, 100px);
+  --bg-opacity: 0.2;
+  --bg-opacity-mobile: 0.15;
+
   background: #dfdfdf;
   --about-image-width: min(40rem, 45vw);
   padding-inline: var(--section-gutter);
   margin-bottom: 400px;
+}
+
+.about::before {
+  transform: translate3d(0, var(--about-bg-shift), 0);
+  will-change: transform;
 }
 
 /* sticky ���� ���� */
@@ -215,11 +233,15 @@
 }
 
 @media (max-width: 980px) {
+  .about {
+    margin-bottom: 180px;
+  }
+
   .about__panel {
     position: static;
     height: auto;
     display: grid;
-    gap: 28px;
+    gap: 22px;
     padding: 48px 0 64px;
   }
 
@@ -229,6 +251,34 @@
   .about__indicator {
     position: static;
     transform: none;
+  }
+
+  .about__mobile-track {
+    display: flex;
+    gap: 14px;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+  }
+
+  .about__mobile-track::-webkit-scrollbar {
+    height: 6px;
+  }
+
+  .about__mobile-track::-webkit-scrollbar-thumb {
+    background: rgba(156, 32, 32, 0.22);
+    border-radius: 999px;
+  }
+
+  .about__mobile-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    scroll-snap-align: start;
+    display: grid;
+    gap: 16px;
   }
 
   .about__title {
@@ -262,6 +312,14 @@
     justify-self: start;
   }
 
+  .about__image-caption {
+    position: static;
+    transform: none;
+    margin: 0 0 6px;
+    text-align: right;
+    font-size: clamp(0.7rem, 2.4vw, 0.9rem);
+  }
+
   .about__indicator {
     display: flex;
     gap: 10px;
@@ -286,5 +344,15 @@
   .about__indicator-item {
     width: 10px;
     height: 10px;
+  }
+
+  .about {
+    margin-bottom: 120px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about::before {
+    transform: none;
   }
 }

@@ -1,4 +1,16 @@
 .skills-section {
+  --bg-icon-a: url("../assets/bg-images/blur-white-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-white-star.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-white-circle.svg");
+  --bg-pos-a: 8% 16%;
+  --bg-pos-b: 92% 20%;
+  --bg-pos-c: 14% 84%;
+  --bg-size-a: clamp(66px, 6.8vw, 118px);
+  --bg-size-b: clamp(118px, 14vw, 210px);
+  --bg-size-c: clamp(84px, 9vw, 138px);
+  --bg-opacity: 0.24;
+  --bg-opacity-mobile: 0.16;
+
   background: #9c2020;
   color: #ffffff;
   padding: clamp(110px, 16vw, 160px) 0 clamp(90px, 12vw, 130px);

@@ -1,4 +1,16 @@
 ﻿.artworks-section {
+  --bg-icon-a: url("../assets/bg-images/blur-white-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-white-circle.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-white-star.svg");
+  --bg-pos-a: 8% 14%;
+  --bg-pos-b: 92% 20%;
+  --bg-pos-c: 90% 88%;
+  --bg-size-a: clamp(68px, 7vw, 124px);
+  --bg-size-b: clamp(165px, 18vw, 280px);
+  --bg-size-c: clamp(60px, 6vw, 106px);
+  --bg-opacity: 0.3;
+  --bg-opacity-mobile: 0.2;
+
   --book-h: clamp(360px, 50vw, 665px);
   --book-w: min(1040px, 92vw);
 
@@ -32,11 +44,12 @@
 
 .artworks-section__subtitle {
   margin: 0;
-  font-family: var(--mono);
-  letter-spacing: -2px;
+  font-family: var(--display);
+  letter-spacing: 0.07em;
   text-transform: uppercase;
   font-size: clamp(1rem, 2.4vw, 1.75rem);
   color: #ffffff;
+  line-height: 1.1;
 }
 
 .artworks-section__star {
