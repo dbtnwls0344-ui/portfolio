@@ -262,8 +262,7 @@
   left: 50%;
   width: min(280px, 32vw);
   aspect-ratio: 1 / 1;
-  transform: translate(-50%, -50%)
-    translate(var(--x), var(--y))
+  transform: translate(-50%, -50%) translate(var(--x), var(--y))
     rotate(var(--r)) scale(1)
     translate(calc(var(--cursor-x) * -32px), calc(var(--cursor-y) * -26px));
   opacity: 1;
@@ -304,8 +303,7 @@
   }
 
   to {
-    transform: translate(-50%, -50%)
-      translate(var(--x), var(--y))
+    transform: translate(-50%, -50%) translate(var(--x), var(--y))
       rotate(var(--r)) scale(1)
       translate(calc(var(--cursor-x) * -32px), calc(var(--cursor-y) * -26px));
     opacity: 1;
@@ -344,7 +342,7 @@
   }
 
   .observe-carousel {
-    --observe-carousel-side-shift: clamp(70px, 16vw, 130px);
+    --observe-carousel-side-shift: clamp(70px, 25vw, 130px);
 
     position: relative;
     display: grid;
