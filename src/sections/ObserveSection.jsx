@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./ObserveSection.css";
 import aboutIconRed from "../assets/images/about-icon-star-red.svg";
 import observeFolderFront from "../assets/images/observe-folder-front.png";
@@ -64,6 +64,15 @@ const createScatterLayout = (count, seed) => {
   return points;
 };
 
+const toItemPositions = (layout) =>
+  layout.map((point) => ({
+    x: point.x,
+    y: point.y,
+    r: point.rotation,
+    vx: 0,
+    vy: 0,
+  }));
+
 function ObserveSection() {
   const folders = useMemo(
     () => [
@@ -119,35 +128,25 @@ function ObserveSection() {
   const [scatterSeed, setScatterSeed] = useState(1);
   const [itemPositions, setItemPositions] = useState([]);
   const [draggingIndex, setDraggingIndex] = useState(null);
+  const [mobileFolderIndex, setMobileFolderIndex] = useState(0);
+  const [isMobileCarousel, setIsMobileCarousel] = useState(() => {
+    if (typeof window === "undefined") return false;
+    return window.matchMedia("(max-width: 760px)").matches;
+  });
   const galleryRef = useRef(null);
   const pointerRef = useRef({ x: 0, y: 0, active: false });
   const dragRef = useRef(null);
   const rafRef = useRef(null);
-
-  const scatterLayout = useMemo(() => {
-    if (!activeFolder) return [];
-    return createScatterLayout(activeFolder.images.length, scatterSeed);
-  }, [activeFolder, scatterSeed]);
-
-  useEffect(() => {
-    if (!scatterLayout.length) {
-      setItemPositions([]);
-      return;
-    }
-
-    setItemPositions(
-      scatterLayout.map((point) => ({
-        x: point.x,
-        y: point.y,
-        r: point.rotation,
-        vx: 0,
-        vy: 0,
-      })),
-    );
-  }, [scatterLayout]);
+  const animateRepelRef = useRef(null);
+  const carouselSwipeRef = useRef({ startX: 0, startY: 0, active: false });
+  const suppressTapRef = useRef(false);
 
   const handleOpen = (folder) => {
-    setScatterSeed((prev) => prev + 1);
+    const nextSeed = scatterSeed + 1;
+    const nextLayout = createScatterLayout(folder.images.length, nextSeed);
+
+    setScatterSeed(nextSeed);
+    setItemPositions(toItemPositions(nextLayout));
     pointerRef.current = { x: 0, y: 0, active: false };
     setActiveFolder(folder);
   };
@@ -160,10 +159,11 @@ function ObserveSection() {
       cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
     }
+    setItemPositions([]);
     setActiveFolder(null);
   };
 
-  const animateRepel = () => {
+  const animateRepel = useCallback(() => {
     const gallery = galleryRef.current;
     if (!gallery) {
       rafRef.current = null;
@@ -243,13 +243,43 @@ function ObserveSection() {
       }),
     );
 
-    rafRef.current = requestAnimationFrame(animateRepel);
-  };
+    rafRef.current = requestAnimationFrame(() => {
+      animateRepelRef.current?.();
+    });
+  }, []);
 
-  const ensureRepelLoop = () => {
-    if (rafRef.current) return;
-    rafRef.current = requestAnimationFrame(animateRepel);
-  };
+  useEffect(() => {
+    animateRepelRef.current = animateRepel;
+  }, [animateRepel]);
+
+  const ensureRepelLoop = useCallback(() => {
+    if (rafRef.current || !animateRepelRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      animateRepelRef.current?.();
+    });
+  }, []);
+
+  const shiftMobileFolder = useCallback(
+    (direction) => {
+      setMobileFolderIndex(
+        (prev) => (prev + direction + folders.length) % folders.length,
+      );
+    },
+    [folders.length],
+  );
+
+  const getMobileSlotClass = useCallback(
+    (index) => {
+      const total = folders.length;
+      const offset = (index - mobileFolderIndex + total) % total;
+
+      if (offset === 0) return "is-center";
+      if (offset === 1) return "is-next";
+      if (offset === total - 1) return "is-prev";
+      return "is-hidden";
+    },
+    [folders.length, mobileFolderIndex],
+  );
 
   const handleItemPointerDown = (index) => (event) => {
     if (event.pointerType === "mouse" && event.button !== 0) return;
@@ -346,6 +376,50 @@ function ObserveSection() {
     pointerRef.current = { x: 0, y: 0, active: false };
   };
 
+  const handleCarouselPointerDown = (event) => {
+    carouselSwipeRef.current = {
+      startX: event.clientX,
+      startY: event.clientY,
+      active: true,
+    };
+  };
+
+  const handleCarouselPointerUp = (event) => {
+    const swipe = carouselSwipeRef.current;
+    if (!swipe.active) return;
+    swipe.active = false;
+
+    const dx = event.clientX - swipe.startX;
+    const dy = event.clientY - swipe.startY;
+    const horizontalSwipe = Math.abs(dx) >= 46 && Math.abs(dx) > Math.abs(dy) * 1.15;
+    if (!horizontalSwipe) return;
+
+    suppressTapRef.current = true;
+    if (dx < 0) {
+      shiftMobileFolder(1);
+    } else {
+      shiftMobileFolder(-1);
+    }
+  };
+
+  const handleCarouselPointerCancel = () => {
+    carouselSwipeRef.current.active = false;
+  };
+
+  const handleFolderTrigger = (folder, index) => {
+    if (suppressTapRef.current) {
+      suppressTapRef.current = false;
+      return;
+    }
+
+    if (isMobileCarousel && index !== mobileFolderIndex) {
+      setMobileFolderIndex(index);
+      return;
+    }
+
+    handleOpen(folder);
+  };
+
   useEffect(
     () => () => {
       if (rafRef.current) {
@@ -356,10 +430,75 @@ function ObserveSection() {
   );
 
   useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const mediaQuery = window.matchMedia("(max-width: 760px)");
+    const syncCarouselMode = (event) => setIsMobileCarousel(event.matches);
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener("change", syncCarouselMode);
+    } else {
+      mediaQuery.addListener(syncCarouselMode);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener("change", syncCarouselMode);
+      } else {
+        mediaQuery.removeListener(syncCarouselMode);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
     if (activeFolder) {
       ensureRepelLoop();
     }
-  }, [activeFolder, scatterLayout.length]);
+  }, [activeFolder, ensureRepelLoop]);
+
+  const renderFolderButton = (folder, index, className = "") => (
+    <button
+      key={folder.id}
+      className={["observe-folder", className].filter(Boolean).join(" ")}
+      type="button"
+      onClick={() => handleFolderTrigger(folder, index)}
+      aria-label={`${folder.label} folder`}
+    >
+      <div className="observe-folder__stack">
+        <img
+          className="observe-folder__back"
+          src={observeFolderBack}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className="observe-folder__back observe-folder__back--open"
+          src={observeFolderBackOpen}
+          alt=""
+          aria-hidden="true"
+        />
+        <img
+          className="observe-folder__front"
+          src={observeFolderFront}
+          alt=""
+          aria-hidden="true"
+        />
+        <div className="observe-folder__previews" aria-hidden="true">
+          {folder.previews.map((src, previewIndex) => (
+            <img
+              key={src}
+              className="observe-folder__preview"
+              src={src}
+              alt=""
+              loading="lazy"
+              style={{ "--preview-index": previewIndex }}
+            />
+          ))}
+        </div>
+      </div>
+      <span className="observe-folder__label">{folder.label}</span>
+    </button>
+  );
 
   return (
     <section
@@ -382,50 +521,44 @@ function ObserveSection() {
           </p>
         </div>
 
-        <div className="observe-grid">
-          {folders.map((folder) => (
-            <button
-              key={folder.id}
-              className="observe-folder"
-              type="button"
-              onClick={() => handleOpen(folder)}
+        {isMobileCarousel ? (
+          <div className="observe-carousel">
+            <div
+              className="observe-carousel__viewport"
+              onPointerDown={handleCarouselPointerDown}
+              onPointerUp={handleCarouselPointerUp}
+              onPointerCancel={handleCarouselPointerCancel}
             >
-              <div className="observe-folder__stack">
-                <img
-                  className="observe-folder__back"
-                  src={observeFolderBack}
-                  alt=""
-                  aria-hidden="true"
-                />
-                <img
-                  className="observe-folder__back observe-folder__back--open"
-                  src={observeFolderBackOpen}
-                  alt=""
-                  aria-hidden="true"
-                />
-                <img
-                  className="observe-folder__front"
-                  src={observeFolderFront}
-                  alt=""
-                  aria-hidden="true"
-                />
-                <div className="observe-folder__previews" aria-hidden="true">
-                  {folder.previews.map((src, index) => (
-                    <img
-                      key={src}
-                      className="observe-folder__preview"
-                      src={src}
-                      alt=""
-                      loading="lazy"
-                      style={{ "--preview-index": index }}
-                    />
-                  ))}
-                </div>
+              <div className="observe-carousel__track">
+                {folders.map((folder, index) =>
+                  renderFolderButton(
+                    folder,
+                    index,
+                    `observe-folder--carousel ${getMobileSlotClass(index)}`,
+                  ),
+                )}
               </div>
-              <span className="observe-folder__label">{folder.label}</span>
-            </button>
-          ))}
-        </div>
+            </div>
+
+            <nav className="observe-carousel__dots" aria-label="Folder slides">
+              {folders.map((folder, index) => (
+                <button
+                  key={`${folder.id}-dot`}
+                  className={`observe-carousel__dot ${
+                    index === mobileFolderIndex ? "is-active" : ""
+                  }`}
+                  type="button"
+                  onClick={() => setMobileFolderIndex(index)}
+                  aria-label={`Go to ${folder.label}`}
+                />
+              ))}
+            </nav>
+          </div>
+        ) : (
+          <div className="observe-grid">
+            {folders.map((folder, index) => renderFolderButton(folder, index))}
+          </div>
+        )}
       </div>
 
       {activeFolder && (
@@ -462,9 +595,9 @@ function ObserveSection() {
                   onPointerCancel={handleItemPointerUp(index)}
                   style={{
                     "--i": index,
-                    "--x": `${itemPositions[index]?.x ?? scatterLayout[index]?.x ?? 0}px`,
-                    "--y": `${itemPositions[index]?.y ?? scatterLayout[index]?.y ?? 0}px`,
-                    "--r": `${itemPositions[index]?.r ?? scatterLayout[index]?.rotation ?? 0}deg`,
+                    "--x": `${itemPositions[index]?.x ?? 0}px`,
+                    "--y": `${itemPositions[index]?.y ?? 0}px`,
+                    "--r": `${itemPositions[index]?.r ?? 0}deg`,
                   }}
                 >
                   <img src={src} alt="" loading="lazy" />

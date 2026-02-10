@@ -95,7 +95,6 @@ export default function AboutSection() {
     const mediaQuery = window.matchMedia("(max-width: 980px)");
     const syncLayout = (event) => setIsMobileLayout(event.matches);
 
-    setIsMobileLayout(mediaQuery.matches);
     if (mediaQuery.addEventListener) {
       mediaQuery.addEventListener("change", syncLayout);
     } else {

@@ -3,7 +3,6 @@ import { gsap } from "gsap";
 import { interpolate } from "flubber";
 import "./ProjectSection.css";
 
-import aboutIconWhite from "../assets/images/about-icon-star-white.svg";
 import folderLid from "../assets/images/project-folder-lid.png";
 import folderBody from "../assets/images/project-folder-body.png";
 import buttonTop from "../assets/images/project-button-top.png";

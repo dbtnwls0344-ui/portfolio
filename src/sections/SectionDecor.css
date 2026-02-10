@@ -51,6 +51,110 @@
   opacity: var(--bg-opacity, 0.34);
 }
 
+:is(
+  .hero,
+  .profile.section,
+  .text-section,
+  .about,
+  .observe-section,
+  .philosophy,
+  .project-section.section,
+  .clone-section,
+  .artworks-section,
+  .skills-section,
+  .qa-section,
+  .contact-section
+)
+  .section-decor-hit-layer {
+  position: absolute;
+  inset: -4% -2%;
+  z-index: 14;
+  pointer-events: none;
+}
+
+:is(
+  .hero,
+  .profile.section,
+  .text-section,
+  .about,
+  .observe-section,
+  .philosophy,
+  .project-section.section,
+  .clone-section,
+  .artworks-section,
+  .skills-section,
+  .qa-section,
+  .contact-section
+)
+  .section-decor-hit {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+}
+
+:is(
+  .hero,
+  .profile.section,
+  .text-section,
+  .about,
+  .observe-section,
+  .philosophy,
+  .project-section.section,
+  .clone-section,
+  .artworks-section,
+  .skills-section,
+  .qa-section,
+  .contact-section
+)
+  .section-decor-hit--a {
+  left: var(--bg-hit-a-left, 6%);
+  top: var(--bg-hit-a-top, 10%);
+  width: var(--bg-size-a, clamp(72px, 8vw, 150px));
+  height: var(--bg-size-a, clamp(72px, 8vw, 150px));
+}
+
+:is(
+  .hero,
+  .profile.section,
+  .text-section,
+  .about,
+  .observe-section,
+  .philosophy,
+  .project-section.section,
+  .clone-section,
+  .artworks-section,
+  .skills-section,
+  .qa-section,
+  .contact-section
+)
+  .section-decor-hit--b {
+  left: var(--bg-hit-b-left, 92%);
+  top: var(--bg-hit-b-top, 16%);
+  width: var(--bg-size-b, clamp(160px, 18vw, 280px));
+  height: var(--bg-size-b, clamp(160px, 18vw, 280px));
+}
+
+:is(
+  .hero,
+  .profile.section,
+  .text-section,
+  .about,
+  .observe-section,
+  .philosophy,
+  .project-section.section,
+  .clone-section,
+  .artworks-section,
+  .skills-section,
+  .qa-section,
+  .contact-section
+)
+  .section-decor-hit--c {
+  left: var(--bg-hit-c-left, 84%);
+  top: var(--bg-hit-c-top, 84%);
+  width: var(--bg-size-c, clamp(64px, 7vw, 130px));
+  height: var(--bg-size-c, clamp(64px, 7vw, 130px));
+}
+
 @media (max-width: 900px) {
   :is(
     .hero,
@@ -75,5 +179,132 @@
       var(--bg-size-b-mobile, clamp(120px, 34vw, 220px)),
       var(--bg-size-c-mobile, clamp(56px, 14vw, 110px));
     opacity: var(--bg-opacity-mobile, 0.24);
+  }
+
+  :is(
+    .hero,
+    .profile.section,
+    .text-section,
+    .about,
+    .observe-section,
+    .philosophy,
+    .project-section.section,
+    .clone-section,
+    .artworks-section,
+    .skills-section,
+    .qa-section,
+    .contact-section
+  )
+    .section-decor-hit--a {
+    width: var(--bg-size-a-mobile, clamp(64px, 16vw, 120px));
+    height: var(--bg-size-a-mobile, clamp(64px, 16vw, 120px));
+  }
+
+  :is(
+    .hero,
+    .profile.section,
+    .text-section,
+    .about,
+    .observe-section,
+    .philosophy,
+    .project-section.section,
+    .clone-section,
+    .artworks-section,
+    .skills-section,
+    .qa-section,
+    .contact-section
+  )
+    .section-decor-hit--b {
+    width: var(--bg-size-b-mobile, clamp(120px, 34vw, 220px));
+    height: var(--bg-size-b-mobile, clamp(120px, 34vw, 220px));
+  }
+
+  :is(
+    .hero,
+    .profile.section,
+    .text-section,
+    .about,
+    .observe-section,
+    .philosophy,
+    .project-section.section,
+    .clone-section,
+    .artworks-section,
+    .skills-section,
+    .qa-section,
+    .contact-section
+  )
+    .section-decor-hit--c {
+    width: var(--bg-size-c-mobile, clamp(56px, 14vw, 110px));
+    height: var(--bg-size-c-mobile, clamp(56px, 14vw, 110px));
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  :is(
+    .hero,
+    .profile.section,
+    .text-section,
+    .about,
+    .observe-section,
+    .philosophy,
+    .project-section.section,
+    .clone-section,
+    .artworks-section,
+    .skills-section,
+    .qa-section,
+    .contact-section
+  )
+    .section-decor-hit {
+    pointer-events: auto;
+  }
+
+  :is(
+    .hero,
+    .profile.section,
+    .text-section,
+    .observe-section,
+    .philosophy,
+    .project-section.section,
+    .clone-section,
+    .artworks-section,
+    .skills-section,
+    .qa-section,
+    .contact-section
+  ).is-bg-icon-hover::before {
+    animation: section-bg-shooting 1.7s ease-in-out infinite;
+  }
+}
+
+@keyframes section-bg-shooting {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+
+  32% {
+    transform: translate3d(7px, -5px, 0) rotate(-0.7deg);
+  }
+
+  66% {
+    transform: translate3d(-6px, 4px, 0) rotate(0.65deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :is(
+    .hero,
+    .profile.section,
+    .text-section,
+    .about,
+    .observe-section,
+    .philosophy,
+    .project-section.section,
+    .clone-section,
+    .artworks-section,
+    .skills-section,
+    .qa-section,
+    .contact-section
+  )::before {
+    animation: none !important;
   }
 }

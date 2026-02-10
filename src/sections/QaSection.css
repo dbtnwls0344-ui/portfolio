@@ -64,7 +64,7 @@
 .qa-section__header {
   color: var(--qa-white);
   text-align: center;
-  margin-bottom: clamp(3rem, 8vw, 6.875rem);
+  margin-bottom: clamp(6rem, 8vw, 6.875rem);
   display: grid;
   justify-items: center;
   gap: clamp(0.5rem, 1vw, 0.625rem);
@@ -72,7 +72,7 @@
 
 .qa-section__title {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 8.75rem);
+  font-size: var(--section-title-size);
   letter-spacing: -0.125rem;
   text-transform: uppercase;
   display: inline-flex;
@@ -86,7 +86,7 @@
   font-family: var(--display);
   letter-spacing: 0.07em;
   text-transform: uppercase;
-  font-size: clamp(1rem, 2.4vw, 1.75rem);
+  font-size: var(--section-subtitle-size);
   color: var(--qa-white);
   line-height: 1.1;
 }

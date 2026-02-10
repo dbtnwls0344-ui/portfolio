@@ -1,3 +1,17 @@
+.profile {
+  --bg-icon-a: url("../assets/bg-images/blur-red-star.svg");
+  --bg-icon-b: url("../assets/bg-images/blur-red-circle.svg");
+  --bg-icon-c: url("../assets/bg-images/blur-grey-star.svg");
+  --bg-pos-a: 7% 14%;
+  --bg-pos-b: 92% 22%;
+  --bg-pos-c: 12% 86%;
+  --bg-size-a: clamp(68px, 7vw, 124px);
+  --bg-size-b: clamp(155px, 18vw, 270px);
+  --bg-size-c: clamp(58px, 6vw, 102px);
+  --bg-opacity: 0.2;
+  --bg-opacity-mobile: 0.15;
+}
+
 .profile__inner {
   width: min(1800px, 92%);
   margin: 200px auto 300px;
@@ -375,22 +389,22 @@
   }
 
   .profile__stage {
-    --profile-content-scale: 0.78;
+    --profile-content-scale: clamp(0.66, calc(100vw / 1180), 0.76);
     --profile-content-columns: repeat(2, minmax(0, 1fr));
-    --profile-content-top: 4.4%;
+    --profile-content-top: 4.2%;
     --profile-content-left: 50%;
-    --profile-content-width: min(52%, 500px);
-    --profile-content-height: 88%;
+    --profile-content-width: min(50%, 460px);
+    --profile-content-height: 82%;
     --profile-content-shift-x: -50%;
-    --profile-column-gap: 10px;
-    --profile-column-gap-right: 10px;
-    --profile-polaroid-width: 21%;
-    --profile-polaroid-right: 54.5%;
-    --profile-polaroid-top: 1.6%;
+    --profile-column-gap: 8px;
+    --profile-column-gap-right: 8px;
+    --profile-polaroid-width: 20%;
+    --profile-polaroid-right: 54%;
+    --profile-polaroid-top: 1.8%;
     --profile-polaroid-rotate: -18deg;
-    --profile-clip-width: 10%;
-    --profile-clip-right: 8.8%;
-    --profile-clip-top: 30%;
+    --profile-clip-width: 9%;
+    --profile-clip-right: 8.4%;
+    --profile-clip-top: 29%;
 
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -436,6 +450,11 @@
     opacity: 1;
     pointer-events: auto;
     overflow: hidden;
+    align-items: stretch;
+  }
+
+  .profile__content-grid {
+    gap: clamp(4px, 0.8vw, 8px);
   }
 
   .profile__section {
@@ -446,7 +465,7 @@
 
   .profile__heading {
     margin-bottom: 3px;
-    font-size: 0.9rem;
+    font-size: 0.82rem;
     letter-spacing: 0.03rem;
   }
 
@@ -457,17 +476,17 @@
 
   .profile__period,
   .profile__label {
-    font-size: 0.54rem;
+    font-size: 0.52rem;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.67rem;
+    font-size: 0.62rem;
     line-height: 1.2;
   }
 
   .profile__meta li {
-    grid-template-columns: 54px minmax(0, 1fr);
+    grid-template-columns: 52px minmax(0, 1fr);
     gap: 3px;
   }
 }
@@ -478,21 +497,25 @@
   }
 
   .profile__stage {
-    --profile-content-scale: 0.92;
+    --profile-content-scale: clamp(0.64, calc(100vw / 980), 0.72);
     --profile-content-columns: repeat(2, minmax(0, 1fr));
-    --profile-content-top: 4.6%;
-    --profile-content-width: min(79%, 500px);
-    --profile-content-height: 85%;
-    --profile-column-gap: 14px;
-    --profile-column-gap-right: 14px;
-    --profile-polaroid-width: 33%;
+    --profile-content-top: 4.5%;
+    --profile-content-width: min(74%, 460px);
+    --profile-content-height: 82%;
+    --profile-column-gap: 9px;
+    --profile-column-gap-right: 9px;
+    --profile-polaroid-width: 31%;
     --profile-polaroid-right: 54%;
     --profile-polaroid-top: 2%;
-    --profile-clip-width: 14%;
-    --profile-clip-right: -4%;
-    --profile-clip-top: 30%;
+    --profile-clip-width: 13%;
+    --profile-clip-right: -3%;
+    --profile-clip-top: 29.5%;
 
     aspect-ratio: 3 / 4;
+  }
+
+  .profile__content-grid {
+    gap: 6px;
   }
 
   .profile__section {
@@ -502,22 +525,22 @@
   }
 
   .profile__heading {
-    font-size: 0.96rem;
+    font-size: 0.74rem;
   }
 
   .profile__period,
   .profile__label {
-    font-size: 0.6rem;
+    font-size: 0.48rem;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.74rem;
-    line-height: 1.28;
+    font-size: 0.56rem;
+    line-height: 1.18;
   }
 
   .profile__meta li {
-    grid-template-columns: 60px minmax(0, 1fr);
+    grid-template-columns: 46px minmax(0, 1fr);
   }
 }
 
@@ -527,72 +550,72 @@
   }
 
   .profile__stage {
-    --profile-content-scale: 0.84;
-    --profile-content-top: 4.9%;
+    --profile-content-scale: clamp(0.58, calc(100vw / 760), 0.66);
+    --profile-content-top: 4.8%;
+    --profile-content-width: 84%;
+    --profile-content-height: 81%;
+    --profile-column-gap: 7px;
+    --profile-column-gap-right: 7px;
+    --profile-polaroid-width: 33%;
+    --profile-polaroid-right: 52.5%;
+    --profile-polaroid-top: 1.8%;
+    --profile-clip-width: 14%;
+    --profile-clip-right: -4%;
+    --profile-clip-top: 30%;
+  }
+
+  .profile__heading {
+    font-size: 0.67rem;
+  }
+
+  .profile__period,
+  .profile__label {
+    font-size: 0.44rem;
+  }
+
+  .profile__detail,
+  .profile__value {
+    font-size: 0.52rem;
+    line-height: 1.22;
+  }
+
+  .profile__meta li {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 420px) {
+  .profile__stage {
+    --profile-content-scale: clamp(0.52, calc(100vw / 700), 0.6);
+    --profile-content-top: 5%;
     --profile-content-width: 86%;
-    --profile-content-height: 85%;
-    --profile-column-gap: 10px;
-    --profile-column-gap-right: 10px;
+    --profile-content-height: 80%;
+    --profile-column-gap: 6px;
+    --profile-column-gap-right: 6px;
     --profile-polaroid-width: 34%;
-    --profile-polaroid-right: 52%;
-    --profile-polaroid-top: 1.6%;
+    --profile-polaroid-right: 51%;
+    --profile-polaroid-top: 1.4%;
     --profile-clip-width: 15%;
     --profile-clip-right: -5%;
     --profile-clip-top: 30%;
   }
 
   .profile__heading {
-    font-size: 0.84rem;
+    font-size: 0.6rem;
   }
 
   .profile__period,
   .profile__label {
-    font-size: 0.56rem;
+    font-size: 0.41rem;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.64rem;
-    line-height: 1.22;
-  }
-
-  .profile__meta li {
-    grid-template-columns: 54px minmax(0, 1fr);
-  }
-}
-
-@media (max-width: 420px) {
-  .profile__stage {
-    --profile-content-scale: 0.76;
-    --profile-content-top: 5.4%;
-    --profile-content-width: 88%;
-    --profile-content-height: 86%;
-    --profile-column-gap: 8px;
-    --profile-column-gap-right: 8px;
-    --profile-polaroid-width: 35%;
-    --profile-polaroid-right: 50%;
-    --profile-polaroid-top: 1.2%;
-    --profile-clip-width: 16%;
-    --profile-clip-right: -6%;
-    --profile-clip-top: 29.5%;
-  }
-
-  .profile__heading {
-    font-size: 0.74rem;
-  }
-
-  .profile__period,
-  .profile__label {
-    font-size: 0.5rem;
-  }
-
-  .profile__detail,
-  .profile__value {
-    font-size: 0.58rem;
+    font-size: 0.48rem;
     line-height: 1.2;
   }
 
   .profile__meta li {
-    grid-template-columns: 48px minmax(0, 1fr);
+    grid-template-columns: 40px minmax(0, 1fr);
   }
 }

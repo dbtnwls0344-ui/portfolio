@@ -16,7 +16,7 @@
   color: #ffffff;
   overflow: hidden;
   text-align: center;
-  padding-bottom: 800px;
+  padding-bottom: clamp(240px, 38vw, 800px);
 }
 
 .text-section--prof {
@@ -59,7 +59,7 @@
 
 .text-section__title {
   margin: 0;
-  font-size: clamp(3rem, 8vw, 8.75rem);
+  font-size: var(--section-title-size);
   font-weight: 700;
   letter-spacing: -2px;
   line-height: 1.1;
@@ -69,7 +69,7 @@
   color: #ffffff;
   margin: 0;
   font-family: var(--display);
-  font-size: clamp(1rem, 2.4vw, 1.75rem);
+  font-size: var(--section-subtitle-size);
   font-weight: 600;
   letter-spacing: 0.07em;
   line-height: 1.1;

@@ -27,6 +27,29 @@
   will-change: transform;
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .about.is-bg-icon-hover::before {
+    animation: about-bg-shooting 1.7s ease-in-out infinite;
+  }
+}
+
+@keyframes about-bg-shooting {
+  0%,
+  100% {
+    transform: translate3d(0, var(--about-bg-shift), 0) rotate(0deg);
+  }
+
+  32% {
+    transform: translate3d(7px, calc(var(--about-bg-shift) - 5px), 0)
+      rotate(-0.7deg);
+  }
+
+  66% {
+    transform: translate3d(-6px, calc(var(--about-bg-shift) + 4px), 0)
+      rotate(0.65deg);
+  }
+}
+
 /* sticky ���� ���� */
 .about,
 .about__scrolly {
@@ -71,7 +94,7 @@
 
 .about__title h3 {
   color: #9c2121;
-  font-size: clamp(2.6rem, 6.8vw, 7.2rem);
+  font-size: var(--section-title-size);
   margin: 0;
   font-weight: 600;
   padding-left: 0;
@@ -214,10 +237,6 @@
     --about-image-width: min(35rem, 47vw);
   }
 
-  .about__title h3 {
-    font-size: clamp(2.2rem, 6.8vw, 5.8rem);
-  }
-
   .about__content {
     bottom: clamp(72px, 8vh, 104px);
     gap: clamp(20px, 2.6vw, 40px);
@@ -258,10 +277,12 @@
     gap: 14px;
     overflow-x: auto;
     overscroll-behavior-x: contain;
+    touch-action: pan-x;
     scroll-behavior: smooth;
     scroll-snap-type: x mandatory;
     -webkit-overflow-scrolling: touch;
     padding-bottom: 6px;
+    scrollbar-gutter: stable;
   }
 
   .about__mobile-track::-webkit-scrollbar {
@@ -277,6 +298,7 @@
     flex: 0 0 100%;
     min-width: 100%;
     scroll-snap-align: start;
+    scroll-snap-stop: always;
     display: grid;
     gap: 16px;
   }
@@ -286,7 +308,6 @@
   }
 
   .about__title h3 {
-    font-size: clamp(2.1rem, 10vw, 3.6rem);
     letter-spacing: -1px;
   }
 
@@ -353,6 +374,7 @@
 
 @media (prefers-reduced-motion: reduce) {
   .about::before {
+    animation: none !important;
     transform: none;
   }
 }
