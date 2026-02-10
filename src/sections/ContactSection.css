@@ -131,7 +131,8 @@
 }
 
 .contact-card__paper {
-  width: min(880px, 90vw);
+  width: min(679px, 90vw);
+  height: min(378px, 90vw);
   background: #dedddb;
   border-radius: 12px;
   box-shadow: 0 26px 60px rgba(0, 0, 0, 0.28);
@@ -294,8 +295,10 @@
   }
 
   .contact-card__paper {
+    width: min(350px, 90vw);
     grid-template-columns: 1fr;
     text-align: left;
+    height: auto;
   }
 
   .contact-card__info-top {
@@ -337,7 +340,7 @@
   }
 
   .contact-card__paper {
-    width: min(92vw, 284px);
+    width: min(92vw, 330px);
     gap: 18px;
     padding-inline: clamp(16px, 5vw, 24px);
   }

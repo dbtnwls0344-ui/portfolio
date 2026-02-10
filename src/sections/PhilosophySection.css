@@ -149,14 +149,16 @@
 
   /* 모바일에서 “레일 + D” 가로로 붙이려면 flex로 처리 */
   .philosophy__left {
-    flex-direction: row-reverse;
-    align-items: end;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: flex-start;
   }
 
   .philosophy__rail {
-    writing-mode: horizontal-tb;
-    transform: none;
-    letter-spacing: 0.2em;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: clamp(0.7rem, 1.8vw, 0.85rem);
+    letter-spacing: 0.16em;
   }
 
   .philosophy__dropcap {
@@ -164,7 +166,9 @@
   }
 
   .philosophy__dropcap-image {
-    width: clamp(6.25rem, 28vw, 10.625rem);
+    width: clamp(9rem, 32vw, 12.5rem);
+    min-width: 9rem;
+    flex-shrink: 0;
   }
 }
 
