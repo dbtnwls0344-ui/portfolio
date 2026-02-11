@@ -134,7 +134,7 @@
   font-weight: 600;
   text-align: left;
   cursor: pointer;
-  margin-bottom: 2%;
+  margin-bottom: 0.7%;
 }
 
 .qa-item__dot {
@@ -147,7 +147,7 @@
 
 .qa-item__label {
   letter-spacing: 0.02em;
-  margin-top: 2%;
+  margin-top: 0.7%;
 }
 
 .qa-item__answer {

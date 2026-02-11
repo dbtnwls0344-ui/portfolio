@@ -3,10 +3,10 @@ import aboutIconWhite from "../assets/images/about-icon-star-white.svg";
 
 function TextSection({ variant = "default" }) {
   const isProf = variant === "prof";
-  const title = isProf ? "ABOUT ME" : "TEXT SECTION";
+  const title = isProf ? "ABOUT ME" : "Between Observation and Execution";
   const subtitle = isProf
     ? "I sense experiences, translate meaning, and build structure."
-    : "I sense experiences, translate meaning, and build structure.";
+    : "  ";
 
   return (
     <section

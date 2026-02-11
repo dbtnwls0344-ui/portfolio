@@ -12,27 +12,29 @@ import SkillsSection from "./sections/SkillsSection";
 import QaSection from "./sections/QaSection";
 import ContactSection from "./sections/ContactSection";
 import ObserveSection from "./sections/ObserveSection";
-
-const DECOR_SECTION_SELECTOR = [
-  ".hero",
-  ".profile.section",
-  ".text-section",
-  ".about",
-  ".observe-section",
-  ".philosophy",
-  ".project-section.section",
-  ".clone-section",
-  ".artworks-section",
-  ".skills-section",
-  ".qa-section",
-  ".contact-section",
-].join(", ");
+import cursorClickRed from "./assets/images/cursor-click-red.svg";
+import cursorClickWhite from "./assets/images/cursor-click-white.svg";
 
 function App() {
   const cursorRef = useRef(null);
   const [cursorEnabled, setCursorEnabled] = useState(false);
   const [cursorMode, setCursorMode] = useState("");
   const [cursorTone, setCursorTone] = useState("light");
+  const [cursorImageFailed, setCursorImageFailed] = useState({
+    red: false,
+    white: false,
+  });
+  const CURSOR_IMAGE_SRC = {
+    red: cursorClickRed,
+    white: cursorClickWhite,
+  };
+  const preferredImageKey = cursorTone === "dark" ? "white" : "red";
+  const fallbackImageKey = preferredImageKey === "white" ? "red" : "white";
+  const activeImageKey = cursorImageFailed[preferredImageKey]
+    ? fallbackImageKey
+    : preferredImageKey;
+  const cursorImageSrc = CURSOR_IMAGE_SRC[activeImageKey];
+  const cursorHasImage = !cursorImageFailed[activeImageKey];
 
   useEffect(() => {
     if (typeof window === "undefined") return undefined;
@@ -63,9 +65,8 @@ function App() {
     if (!cursorEl) return undefined;
 
     const CLICK_SELECTOR =
-      'button, a, [role="button"], summary, .project-file, .clone-item__button, .observe-folder, .observe-carousel__dot';
+      "button, a, [role='button'], summary, label, .project-file, .clone-item__button, .observe-folder, .observe-carousel__dot, .artworks-page";
     const DRAG_SELECTOR = ".observe-modal__item, .observe-carousel__viewport";
-    const INPUT_SELECTOR = "input, textarea, select, [contenteditable='true']";
 
     let activeMode = "";
     let activeTone = "light";
@@ -107,9 +108,22 @@ function App() {
 
     const resolveMode = (target) => {
       if (!(target instanceof Element)) return "";
-      if (target.closest(INPUT_SELECTOR)) return "";
       if (target.closest(DRAG_SELECTOR)) return "drag";
+
+      let node = target;
+      let cursorHint = "";
+      while (node && node !== document.documentElement) {
+        const cursor = window.getComputedStyle(node).cursor;
+        if (cursor && cursor !== "auto" && cursor !== "default") {
+          cursorHint = cursor;
+          break;
+        }
+        node = node.parentElement;
+      }
+
+      if (cursorHint.includes("grab")) return "drag";
       if (target.closest(CLICK_SELECTOR)) return "click";
+      if (cursorHint === "pointer") return "click";
       return "";
     };
 
@@ -154,116 +168,32 @@ function App() {
     };
   }, [cursorEnabled]);
 
-  useEffect(() => {
-    const sections = Array.from(
-      document.querySelectorAll(DECOR_SECTION_SELECTOR),
-    );
-    if (!sections.length) return undefined;
-    const hoverCapable = window.matchMedia(
-      "(hover: hover) and (pointer: fine)",
-    ).matches;
-    const removeHoverListeners = [];
-
-    const defaults = {
-      a: "6% 10%",
-      b: "92% 16%",
-      c: "84% 84%",
-    };
-
-    const parsePos = (raw, fallback) => {
-      const source = (raw || fallback || "").trim().replace(/\s+/g, " ");
-      const [left = "0%", top = "0%"] = source.split(" ");
-      return { left, top };
-    };
-
-    sections.forEach((section) => {
-      let layer = section.querySelector(".section-decor-hit-layer");
-      if (!layer) {
-        layer = document.createElement("div");
-        layer.className = "section-decor-hit-layer";
-        layer.setAttribute("aria-hidden", "true");
-
-        ["a", "b", "c"].forEach((key) => {
-          const hit = document.createElement("span");
-          hit.className = `section-decor-hit section-decor-hit--${key}`;
-          layer.append(hit);
-        });
-
-        section.append(layer);
-      }
-
-      if (hoverCapable) {
-        const hits = Array.from(layer.querySelectorAll(".section-decor-hit"));
-        const handleEnter = () => section.classList.add("is-bg-icon-hover");
-        const handleLeave = (event) => {
-          if (layer.contains(event.relatedTarget)) return;
-          section.classList.remove("is-bg-icon-hover");
-        };
-
-        hits.forEach((hit) => {
-          hit.addEventListener("pointerenter", handleEnter);
-          hit.addEventListener("pointerleave", handleLeave);
-        });
-
-        removeHoverListeners.push(() => {
-          hits.forEach((hit) => {
-            hit.removeEventListener("pointerenter", handleEnter);
-            hit.removeEventListener("pointerleave", handleLeave);
-          });
-          section.classList.remove("is-bg-icon-hover");
-        });
-      }
-    });
-
-    const applyHitPositions = () => {
-      const isMobile = window.matchMedia("(max-width: 900px)").matches;
-
-      sections.forEach((section) => {
-        const styles = window.getComputedStyle(section);
-
-        ["a", "b", "c"].forEach((key) => {
-          const mobilePos = styles
-            .getPropertyValue(`--bg-pos-${key}-mobile`)
-            .trim();
-          const desktopPos = styles.getPropertyValue(`--bg-pos-${key}`).trim();
-          const { left, top } = parsePos(
-            isMobile && mobilePos ? mobilePos : desktopPos,
-            defaults[key],
-          );
-
-          section.style.setProperty(`--bg-hit-${key}-left`, left);
-          section.style.setProperty(`--bg-hit-${key}-top`, top);
-        });
-      });
-    };
-
-    applyHitPositions();
-    window.addEventListener("resize", applyHitPositions);
-
-    return () => {
-      window.removeEventListener("resize", applyHitPositions);
-      removeHoverListeners.forEach((dispose) => dispose());
-      sections.forEach((section) => {
-        section.style.removeProperty("--bg-hit-a-left");
-        section.style.removeProperty("--bg-hit-a-top");
-        section.style.removeProperty("--bg-hit-b-left");
-        section.style.removeProperty("--bg-hit-b-top");
-        section.style.removeProperty("--bg-hit-c-left");
-        section.style.removeProperty("--bg-hit-c-top");
-
-        const layer = section.querySelector(".section-decor-hit-layer");
-        if (layer) layer.remove();
-      });
-    };
-  }, []);
-
   return (
     <div className="page">
       <div
         ref={cursorRef}
-        className={`ui-cursor${cursorMode ? ` is-${cursorMode}` : ""} is-surface-${cursorTone}`}
+        className={`ui-cursor${cursorMode ? ` is-${cursorMode}` : ""} is-surface-${cursorTone}${cursorHasImage ? " has-image" : ""}`}
         aria-hidden="true"
       >
+        <img
+          className="ui-cursor__image"
+          src={cursorImageSrc}
+          alt=""
+          onLoad={() =>
+            setCursorImageFailed((prev) =>
+              prev[activeImageKey]
+                ? { ...prev, [activeImageKey]: false }
+                : prev,
+            )
+          }
+          onError={() =>
+            setCursorImageFailed((prev) =>
+              prev[activeImageKey]
+                ? prev
+                : { ...prev, [activeImageKey]: true },
+            )
+          }
+        />
         <span className="ui-cursor__label">
           {cursorMode === "drag" ? "drag" : "click"}
         </span>

@@ -31,9 +31,10 @@ function ProjectSection() {
       {
         id: "monami",
         label: "Team Project",
-        title: "MONAMI : Mobile Fandom App",
+        title: "MONAMI : Brand Experience Renewal",
         category: "Branding",
-        summary: "모나미.",
+        summary:
+          "기존 필기구 브랜드의 정체성을 재해석하고, 일상의 기록 경험을 현대적으로 확장한 브랜딩 프로젝트입니다. 모나미가 지닌 헤리티지를 유지하면서도 새로운 세대와 연결될 수 있는 시각 시스템과 브랜드 톤을 재정립했습니다.",
         href: "https://meongpunch.github.io/monamifinal/",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=11-29351&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -49,7 +50,7 @@ function ProjectSection() {
         title: "DUGOUT : Mobile Fandom App",
         category: "Product",
         summary:
-          "관람에 머무르던 야구 팬 경험을 기록하고, 공유하며, 확장하는 모바일 앱 프로젝트입니다.",
+          "관람에 머무르던 야구 팬 경험을기록하고, 공유하고, 축적되는 참여형 팬 경험으로 확장한 모바일 앱 프로젝트입니다.덕아웃은 팬을 단순한 사용자로 보지 않고,경기의 흐름과 감정을 함께 만들어가는 경험의 주체로 재정의합니다.경기 정보 중심의 기존 야구 앱 구조에서 벗어나,개인의 응원과 기억이 자연스럽게 쌓이는 팬덤 공간을 제안했습니다.",
         href: "https://dugout-ruby.vercel.app/onboarding",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=7-4&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -61,11 +62,11 @@ function ProjectSection() {
       },
       {
         id: "arp",
-        label: "aRP",
-        title: "aRP : A System for Seeing",
+        label: "Self-Initiated",
+        title: "ARP : Exhibition Archive App",
         category: "Arp",
         summary:
-          "ARP는 전시를 ‘보는 경험’을 구조화하는 기록 앱입니다.흩어지는 감각과 메모, 이미지를 하나의 흐름으로 엮어 사용자가 자신의 관람 경험을 다시 읽고 재구성할 수 있도록 설계했습니다.",
+          "전시 관람 경험을 기록하고 축적할 수 있도록 설계한 모바일 아카이브 앱 프로젝트입니다. 감상의 흐름을 정리하는 UI 구조와 시각적 리듬을 통해, 개인의 관람 경험이 자연스럽게 확장되도록 구성했습니다.",
         href: "https://www.figma.com/proto/2cRRaUsj8t5czQPOQIGZg5/ARP-APP_%EC%A0%84%EC%8B%9C%EA%B8%B0%EB%A1%9D%EC%95%B1?node-id=0-1&t=D86PP9TySDqQWFWh-1",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=11-26711&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -77,13 +78,13 @@ function ProjectSection() {
       },
       {
         id: "personal",
-        label: "Personal",
-        title: "Personal Branding",
+        label: "Self-Initiated",
+        title: "PERSONAL : Identity System",
         category: "Identity",
         summary:
-          "개인의 스토리를 담아 아이덴티티를 구축한 퍼스널 브랜딩 프로젝트입니다.",
+          "개인의 태도와 작업 세계관을 기반으로 아이덴티티를 정립한 퍼스널 브랜딩 프로젝트입니다. 일관된 시각 시스템과 톤을 설계해, 스스로의 방향성과 메시지가 명확하게 전달되도록 구성했습니다.",
 
-        href: "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=31-37809&m=dev&t=D86PP9TySDqQWFWh-1",
+        href: "https://example.com/personal-branding",
         secondaryHref: "https://example.com/personal-branding/process",
         detail: detail04,
         tag: "personalbranding",
