@@ -605,22 +605,97 @@
     inset 0 0 0 1px rgba(255, 255, 255, 0.06);
   z-index: 1;
   overflow-y: auto;
+  --modal-btn-primary-bg: #ffffff;
+  --modal-btn-primary-fg: #9c2121;
+  --modal-btn-primary-border: rgba(255, 255, 255, 0.4);
+  --modal-btn-primary-hover-bg: #f2f2f2;
+  --modal-btn-secondary-bg: transparent;
+  --modal-btn-secondary-fg: #ffffff;
+  --modal-btn-secondary-border: rgba(255, 255, 255, 0.55);
+  --modal-btn-secondary-hover-bg: rgba(255, 255, 255, 0.12);
+  --modal-badge-fg: #9c2121;
 }
 
 .project-modal__panel--monami {
   background: linear-gradient(160deg, #111111 0%, #050505 100%);
+  --modal-badge-fg: #111111;
+  --modal-btn-primary-bg: #252525;
+  --modal-btn-primary-fg: #ffffff;
+  --modal-btn-primary-border: rgba(255, 255, 255, 0.28);
+  --modal-btn-primary-hover-bg: #313131;
+  --modal-btn-secondary-fg: #f5f5f5;
+  --modal-btn-secondary-border: rgba(255, 255, 255, 0.45);
+  --modal-btn-secondary-hover-bg: rgba(255, 255, 255, 0.16);
+}
+
+.project-modal__panel--monami .project-modal__info h3,
+.project-modal__panel--monami .project-modal__category,
+.project-modal__panel--monami .project-modal__summary,
+.project-modal__panel--monami .project-modal__meta p,
+.project-modal__panel--monami .project-modal__close {
+  color: #ffffff;
+}
+
+.project-modal__panel--monami .project-modal__category {
+  opacity: 0.9;
+}
+
+.project-modal__panel--monami .project-modal__close {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.45);
 }
 
 .project-modal__panel--uiux {
   background: linear-gradient(160deg, #7a0b0b 0%, #801717 100%);
+  --modal-badge-fg: #9c2121;
+  --modal-btn-primary-bg: #b2171f;
+  --modal-btn-primary-fg: #ffffff;
+  --modal-btn-primary-border: rgba(255, 255, 255, 0.34);
+  --modal-btn-primary-hover-bg: #c52029;
+  --modal-btn-secondary-fg: #ffecec;
+  --modal-btn-secondary-border: rgba(255, 236, 236, 0.54);
+  --modal-btn-secondary-hover-bg: rgba(255, 255, 255, 0.16);
+}
+
+.project-modal__panel--uiux .project-modal__info h3,
+.project-modal__panel--uiux .project-modal__category,
+.project-modal__panel--uiux .project-modal__summary,
+.project-modal__panel--uiux .project-modal__meta p,
+.project-modal__panel--uiux .project-modal__close {
+  color: #ffffff;
+}
+
+.project-modal__panel--uiux .project-modal__category {
+  opacity: 0.9;
+}
+
+.project-modal__panel--uiux .project-modal__close {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.45);
 }
 
 .project-modal__panel--arp {
   background: linear-gradient(160deg, #c0e7ca 0%, #ded6d6 100%);
+  --modal-badge-fg: #2f5b49;
+  --modal-btn-primary-bg: #2f5b49;
+  --modal-btn-primary-fg: #f2fff8;
+  --modal-btn-primary-border: rgba(47, 91, 73, 0.4);
+  --modal-btn-primary-hover-bg: #3b6f5a;
+  --modal-btn-secondary-fg: #203a2f;
+  --modal-btn-secondary-border: rgba(32, 58, 47, 0.42);
+  --modal-btn-secondary-hover-bg: rgba(47, 91, 73, 0.12);
 }
 
 .project-modal__panel--personal {
   background: linear-gradient(160deg, #e6c9c9 0%, #f4f1f1 100%);
+  --modal-badge-fg: #6a3f4a;
+  --modal-btn-primary-bg: #915767;
+  --modal-btn-primary-fg: #ffffff;
+  --modal-btn-primary-border: rgba(145, 87, 103, 0.36);
+  --modal-btn-primary-hover-bg: #a16878;
+  --modal-btn-secondary-fg: #51323b;
+  --modal-btn-secondary-border: rgba(81, 50, 59, 0.4);
+  --modal-btn-secondary-hover-bg: rgba(145, 87, 103, 0.12);
 }
 
 .project-modal__panel--arp,
@@ -683,10 +758,11 @@
   top: -14px;
   left: 18px;
   background: #ffffff;
-  color: #9c2121;
+  color: var(--modal-badge-fg);
   font-family: var(--mono);
   font-size: 0.72rem;
-  letter-spacing: 0.4em;
+  letter-spacing: 0.1em;
+  
   padding: 6px 12px;
   border-radius: 10px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
@@ -765,9 +841,9 @@
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.02em;
-  color: #9c2121;
-  background: #fff;
-  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--modal-btn-primary-fg);
+  background: var(--modal-btn-primary-bg);
+  border: 1px solid var(--modal-btn-primary-border);
   transition:
     transform 0.2s ease,
     box-shadow 0.2s ease,
@@ -777,7 +853,7 @@
 .project-modal__link:hover,
 .project-modal__link:focus-visible {
   transform: translateY(-1px);
-  background: #f2f2f2;
+  background: var(--modal-btn-primary-hover-bg);
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
 }
 
@@ -797,27 +873,14 @@
 }
 
 .project-modal__link--secondary {
-  color: #ffffff;
-  background: transparent;
-  border-color: rgba(255, 255, 255, 0.55);
+  color: var(--modal-btn-secondary-fg);
+  background: var(--modal-btn-secondary-bg);
+  border-color: var(--modal-btn-secondary-border);
 }
 
 .project-modal__link--secondary:hover,
 .project-modal__link--secondary:focus-visible {
-  background: rgba(255, 255, 255, 0.12);
-}
-
-.project-modal__panel--arp .project-modal__link--secondary,
-.project-modal__panel--personal .project-modal__link--secondary {
-  color: #141414;
-  border-color: rgba(20, 20, 20, 0.45);
-}
-
-.project-modal__panel--arp .project-modal__link--secondary:hover,
-.project-modal__panel--personal .project-modal__link--secondary:hover,
-.project-modal__panel--arp .project-modal__link--secondary:focus-visible,
-.project-modal__panel--personal .project-modal__link--secondary:focus-visible {
-  background: rgba(20, 20, 20, 0.06);
+  background: var(--modal-btn-secondary-hover-bg);
 }
 
 @media (max-width: 860px) {
@@ -836,5 +899,17 @@
 
   .project-modal__badge {
     left: 12px;
+  }
+}
+
+@media (max-width: 520px) {
+  .project-modal__actions {
+    justify-content: stretch;
+    flex-direction: column;
+  }
+
+  .project-modal__link {
+    width: 100%;
+    min-width: 0;
   }
 }

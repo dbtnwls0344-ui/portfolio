@@ -3,10 +3,10 @@ import "./ArtworksSection.css";
 
 import aboutIconWhite from "../assets/images/about-icon-star-white.svg";
 import artworksCover from "../assets/images/artworks-cover.png";
-import artworksPage01Left from "../assets/images/artworks-page-01-left.png";
-import artworksPage01Right from "../assets/images/artworks-page-01-right.png";
-import artworksPage02Left from "../assets/images/artworks-page-02-left.png";
-import artworksPage02Right from "../assets/images/artworks-page-02-right.png";
+import artworksPage01Left from "../assets/images/artworks-page-01-left.webp";
+import artworksPage01Right from "../assets/images/artworks-page-01-right.webp";
+import artworksPage02Left from "../assets/images/artworks-page-02-left.webp";
+import artworksPage02Right from "../assets/images/artworks-page-02-right.webp";
 
 export default function ArtworksSection() {
   const spreads = useMemo(
@@ -73,12 +73,22 @@ export default function ArtworksSection() {
       if (cacheRef.current.has(src)) return resolve();
 
       const img = new Image();
-      img.onload = () => {
+      let settled = false;
+      const done = () => {
+        if (settled) return;
+        settled = true;
         cacheRef.current.add(src);
         resolve();
       };
-      img.onerror = resolve;
+
+      img.onload = done;
+      img.onerror = done;
+      img.decoding = "async";
       img.src = src;
+
+      if (typeof img.decode === "function") {
+        img.decode().then(done).catch(done);
+      }
     });
 
   useEffect(() => {

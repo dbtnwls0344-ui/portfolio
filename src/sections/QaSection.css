@@ -147,6 +147,7 @@
 
 .qa-item__label {
   letter-spacing: 0.02em;
+  margin-top: 2%;
 }
 
 .qa-item__answer {

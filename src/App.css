@@ -10,7 +10,7 @@
   --cursor-x: -100px;
   --cursor-y: -100px;
   --cursor-size: clamp(54px, 5.2vw, 76px);
-  --cursor-image: url("./assets/bg-images/blur-red-circle.svg");
+  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
   position: fixed;
   top: var(--cursor-y);
   left: var(--cursor-x);
@@ -65,7 +65,7 @@
   position: relative;
   z-index: 1;
   font-family: var(--display);
-  font-size: clamp(0.82rem, 1.25vw, 1.02rem);
+  font-size: clamp(0.74rem, 1.05vw, 0.96rem);
   font-weight: 500;
   letter-spacing: 0;
   line-height: 1;
@@ -74,28 +74,51 @@
 }
 
 .ui-cursor.is-drag {
-  --cursor-image: url("./assets/bg-images/blur-red-circle.svg");
+  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
   color: #ffffff;
 }
 
 .ui-cursor.is-drag.is-surface-dark {
-  --cursor-image: url("./assets/bg-images/blur-white-circle.svg");
+  --cursor-image: url("./assets/bg-images/blur-white-star.svg");
   color: #9c2121;
 }
 
 .ui-cursor.is-drag.is-surface-light {
-  --cursor-image: url("./assets/bg-images/blur-red-circle.svg");
+  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
   color: #fff;
 }
 
 .ui-cursor.is-click.is-surface-dark {
-  --cursor-image: url("./assets/bg-images/blur-white-circle.svg");
+  --cursor-image: url("./assets/bg-images/blur-white-star.svg");
   color: #9c2121;
 }
 
 .ui-cursor.is-click.is-surface-light {
-  --cursor-image: url("./assets/bg-images/blur-red-circle.svg");
+  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
   color: #ffffff;
+}
+
+@media (max-width: 900px) {
+  .ui-cursor {
+    --cursor-size: clamp(50px, 5.6vw, 64px);
+  }
+
+  .ui-cursor__label {
+    font-size: clamp(0.68rem, 1.85vw, 0.82rem);
+    font-weight: 600;
+  }
+}
+
+@media (max-width: 520px) {
+  .ui-cursor {
+    --cursor-size: clamp(46px, 7.8vw, 56px);
+  }
+
+  .ui-cursor__label {
+    font-size: clamp(0.62rem, 2.4vw, 0.72rem);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+  }
 }
 
 .section {

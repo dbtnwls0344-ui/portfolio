@@ -497,13 +497,13 @@
 
   .profile__period,
   .profile__label {
-    font-size: 0.52rem;
+    font-size: 0.58rem;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.62rem;
-    line-height: 1.2;
+    font-size: 0.68rem;
+    line-height: 1.26;
   }
 
   .profile__meta li {
@@ -546,18 +546,18 @@
   }
 
   .profile__heading {
-    font-size: 0.74rem;
+    font-size: 0.8rem;
   }
 
   .profile__period,
   .profile__label {
-    font-size: 0.48rem;
+    font-size: 0.56rem;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.56rem;
-    line-height: 1.18;
+    font-size: 0.64rem;
+    line-height: 1.24;
   }
 
   .profile__meta li {
@@ -586,18 +586,18 @@
   }
 
   .profile__heading {
-    font-size: 0.67rem;
+    font-size: 0.74rem;
   }
 
   .profile__period,
   .profile__label {
-    font-size: 0.44rem;
+    font-size: 0.52rem;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.52rem;
-    line-height: 1.22;
+    font-size: 0.6rem;
+    line-height: 1.24;
   }
 
   .profile__meta li {
@@ -622,18 +622,18 @@
   }
 
   .profile__heading {
-    font-size: 0.6rem;
+    font-size: 0.68rem;
   }
 
   .profile__period,
   .profile__label {
-    font-size: 0.41rem;
+    font-size: 0.48rem;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.48rem;
-    line-height: 1.2;
+    font-size: 0.56rem;
+    line-height: 1.22;
   }
 
   .profile__meta li {

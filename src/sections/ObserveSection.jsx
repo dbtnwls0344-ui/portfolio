@@ -130,6 +130,7 @@ function ObserveSection() {
   );
 
   const [activeFolder, setActiveFolder] = useState(null);
+  const [revealedPreviewIds, setRevealedPreviewIds] = useState(() => new Set());
   const [scatterSeed, setScatterSeed] = useState(1);
   const [itemPositions, setItemPositions] = useState([]);
   const [draggingIndex, setDraggingIndex] = useState(null);
@@ -167,6 +168,15 @@ function ObserveSection() {
     setItemPositions([]);
     setActiveFolder(null);
   };
+
+  const revealFolderPreview = useCallback((folderId) => {
+    setRevealedPreviewIds((prev) => {
+      if (prev.has(folderId)) return prev;
+      const next = new Set(prev);
+      next.add(folderId);
+      return next;
+    });
+  }, []);
 
   const animateRepel = useCallback(() => {
     const gallery = galleryRef.current;
@@ -472,6 +482,9 @@ function ObserveSection() {
       className={["observe-folder", className].filter(Boolean).join(" ")}
       type="button"
       onClick={() => handleFolderTrigger(folder, index)}
+      onMouseEnter={() => revealFolderPreview(folder.id)}
+      onFocus={() => revealFolderPreview(folder.id)}
+      onTouchStart={() => revealFolderPreview(folder.id)}
       aria-label={`${folder.label} folder`}
     >
       <div className="observe-folder__stack">
@@ -493,18 +506,22 @@ function ObserveSection() {
           alt=""
           aria-hidden="true"
         />
-        <div className="observe-folder__previews" aria-hidden="true">
-          {folder.previews.map((src, previewIndex) => (
-            <img
-              key={src}
-              className="observe-folder__preview"
-              src={src}
-              alt=""
-              loading="lazy"
-              style={{ "--preview-index": previewIndex }}
-            />
-          ))}
-        </div>
+        {revealedPreviewIds.has(folder.id) ? (
+          <div className="observe-folder__previews" aria-hidden="true">
+            {folder.previews.map((src, previewIndex) => (
+              <img
+                key={src}
+                className="observe-folder__preview"
+                src={src}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+                style={{ "--preview-index": previewIndex }}
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
       <span className="observe-folder__label">{folder.label}</span>
     </button>

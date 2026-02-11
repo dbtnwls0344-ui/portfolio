@@ -30,8 +30,8 @@ function ProjectSection() {
     () => [
       {
         id: "monami",
-        label: "MONAMI",
-        title: "DUGOUT : Mobile Fandom App",
+        label: "Team Project",
+        title: "MONAMI : Mobile Fandom App",
         category: "Branding",
         summary: "모나미.",
         href: "https://meongpunch.github.io/monamifinal/",
@@ -44,14 +44,15 @@ function ProjectSection() {
         modalPanelClass: "project-modal__panel--monami",
       },
       {
-        id: "uiux",
-        label: "UIUX",
-        title: "UIUX System",
+        id: "dugout",
+        label: "Team Project",
+        title: "DUGOUT : Mobile Fandom App",
         category: "Product",
         summary:
           "관람에 머무르던 야구 팬 경험을 기록하고, 공유하며, 확장하는 모바일 앱 프로젝트입니다.",
         href: "https://dugout-ruby.vercel.app/onboarding",
-        secondaryHref: "https://dugout-ruby.vercel.app/",
+        secondaryHref:
+          "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=7-4&m=dev&t=D86PP9TySDqQWFWh-1",
         detail: detail02,
         tag: "DUG  OUT",
         tagStyle: "project-file__tag--dugout",
@@ -61,13 +62,13 @@ function ProjectSection() {
       {
         id: "arp",
         label: "aRP",
-        title: "aRP Direction : Visual System",
+        title: "aRP : A System for Seeing",
         category: "Arp",
         summary:
-          "경험의 흐름을 조형적으로 정리하고, 시각적 리듬으로 재구성한 시리즈입니다.",
+          "ARP는 전시를 ‘보는 경험’을 구조화하는 기록 앱입니다.흩어지는 감각과 메모, 이미지를 하나의 흐름으로 엮어 사용자가 자신의 관람 경험을 다시 읽고 재구성할 수 있도록 설계했습니다.",
         href: "https://www.figma.com/proto/2cRRaUsj8t5czQPOQIGZg5/ARP-APP_%EC%A0%84%EC%8B%9C%EA%B8%B0%EB%A1%9D%EC%95%B1?node-id=0-1&t=D86PP9TySDqQWFWh-1",
         secondaryHref:
-          "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/ARP-APP_%EC%A0%84%EC%8B%9C%EA%B8%B0%EB%A1%9D%EC%95%B1",
+          "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=11-26711&m=dev&t=D86PP9TySDqQWFWh-1",
         detail: detail03,
         tag: "ARP",
         tagStyle: "project-file__tag--arp",
@@ -80,8 +81,9 @@ function ProjectSection() {
         title: "Personal Branding",
         category: "Identity",
         summary:
-          "나의 태도와 시선이 드러나는 톤을 정리하고, 브랜드 언어를 설계했습니다.",
-        href: "https://example.com/personal-branding",
+          "개인의 스토리를 담아 아이덴티티를 구축한 퍼스널 브랜딩 프로젝트입니다.",
+
+        href: "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=31-37809&m=dev&t=D86PP9TySDqQWFWh-1",
         secondaryHref: "https://example.com/personal-branding/process",
         detail: detail04,
         tag: "personalbranding",
