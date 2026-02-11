@@ -10,7 +10,7 @@ function HeroSection() {
       <div className="hero__inner">
         <div className="hero__copy">
           <h1>Notes on form</h1>
-          <p className="hero__subtitle">process, 5356and residue.</p>
+          <p className="hero__subtitle">process, and residue.</p>
         </div>
         <div className="hero__stage">
           <div className="hero__card">

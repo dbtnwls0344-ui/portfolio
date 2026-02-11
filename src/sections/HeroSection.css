@@ -41,8 +41,16 @@
   font-size: 140px;
   font-weight: 900;
   margin: 0 0 -2px 0;
-  -webkit-text-stroke: 3px #6d1a1a;
   color: #9c2121;
+  text-shadow:
+    -1px 0 #6d1a1a,
+    1px 0 #6d1a1a,
+    0 -1px #6d1a1a,
+    0 1px #6d1a1a,
+    -2px 0 #6d1a1a,
+    2px 0 #6d1a1a,
+    0 -2px #6d1a1a,
+    0 2px #6d1a1a;
   white-space: nowrap;
 }
 
@@ -50,7 +58,7 @@
   font-family: var(--display);
   font-size: 38px;
   margin: 0;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
   line-height: 1.1;
   color: #9c2121;
 }

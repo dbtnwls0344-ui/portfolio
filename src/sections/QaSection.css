@@ -84,7 +84,7 @@
 .qa-section__subtitle {
   margin: 0;
   font-family: var(--display);
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   font-size: var(--section-subtitle-size);
   color: var(--qa-white);
@@ -134,6 +134,7 @@
   font-weight: 600;
   text-align: left;
   cursor: pointer;
+  margin-bottom: 2%;
 }
 
 .qa-item__dot {

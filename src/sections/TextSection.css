@@ -71,7 +71,7 @@
   font-family: var(--display);
   font-size: var(--section-subtitle-size);
   font-weight: 600;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
   line-height: 1.1;
   text-transform: uppercase;
   display: inline-flex;
@@ -114,6 +114,6 @@
   }
 
   .text-section__subtitle {
-    letter-spacing: 0.07em;
+    letter-spacing: 0.09em;
   }
 }

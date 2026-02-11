@@ -45,7 +45,7 @@
 .observe-section__subtitle {
   margin: 0;
   font-family: var(--display);
-  letter-spacing: 0.07em;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
   font-size: var(--section-subtitle-size);
   color: #9c2121;

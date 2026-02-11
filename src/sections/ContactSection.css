@@ -205,7 +205,7 @@
 .contact-card__line {
   display: grid;
   grid-template-columns: 28px 1fr;
-  gap: 135px;
+  gap: 130px;
   align-items: center;
 }
 

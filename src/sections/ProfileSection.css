@@ -18,12 +18,12 @@
 }
 
 .profile__stage {
-  --profile-content-top: 2.5%;
+  --profile-content-top: 4.5%;
   --profile-content-left: 55.3%;
   --profile-content-width: 41%;
   --profile-content-height: 82%;
-  --profile-content-right-gap: 7%;
-  --profile-content-columns: minmax(0, 0.97fr) minmax(0, 1fr);
+  --profile-content-right-gap: 11%;
+  --profile-content-columns: minmax(0, 0.9fr) minmax(0, 1fr);
   --profile-content-scale: 1;
   --profile-content-shift-x: 0%;
   --profile-column-gap: 43px;
@@ -215,7 +215,9 @@
   .profile__content {
     width: min(
       var(--profile-content-width),
-      calc(100% - var(--profile-content-left) - var(--profile-content-right-gap))
+      calc(
+        100% - var(--profile-content-left) - var(--profile-content-right-gap)
+      )
     );
   }
 }
@@ -259,7 +261,7 @@
 }
 
 .profile__heading {
-  margin-bottom: 6px;
+  margin-bottom: 8px;
   font-family: var(--mono);
   font-size: 1.35rem;
   letter-spacing: 0.06rem;
@@ -275,23 +277,33 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 6px;
+  gap: 14px;
 }
 
 .profile__item {
   display: grid;
-  gap: 2px;
 }
 
 .profile__period {
-  font-weight: 600;
-  color: #000;
-  font-size: 0.7rem;
+  font-weight: 500;
+  color: #757575;
+  font-size: 0.95rem;
+  line-height: 1.15;
+  letter-spacing: 0.01em;
 }
 
 .profile__detail {
-  color: #000;
-  font-size: 0.9rem;
+  color: #1f1f1f;
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.26;
+}
+
+.profile__detail-title {
+  display: inline-block;
+  font-weight: 700;
+  color: #111;
+  font-size: 1rem;
 }
 
 .profile__meta li {
@@ -299,10 +311,18 @@
   gap: 6px;
 }
 
+.profile__meta {
+  gap: 4px;
+}
+
+.profile__meta li {
+  align-items: start;
+}
+
 .profile__label {
   font-weight: 600;
   color: #000;
-  font-size: 0.7rem;
+  font-size: 0.9rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: var(--mono);
@@ -310,7 +330,8 @@
 
 .profile__value {
   color: #000;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
+  line-height: 1.32;
 }
 
 @media (max-width: 1600px) {
@@ -557,8 +578,8 @@
     --profile-column-gap: 7px;
     --profile-column-gap-right: 7px;
     --profile-polaroid-width: 33%;
-    --profile-polaroid-right: 52.5%;
-    --profile-polaroid-top: 1.8%;
+    --profile-polaroid-right: 57.5%;
+    --profile-polaroid-top: 1.9%;
     --profile-clip-width: 14%;
     --profile-clip-right: -4%;
     --profile-clip-top: 30%;
@@ -618,4 +639,41 @@
   .profile__meta li {
     grid-template-columns: 40px minmax(0, 1fr);
   }
+}
+
+.profile__skills {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.profile__skill-item {
+  display: grid;
+  gap: 4px;
+}
+
+.profile__skill-name {
+  color: #000;
+  font-size: 0.9rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.profile__skill-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.profile__skill-fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+  border-radius: inherit;
+  background: #8a8a8a;
 }

@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import HeroSection from "./sections/HeroSection";
 import ProfileSection from "./sections/ProfileSection";
@@ -29,6 +29,135 @@ const DECOR_SECTION_SELECTOR = [
 ].join(", ");
 
 function App() {
+  const cursorRef = useRef(null);
+  const [cursorEnabled, setCursorEnabled] = useState(false);
+  const [cursorMode, setCursorMode] = useState("");
+  const [cursorTone, setCursorTone] = useState("light");
+
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const media = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const sync = () => setCursorEnabled(media.matches);
+    sync();
+
+    if (media.addEventListener) {
+      media.addEventListener("change", sync);
+    } else {
+      media.addListener(sync);
+    }
+
+    return () => {
+      if (media.removeEventListener) {
+        media.removeEventListener("change", sync);
+      } else {
+        media.removeListener(sync);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!cursorEnabled) {
+      setCursorMode("");
+      setCursorTone("light");
+      return undefined;
+    }
+
+    const cursorEl = cursorRef.current;
+    if (!cursorEl) return undefined;
+
+    const CLICK_SELECTOR =
+      'button, a, [role="button"], summary, .project-file, .clone-item__button, .observe-folder, .observe-carousel__dot';
+    const DRAG_SELECTOR = ".observe-modal__item, .observe-carousel__viewport";
+    const INPUT_SELECTOR = "input, textarea, select, [contenteditable='true']";
+
+    let activeMode = "";
+    let activeTone = "light";
+
+    const parseRgb = (raw) => {
+      if (!raw || raw === "transparent") return null;
+      const match = raw.match(/rgba?\(([^)]+)\)/i);
+      if (!match) return null;
+      const [r = 0, g = 0, b = 0, a = 1] = match[1]
+        .split(",")
+        .map((part) => Number.parseFloat(part.trim()));
+      return { r, g, b, a: Number.isFinite(a) ? a : 1 };
+    };
+
+    const relativeLuminance = ({ r, g, b }) => {
+      const toLinear = (channel) => {
+        const v = channel / 255;
+        return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+      };
+      return (
+        0.2126 * toLinear(r) + 0.7152 * toLinear(g) + 0.0722 * toLinear(b)
+      );
+    };
+
+    const resolveSurfaceTone = (target) => {
+      if (!(target instanceof Element)) return "light";
+      let node = target;
+
+      while (node && node !== document.documentElement) {
+        const bg = parseRgb(window.getComputedStyle(node).backgroundColor);
+        if (bg && bg.a > 0.08) {
+          return relativeLuminance(bg) > 0.62 ? "light" : "dark";
+        }
+        node = node.parentElement;
+      }
+
+      return "light";
+    };
+
+    const resolveMode = (target) => {
+      if (!(target instanceof Element)) return "";
+      if (target.closest(INPUT_SELECTOR)) return "";
+      if (target.closest(DRAG_SELECTOR)) return "drag";
+      if (target.closest(CLICK_SELECTOR)) return "click";
+      return "";
+    };
+
+    const setMode = (nextMode) => {
+      if (activeMode === nextMode) return;
+      activeMode = nextMode;
+      setCursorMode(nextMode);
+    };
+
+    const setTone = (nextTone) => {
+      if (activeTone === nextTone) return;
+      activeTone = nextTone;
+      setCursorTone(nextTone);
+    };
+
+    const handlePointerMove = (event) => {
+      cursorEl.style.setProperty("--cursor-x", `${event.clientX}px`);
+      cursorEl.style.setProperty("--cursor-y", `${event.clientY}px`);
+      cursorEl.classList.add("is-visible");
+      const nextMode = resolveMode(event.target);
+      setMode(nextMode);
+      if (nextMode) {
+        setTone(resolveSurfaceTone(event.target));
+      }
+    };
+
+    const handlePointerLeave = () => {
+      cursorEl.classList.remove("is-visible");
+      setMode("");
+      setTone("light");
+    };
+
+    document.addEventListener("pointermove", handlePointerMove, {
+      passive: true,
+    });
+    document.addEventListener("pointerleave", handlePointerLeave);
+
+    return () => {
+      document.removeEventListener("pointermove", handlePointerMove);
+      document.removeEventListener("pointerleave", handlePointerLeave);
+      cursorEl.classList.remove("is-visible");
+    };
+  }, [cursorEnabled]);
+
   useEffect(() => {
     const sections = Array.from(
       document.querySelectorAll(DECOR_SECTION_SELECTOR),
@@ -134,6 +263,15 @@ function App() {
 
   return (
     <div className="page">
+      <div
+        ref={cursorRef}
+        className={`ui-cursor${cursorMode ? ` is-${cursorMode}` : ""} is-surface-${cursorTone}`}
+        aria-hidden="true"
+      >
+        <span className="ui-cursor__label">
+          {cursorMode === "drag" ? "drag" : "click"}
+        </span>
+      </div>
       <HeroSection />
       <ProfileSection />
       <TextSection variant="prof" />

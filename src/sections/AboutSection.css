@@ -118,7 +118,10 @@
   bottom: clamp(72px, 10vh, 120px);
   z-index: 2;
   display: grid;
-  grid-template-columns: minmax(18rem, 1fr) minmax(20rem, var(--about-image-width));
+  grid-template-columns: minmax(18rem, 1fr) minmax(
+      20rem,
+      var(--about-image-width)
+    );
   align-items: end;
   justify-content: space-between;
   gap: clamp(24px, 3vw, 56px);
@@ -183,7 +186,7 @@
 .about__indicator {
   position: absolute;
   left: clamp(12px, 2vw, 10px);
-  top: 58%;
+  top: 85.7%;
   transform: translateY(-50%);
   display: grid;
   gap: 14px;

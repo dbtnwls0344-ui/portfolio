@@ -6,6 +6,98 @@
   overflow-x: clip;
 }
 
+.ui-cursor {
+  --cursor-x: -100px;
+  --cursor-y: -100px;
+  --cursor-size: clamp(54px, 5.2vw, 76px);
+  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
+  position: fixed;
+  top: var(--cursor-y);
+  left: var(--cursor-x);
+  z-index: 120;
+  pointer-events: none;
+  opacity: 0;
+  width: var(--cursor-size);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  transform: translate3d(-50%, -50%, 0) scale(0.86);
+  transition:
+    opacity 0.18s ease,
+    transform 0.2s ease,
+    color 0.2s ease;
+  padding: 0;
+  border-radius: 50%;
+  border: none;
+  isolation: isolate;
+  background: transparent;
+}
+
+.ui-cursor::before {
+  content: "";
+  position: absolute;
+  inset: -34%;
+  border-radius: 50%;
+  background-image: var(--cursor-image);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  opacity: 0.98;
+  filter: blur(2px);
+  z-index: -1;
+}
+
+.ui-cursor::after {
+  content: none;
+}
+
+.ui-cursor.is-visible {
+  opacity: 1;
+  transform: translate3d(-50%, -50%, 0) scale(1);
+}
+
+.ui-cursor:not(.is-click):not(.is-drag) {
+  opacity: 0;
+}
+
+.ui-cursor__label {
+  display: block;
+  position: relative;
+  z-index: 1;
+  font-family: var(--display);
+  font-size: clamp(0.82rem, 1.25vw, 1.02rem);
+  font-weight: 500;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: lowercase;
+  white-space: nowrap;
+}
+
+.ui-cursor.is-drag {
+  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
+  color: #ffffff;
+}
+
+.ui-cursor.is-drag.is-surface-dark {
+  --cursor-image: url("./assets/bg-images/blur-white-star.svg");
+  color: #9c2121;
+}
+
+.ui-cursor.is-drag.is-surface-light {
+  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
+  color: #fff;
+}
+
+.ui-cursor.is-click.is-surface-dark {
+  --cursor-image: url("./assets/bg-images/blur-white-star.svg");
+  color: #9c2121;
+}
+
+.ui-cursor.is-click.is-surface-light {
+  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
+  color: #ffffff;
+}
+
 .section {
   background: #dfdfdf;
   position: relative;
@@ -566,8 +658,18 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .ui-cursor {
+    display: none;
+  }
+
   * {
     animation: none !important;
     transition: none !important;
+  }
+}
+
+@media (hover: none), (pointer: coarse) {
+  .ui-cursor {
+    display: none;
   }
 }

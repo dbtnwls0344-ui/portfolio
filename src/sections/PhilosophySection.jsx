@@ -103,8 +103,8 @@ function PhilosophySection() {
           <div className="philosophy__list">
             <div className="philosophy__item">
               <h3>Design begins after use</h3>
-              <p>경험은 ‘사용’이 끝난 뒤에 완성된다고 생각합니다.</p>
               <p>
+                경험은 ‘사용’이 끝난 뒤에 완성된다고 생각합니다. <br />
                 사용자의 첫 화면에서 보이는 순간만 머무르지 않는다고 믿습니다.
                 사용이 끝난 이후에도 잔상이 남는 형태로 경험을 설계합니다.
               </p>
@@ -112,8 +112,8 @@ function PhilosophySection() {
 
             <div className="philosophy__item">
               <h3>Structure defines choice</h3>
-              <p>구조는 사용자의 선택을 만든다고 생각합니다.</p>
               <p>
+                구조는 사용자의 선택을 만든다고 생각합니다. <br />
                 형태보다 먼저 구조를 세우는 것이 명확한 선택과 흐름을 만든다고
                 믿습니다. 감각적 완성보다, 판단 가능한 구조를 우선합니다.
               </p>
@@ -121,8 +121,8 @@ function PhilosophySection() {
 
             <div className="philosophy__item">
               <h3>Observation precedes design</h3>
-              <p>관찰은 설계보다 우선한다고 생각합니다.</p>
               <p>
+                관찰은 설계보다 우선한다고 생각합니다. <br />
                 사용자가 어떻게 행동해야 하는지 ‘가르치기’보다, 실제 반응과
                 흐름을 관찰하는 것에서 설계를 시작합니다. 관찰은 모든 판단의
                 출발점입니다.
@@ -131,8 +131,8 @@ function PhilosophySection() {
 
             <div className="philosophy__item">
               <h3>Clarity over complexity</h3>
-              <p>복잡함보다 명확함을 우선합니다.</p>
               <p>
+                복잡함보다 명확함을 우선합니다. <br />
                 많은 기능이나 장치보다, 사용자가 망설이지 않고 이해할 수 있는
                 상태를 중요하게 생각합니다. 문제를 단순화하는 것이 아니라,
                 불필요한 복잡함을 걷어내는 방향으로 최적화합니다.

@@ -35,6 +35,7 @@ function ProjectSection() {
         category: "Branding",
         summary: "모나미.",
         href: "https://meongpunch.github.io/monamifinal/",
+        secondaryHref: "https://github.com/meongpunch/monamifinal",
         detail: detail01,
         tag: "MONAMI",
         tagStyle: "project-file__tag--monami",
@@ -49,6 +50,7 @@ function ProjectSection() {
         summary:
           "관람에 머무르던 야구 팬 경험을 기록하고, 공유하며, 확장하는 모바일 앱 프로젝트입니다.",
         href: "https://dugout-ruby.vercel.app/onboarding",
+        secondaryHref: "https://dugout-ruby.vercel.app/",
         detail: detail02,
         tag: "DUG  OUT",
         tagStyle: "project-file__tag--dugout",
@@ -56,18 +58,20 @@ function ProjectSection() {
         modalPanelClass: "project-modal__panel--uiux",
       },
       {
-        id: "art",
-        label: "ART",
+        id: "arp",
+        label: "ARP",
         title: "ART Direction : Visual System",
-        category: "Art",
+        category: "Arp",
         summary:
           "경험의 흐름을 조형적으로 정리하고, 시각적 리듬으로 재구성한 시리즈입니다.",
-        href: "https://example.com/art-direction",
+        href: "https://www.figma.com/proto/2cRRaUsj8t5czQPOQIGZg5/ARP-APP_%EC%A0%84%EC%8B%9C%EA%B8%B0%EB%A1%9D%EC%95%B1?node-id=0-1&t=D86PP9TySDqQWFWh-1",
+        secondaryHref:
+          "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/ARP-APP_%EC%A0%84%EC%8B%9C%EA%B8%B0%EB%A1%9D%EC%95%B1",
         detail: detail03,
-        tag: "ART",
-        tagStyle: "project-file__tag--art",
-        cardStyle: "project-file__card--art",
-        modalPanelClass: "project-modal__panel--art",
+        tag: "ARP",
+        tagStyle: "project-file__tag--arp",
+        cardStyle: "project-file__card--arp",
+        modalPanelClass: "project-modal__panel--arp",
       },
       {
         id: "personal",
@@ -77,6 +81,7 @@ function ProjectSection() {
         summary:
           "나의 태도와 시선이 드러나는 톤을 정리하고, 브랜드 언어를 설계했습니다.",
         href: "https://example.com/personal-branding",
+        secondaryHref: "https://example.com/personal-branding/process",
         detail: detail04,
         tag: "personalbranding",
         tagStyle: "project-file__tag--personal",
@@ -354,7 +359,47 @@ function ProjectSection() {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    바로가기
+                    <span className="project-modal__link-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                        <path
+                          d="M8 7h9v9m0-9-10 10"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span className="project-modal__link-label">바로가기</span>
+                  </a>
+                  <a
+                    className="project-modal__link project-modal__link--secondary"
+                    href={activeFile.secondaryHref}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    <span className="project-modal__link-icon" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                        <path
+                          d="M7 3h7l5 5v13H7z"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M14 3v6h5"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                      </svg>
+                    </span>
+                    <span className="project-modal__link-label">기획서 보기</span>
                   </a>
                 </div>
               </div>

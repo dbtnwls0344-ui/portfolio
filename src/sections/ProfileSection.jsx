@@ -94,42 +94,58 @@ function ProfileSection() {
                       <ul className="profile__list" role="list">
                         <li className="profile__item">
                           <span className="profile__period">
-                            2025.08 - 2026.06
+                            2021.04 - 2026.02
                           </span>
                           <span className="profile__detail">
-                            이젠 아카데미
+                            <span className="profile__detail-title">
+                              예일 화실
+                            </span>
                             <br />
-                            UXUI디자인&amp;웹기획 프론트엔드 부트캠프 수료
+                            초, 중, 고, 취미미술교육
+                          </span>
+                        </li>
+                        <li className="profile__item">
+                          <span className="profile__period">2024.09</span>
+                          <span className="profile__detail">
+                            <span className="profile__detail-title">
+                              Gaia Art Space (HongKong)
+                            </span>
+                            <br />
+                            KIAF 중, 한 통역
                           </span>
                         </li>
                         <li className="profile__item">
                           <span className="profile__period">
-                            2023.03 - 2025.02
+                            2023.07-2024.08
                           </span>
                           <span className="profile__detail">
-                            홍익대학교(서울) 대학원(석사) 회화과 졸업
-                          </span>
-                        </li>
-                      </ul>
-                    </div>
-
-                    <div className="profile__section">
-                      <h3 className="profile__heading">Experience</h3>
-                      <ul className="profile__list" role="list">
-                        <li className="profile__item">
-                          <span className="profile__period">
-                            2022.09 - 2023.06
-                          </span>
-                          <span className="profile__detail">
-                            LuXun Academy of Fine Arts Oil painting과 졸업
+                            <span className="profile__detail-title">
+                              BiBiDi 미술학원
+                            </span>
+                            <br />
+                            저학년 대상 미술교육
                           </span>
                         </li>
                         <li className="profile__item">
+                          <span className="profile__period">2021.11</span>
+                          <span className="profile__detail">
+                            <span className="profile__detail-title">
+                              서울시 교육청
+                            </span>
+                            <br />
+                            서울시 교육청 국제 교육 프로그램 홍보영상콘티 제작
+                          </span>
+                        </li>
+                        <li className="profile__item">
                           <span className="profile__period">
-                            2018.03 - 2022.02
+                            2018.03-2019-02
                           </span>
                           <span className="profile__detail">
-                            LuXun Academy of Fine Arts Oil painting과 졸업
+                            <span className="profile__detail-title">
+                              중국 심양(沈阳) 한글학교
+                            </span>
+                            <br />
+                            저학년 대상 미술교육
                           </span>
                         </li>
                       </ul>
@@ -168,7 +184,7 @@ function ProfileSection() {
                         <li className="profile__item">
                           <span className="profile__period">2023 - 2025</span>
                           <span className="profile__detail">
-                            홍익대학교(서울) 대학원(석사) 회화과 졸업
+                            홍익대학교 대학원 회화과 석사 졸업
                           </span>
                         </li>
                         <li className="profile__item">
@@ -191,28 +207,59 @@ function ProfileSection() {
                     </div>
 
                     <div className="profile__section">
-                      <h3 className="profile__heading">Education</h3>
-                      <ul className="profile__list" role="list">
-                        <li className="profile__item">
-                          <span className="profile__period">2023 - 2025</span>
-                          <span className="profile__detail">
-                            홍익대학교(서울) 대학원(석사) 회화과 졸업
+                      <h3 className="profile__heading">Skill</h3>
+                      <ul className="profile__skills" role="list">
+                        <li className="profile__skill-item">
+                          <span className="profile__skill-name">Figma</span>
+                          <span className="profile__skill-track">
+                            <span
+                              className="profile__skill-fill"
+                              style={{ width: "96%" }}
+                            />
                           </span>
                         </li>
-                        <li className="profile__item">
-                          <span className="profile__period">2018 - 2022</span>
-                          <span className="profile__detail">
-                            LuXun Academy of Fine Arts Oil painting과 졸업
+                        <li className="profile__skill-item">
+                          <span className="profile__skill-name">
+                            Adobe Photoshop
+                          </span>
+                          <span className="profile__skill-track">
+                            <span
+                              className="profile__skill-fill"
+                              style={{ width: "76%" }}
+                            />
                           </span>
                         </li>
-                        <li className="profile__item">
-                          <span className="profile__period">
-                            2025.08 - 2026.06
+                        <li className="profile__skill-item">
+                          <span className="profile__skill-name">
+                            Adobe Illustrator
                           </span>
-                          <span className="profile__detail">
-                            이젠 아카데미
-                            <br />
-                            UXUI디자인&amp;웹기획 프론트엔드 부트캠프 수료
+                          <span className="profile__skill-track">
+                            <span
+                              className="profile__skill-fill"
+                              style={{ width: "88%" }}
+                            />
+                          </span>
+                        </li>
+                        <li className="profile__skill-item">
+                          <span className="profile__skill-name">
+                            Adobe After Effects
+                          </span>
+                          <span className="profile__skill-track">
+                            <span
+                              className="profile__skill-fill"
+                              style={{ width: "45%" }}
+                            />
+                          </span>
+                        </li>
+                        <li className="profile__skill-item">
+                          <span className="profile__skill-name">
+                            Adobe Premiere Pro
+                          </span>
+                          <span className="profile__skill-track">
+                            <span
+                              className="profile__skill-fill"
+                              style={{ width: "45%" }}
+                            />
                           </span>
                         </li>
                       </ul>
