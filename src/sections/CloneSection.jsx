@@ -72,11 +72,11 @@ function CloneSection() {
           </h2>
           <div className="clone-section__copy">
             <p>
-              클론코딩은 화면을 그대로 옮기는 작업이 아니라, 서비스의 구조와
-              흐름을 분석하는 과정이라고 생각합니다. 실제 사이트를 기준으로
-              레이아웃 구성, 인터랙션의 연결 방식, 반응형 환경에서의 차이를
-              중심으로 코드를 재구성했습니다. 이를 통해 시각적 구현보다 설계
-              의도를 이해하고 구현하는 기준을 쌓을 수 있었습니다.
+              클론 코딩은 화면을 그대로 복제하는 작업이 아니라 서비스의 구조와 흐름을
+              분석하는 과정이라고 생각합니다. 실제 사이트를 기반으로 레이아웃 구성,
+              인터랙션 연결 방식, 반응형 환경에서의 차이를 중심으로 코드를
+              재구성했습니다. 이 과정을 통해 시각 구현을 넘어 설계 의도를 이해하고
+              구현하는 기준을 만들었습니다.
             </p>
           </div>
         </div>
@@ -121,7 +121,7 @@ function CloneSection() {
                             ? `url(${project.preview})`
                             : "none",
                         }}
-                        aria-label={`${project.label} �̸�����`}
+                        aria-label={`${project.label} 프로젝트 열기`}
                       >
                         <span
                           className="clone-item__read-more"
@@ -151,3 +151,4 @@ function CloneSection() {
 }
 
 export default CloneSection;
+

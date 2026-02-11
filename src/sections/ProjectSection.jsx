@@ -1,4 +1,4 @@
-﻿import { useLayoutEffect, useMemo, useRef, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { interpolate } from "flubber";
 import "./ProjectSection.css";
@@ -35,7 +35,8 @@ function ProjectSection() {
         category: "Branding",
         summary: "모나미.",
         href: "https://meongpunch.github.io/monamifinal/",
-        secondaryHref: "https://github.com/meongpunch/monamifinal",
+        secondaryHref:
+          "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=11-29351&m=dev&t=D86PP9TySDqQWFWh-1",
         detail: detail01,
         tag: "MONAMI",
         tagStyle: "project-file__tag--monami",
@@ -59,8 +60,8 @@ function ProjectSection() {
       },
       {
         id: "arp",
-        label: "ARP",
-        title: "ART Direction : Visual System",
+        label: "aRP",
+        title: "aRP Direction : Visual System",
         category: "Arp",
         summary:
           "경험의 흐름을 조형적으로 정리하고, 시각적 리듬으로 재구성한 시리즈입니다.",
@@ -260,7 +261,6 @@ function ProjectSection() {
                     type="button"
                     style={{
                       "--file-index": index,
-                      "--file-image": `url(${file.thumb})`,
                     }}
                     onClick={() => handleFileOpen(file)}
                     disabled={!isOpen}
@@ -359,8 +359,15 @@ function ProjectSection() {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <span className="project-modal__link-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <span
+                      className="project-modal__link-icon"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        focusable="false"
+                        aria-hidden="true"
+                      >
                         <path
                           d="M8 7h9v9m0-9-10 10"
                           fill="none"
@@ -379,8 +386,15 @@ function ProjectSection() {
                     target="_blank"
                     rel="noreferrer noopener"
                   >
-                    <span className="project-modal__link-icon" aria-hidden="true">
-                      <svg viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+                    <span
+                      className="project-modal__link-icon"
+                      aria-hidden="true"
+                    >
+                      <svg
+                        viewBox="0 0 24 24"
+                        focusable="false"
+                        aria-hidden="true"
+                      >
                         <path
                           d="M7 3h7l5 5v13H7z"
                           fill="none"
@@ -399,7 +413,9 @@ function ProjectSection() {
                         />
                       </svg>
                     </span>
-                    <span className="project-modal__link-label">기획서 보기</span>
+                    <span className="project-modal__link-label">
+                      기획서 보기
+                    </span>
                   </a>
                 </div>
               </div>

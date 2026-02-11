@@ -396,7 +396,7 @@
   --tag-bg: #7a0b0b;
 }
 .project-file__tag--arp {
-  color: #00e67d;
+  color: #0a9657;
   left: calc(395px * var(--folder-scale));
   --tag-bg: #ded6d6;
 }

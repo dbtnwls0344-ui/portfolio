@@ -10,7 +10,7 @@
   --cursor-x: -100px;
   --cursor-y: -100px;
   --cursor-size: clamp(54px, 5.2vw, 76px);
-  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
+  --cursor-image: url("./assets/bg-images/blur-red-circle.svg");
   position: fixed;
   top: var(--cursor-y);
   left: var(--cursor-x);
@@ -74,27 +74,27 @@
 }
 
 .ui-cursor.is-drag {
-  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
+  --cursor-image: url("./assets/bg-images/blur-red-circle.svg");
   color: #ffffff;
 }
 
 .ui-cursor.is-drag.is-surface-dark {
-  --cursor-image: url("./assets/bg-images/blur-white-star.svg");
+  --cursor-image: url("./assets/bg-images/blur-white-circle.svg");
   color: #9c2121;
 }
 
 .ui-cursor.is-drag.is-surface-light {
-  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
+  --cursor-image: url("./assets/bg-images/blur-red-circle.svg");
   color: #fff;
 }
 
 .ui-cursor.is-click.is-surface-dark {
-  --cursor-image: url("./assets/bg-images/blur-white-star.svg");
+  --cursor-image: url("./assets/bg-images/blur-white-circle.svg");
   color: #9c2121;
 }
 
 .ui-cursor.is-click.is-surface-light {
-  --cursor-image: url("./assets/bg-images/blur-red-star.svg");
+  --cursor-image: url("./assets/bg-images/blur-red-circle.svg");
   color: #ffffff;
 }
 

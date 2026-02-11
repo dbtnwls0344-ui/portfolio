@@ -57,11 +57,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!cursorEnabled) {
-      setCursorMode("");
-      setCursorTone("light");
-      return undefined;
-    }
+    if (!cursorEnabled) return undefined;
 
     const cursorEl = cursorRef.current;
     if (!cursorEl) return undefined;
