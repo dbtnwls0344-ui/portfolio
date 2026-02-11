@@ -172,6 +172,24 @@ p {
   font-size: 1.02rem;
 }
 
+.text-motion {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  filter: blur(4px);
+  will-change: opacity, transform, filter;
+  transition:
+    opacity 0.66s cubic-bezier(0.22, 0.72, 0.2, 1),
+    transform 0.66s cubic-bezier(0.22, 0.72, 0.2, 1),
+    filter 0.66s cubic-bezier(0.22, 0.72, 0.2, 1);
+  transition-delay: var(--text-motion-delay, 0ms);
+}
+
+.text-motion.is-in {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  filter: blur(0);
+}
+
 .btn {
   border: none;
   padding: 14px 24px;
@@ -692,6 +710,13 @@ p {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .text-motion {
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+    transition: none !important;
+  }
+
   .ui-cursor {
     display: none;
   }

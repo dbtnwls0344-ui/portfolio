@@ -2,7 +2,7 @@
 import "./ArtworksSection.css";
 
 import aboutIconWhite from "../assets/images/about-icon-star-white.svg";
-import artworksCover from "../assets/images/artworks-cover.png";
+import artworksCover from "../assets/images/artworks-cover.webp";
 import artworksPage01Left from "../assets/images/artworks-page-01-left.webp";
 import artworksPage01Right from "../assets/images/artworks-page-01-right.webp";
 import artworksPage02Left from "../assets/images/artworks-page-02-left.webp";

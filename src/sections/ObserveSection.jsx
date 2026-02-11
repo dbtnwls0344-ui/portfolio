@@ -1,25 +1,25 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import "./ObserveSection.css";
 import aboutIconRed from "../assets/images/about-icon-star-red.svg";
-import observeFolderFront from "../assets/images/observe-folder-front.png";
-import observeFolderBack from "../assets/images/observe-folder-back.png";
-import observeFolderBackOpen from "../assets/images/observe-folder-back-open.png";
-import observeFilm01 from "../assets/images/observe-film-01.png";
-import observeFilm02 from "../assets/images/observe-film-02.png";
-import observeFilm03 from "../assets/images/observe-film-03.png";
-import observeFilm04 from "../assets/images/observe-film-04.png";
-import observeTravel01 from "../assets/images/observe-travel-01.png";
-import observeTravel02 from "../assets/images/observe-travel-02.png";
-import observeTravel03 from "../assets/images/observe-travel-03.png";
-import observeTravel04 from "../assets/images/observe-travel-04.png";
-import observeFashion01 from "../assets/images/observe-fashion-01.png";
-import observeFashion02 from "../assets/images/observe-fashion-02.png";
-import observeFashion03 from "../assets/images/observe-fashion-03.png";
-import observeFashion04 from "../assets/images/observe-fashion-04.png";
-import observePainting01 from "../assets/images/observe-painting-01.png";
-import observePainting02 from "../assets/images/observe-painting-02.jpg";
-import observePainting03 from "../assets/images/observe-painting-03.png";
-import observePainting04 from "../assets/images/observe-painting-04.png";
+import observeFolderFront from "../assets/images/observe-folder-front.webp";
+import observeFolderBack from "../assets/images/observe-folder-back.webp";
+import observeFolderBackOpen from "../assets/images/observe-folder-back-open.webp";
+import observeFilm01 from "../assets/images/observe-film-01.webp";
+import observeFilm02 from "../assets/images/observe-film-02.webp";
+import observeFilm03 from "../assets/images/observe-film-03.webp";
+import observeFilm04 from "../assets/images/observe-film-04.webp";
+import observeTravel01 from "../assets/images/observe-travel-01.webp";
+import observeTravel02 from "../assets/images/observe-travel-02.webp";
+import observeTravel03 from "../assets/images/observe-travel-03.webp";
+import observeTravel04 from "../assets/images/observe-travel-04.webp";
+import observeFashion01 from "../assets/images/observe-fashion-01.webp";
+import observeFashion02 from "../assets/images/observe-fashion-02.webp";
+import observeFashion03 from "../assets/images/observe-fashion-03.webp";
+import observeFashion04 from "../assets/images/observe-fashion-04.webp";
+import observePainting01 from "../assets/images/observe-painting-01.webp";
+import observePainting02 from "../assets/images/observe-painting-02.webp";
+import observePainting03 from "../assets/images/observe-painting-03.webp";
+import observePainting04 from "../assets/images/observe-painting-04.webp";
 
 const filmImages = [
   observeFilm01,

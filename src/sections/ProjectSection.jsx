@@ -18,6 +18,12 @@ const TIED_PATH =
 const LOOSE_PATH =
   "M661.98 265.121C661.98 294.361 377.746 398.421 456.007 241.901C493.03 167.856 460.307 -5.34929 330.875 100.861C246.863 169.799 188.973 184.281 128.772 184.281C16.5983 184.281 14.1031 3.25071 4.5 8.84071M661.98 265.121C661.98 235.881 643.777 218.395 632.74 216.102C617.69 212.948 588.45 217.22 591.89 259.532C596.19 312.422 661.98 265.121 661.98 265.121Z";
 
+const ROLE_BARS = [
+  { label: "기획", value: 100 },
+  { label: "디자인", value: 100 },
+  { label: "퍼블리싱", value: 67 },
+];
+
 function ProjectSection() {
   const [isOpen, setIsOpen] = useState(false);
   const [activeFile, setActiveFile] = useState(null);
@@ -32,7 +38,7 @@ function ProjectSection() {
         id: "monami",
         label: "Team Project",
         title: "MONAMI : Brand Experience Renewal",
-        category: "Branding",
+        category: "Rebranding",
         summary:
           "기존 필기구 브랜드의 정체성을 재해석하고, 일상의 기록 경험을 현대적으로 확장한 브랜딩 프로젝트입니다. 모나미가 지닌 헤리티지를 유지하면서도 새로운 세대와 연결될 수 있는 시각 시스템과 브랜드 톤을 재정립했습니다.",
         href: "https://meongpunch.github.io/monamifinal/",
@@ -43,6 +49,11 @@ function ProjectSection() {
         tagStyle: "project-file__tag--monami",
         cardStyle: "project-file__card--monami",
         modalPanelClass: "project-modal__panel--monami",
+        roleBars: [
+          { label: "기획", value: 84 },
+          { label: "디자인", value: 98 },
+          { label: "퍼블리싱", value: 67 },
+        ],
       },
       {
         id: "dugout",
@@ -59,12 +70,17 @@ function ProjectSection() {
         tagStyle: "project-file__tag--dugout",
         cardStyle: "project-file__card--dugout",
         modalPanelClass: "project-modal__panel--uiux",
+        roleBars: [
+          { label: "기획", value: 74 },
+          { label: "디자인", value: 96 },
+          { label: "퍼블리싱", value: 84 },
+        ],
       },
       {
         id: "arp",
         label: "Self-Initiated",
         title: "ARP : Exhibition Archive App",
-        category: "Arp",
+        category: "Product",
         summary:
           "전시 관람 경험을 기록하고 축적할 수 있도록 설계한 모바일 아카이브 앱 프로젝트입니다. 감상의 흐름을 정리하는 UI 구조와 시각적 리듬을 통해, 개인의 관람 경험이 자연스럽게 확장되도록 구성했습니다.",
         href: "https://www.figma.com/proto/2cRRaUsj8t5czQPOQIGZg5/ARP-APP_%EC%A0%84%EC%8B%9C%EA%B8%B0%EB%A1%9D%EC%95%B1?node-id=0-1&t=D86PP9TySDqQWFWh-1",
@@ -75,12 +91,17 @@ function ProjectSection() {
         tagStyle: "project-file__tag--arp",
         cardStyle: "project-file__card--arp",
         modalPanelClass: "project-modal__panel--arp",
+        roleBars: [
+          { label: "기획", value: 100 },
+          { label: "디자인", value: 100 },
+          { label: "퍼블리싱", value: 100 },
+        ],
       },
       {
         id: "personal",
         label: "Self-Initiated",
         title: "PERSONAL : Identity System",
-        category: "Identity",
+        category: "Product",
         summary:
           "개인의 태도와 작업 세계관을 기반으로 아이덴티티를 정립한 퍼스널 브랜딩 프로젝트입니다. 일관된 시각 시스템과 톤을 설계해, 스스로의 방향성과 메시지가 명확하게 전달되도록 구성했습니다.",
 
@@ -91,6 +112,11 @@ function ProjectSection() {
         tagStyle: "project-file__tag--personal",
         cardStyle: "project-file__card--personal",
         modalPanelClass: "project-modal__panel--personal",
+        roleBars: [
+          { label: "기획", value: 100 },
+          { label: "디자인", value: 100 },
+          { label: "퍼블리싱", value: 100 },
+        ],
       },
     ],
     [],
@@ -347,11 +373,25 @@ function ProjectSection() {
                 <div className="project-modal__meta">
                   <div>
                     <p>My Role / Contribution</p>
-                    <div className="project-modal__bars" aria-hidden="true">
-                      <span />
-                      <span />
-                      <span />
-                    </div>
+                    <ul className="project-modal__role-list">
+                      {(activeFile.roleBars ?? ROLE_BARS).map((item, index) => (
+                        <li
+                          className="project-modal__role-row"
+                          key={item.label}
+                          style={{ "--i": index }}
+                        >
+                          <span className="project-modal__role-label">
+                            {item.label}
+                          </span>
+                          <span className="project-modal__role-track" aria-hidden="true">
+                            <span
+                              className="project-modal__role-fill"
+                              style={{ "--role-width": `${item.value}%` }}
+                            />
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
 

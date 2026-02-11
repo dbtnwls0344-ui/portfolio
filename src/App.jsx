@@ -168,6 +168,46 @@ function App() {
     };
   }, [cursorEnabled]);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const targets = Array.from(
+      document.querySelectorAll(".section h1, .section h2, .section h3, .section p"),
+    ).filter(
+      (el) =>
+        !el.closest(".ui-cursor") &&
+        !el.closest(".qa-item__answer-text"),
+    );
+
+    if (!targets.length) return undefined;
+
+    const countsBySection = new WeakMap();
+
+    targets.forEach((el) => {
+      const section = el.closest(".section");
+      if (!section) return;
+      const nextIndex = countsBySection.get(section) ?? 0;
+      countsBySection.set(section, nextIndex + 1);
+      el.classList.add("text-motion");
+      el.style.setProperty("--text-motion-delay", `${nextIndex * 70}ms`);
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-in");
+          observer.unobserve(entry.target);
+        });
+      },
+      { threshold: 0.2, rootMargin: "0px 0px -8% 0px" },
+    );
+
+    targets.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="page">
       <div

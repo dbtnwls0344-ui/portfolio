@@ -378,7 +378,7 @@
   --card-bg: #f4f1f1;
 }
 .project-file__card--dugout {
-  --card-bg: #d52b2b;
+  --card-bg: #cb1919;
 }
 
 /* =========================
@@ -393,7 +393,7 @@
 .project-file__tag--dugout {
   color: #ffffff;
   left: calc(195px * var(--folder-scale));
-  --tag-bg: #d52b2b;
+  --tag-bg: #cb1919;
 }
 .project-file__tag--arp {
   color: #0a9657;
@@ -676,19 +676,19 @@
 
 .project-modal__panel--arp {
   background: linear-gradient(160deg, #c0e7ca 0%, #ded6d6 100%);
-  --modal-badge-fg: #2f5b49;
+  --modal-badge-fg: #141414;
   --modal-btn-primary-bg: #2aa16b;
-  --modal-btn-primary-fg: #f2fff8;
+  --modal-btn-primary-fg: #ffffff;
   --modal-btn-primary-border: #2aa16b;
   --modal-btn-primary-hover-bg: #3b6f5a;
-  --modal-btn-secondary-fg: #203a2f;
+  --modal-btn-secondary-fg: #2aa16b;
   --modal-btn-secondary-border: #2aa16b;
   --modal-btn-secondary-hover-bg: rgba(47, 91, 73, 0.12);
 }
 
 .project-modal__panel--personal {
-  background: linear-gradient(160deg, #f4f1f1 0%, #ffffff 100%);
-  --modal-badge-fg: #9c2020;
+  background: #f4f1f1;
+  --modal-badge-fg: #141414;
   --modal-btn-primary-bg: #9c2020;
   --modal-btn-primary-fg: #ffffff;
   --modal-btn-primary-border: #9c2020;
@@ -711,7 +711,9 @@
 .project-modal__panel--arp .project-modal__summary,
 .project-modal__panel--personal .project-modal__summary,
 .project-modal__panel--arp .project-modal__meta p,
-.project-modal__panel--personal .project-modal__meta p {
+.project-modal__panel--personal .project-modal__meta p,
+.project-modal__panel--arp .project-modal__role-label,
+.project-modal__panel--personal .project-modal__role-label {
   color: #141414;
 }
 
@@ -720,6 +722,10 @@
   background: rgba(20, 20, 20, 0.06);
   border: 1px solid rgba(20, 20, 20, 0.45);
   color: #141414;
+}
+
+.project-modal__panel--personal {
+  --modal-role-fill: var(--modal-btn-primary-bg);
 }
 
 .project-modal__close {
@@ -797,29 +803,58 @@
   font-weight: 600;
 }
 
-.project-modal__bars {
+.project-modal__role-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
-.project-modal__bars span {
+.project-modal__role-row {
+  display: grid;
+  grid-template-columns: 76px minmax(0, 1fr);
+  align-items: center;
+  gap: 6px;
+}
+
+.project-modal__role-label {
+  font-size: 0.89rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+.project-modal__role-track {
+  position: relative;
   display: block;
   height: 14px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #ffffff, #cfcfcf);
-  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.28);
+  overflow: hidden;
 }
 
-.project-modal__bars span:nth-child(1) {
-  width: 92%;
+.project-modal__role-fill {
+  display: block;
+  height: 100%;
+  width: var(--role-width, 0%);
+  border-radius: inherit;
+  background: var(--modal-role-fill, #fff);
+  transform-origin: left center;
+  transform: translate3d(-6px, 0, 0) scaleX(0);
+  opacity: 0.85;
+  animation: project-role-fill 1s cubic-bezier(0.16, 0.84, 0.24, 1) forwards;
+  animation-delay: calc(140ms + (var(--i, 0) * 110ms));
 }
 
-.project-modal__bars span:nth-child(2) {
-  width: 86%;
-}
-
-.project-modal__bars span:nth-child(3) {
-  width: 72%;
+@keyframes project-role-fill {
+  from {
+    transform: translate3d(-6px, 0, 0) scaleX(0);
+    opacity: 0.85;
+  }
+  to {
+    transform: translate3d(0, 0, 0) scaleX(1);
+    opacity: 1;
+  }
 }
 
 .project-modal__actions {
@@ -911,5 +946,12 @@
   .project-modal__link {
     width: 100%;
     min-width: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .project-modal__role-fill {
+    animation: none;
+    transform: none;
   }
 }
