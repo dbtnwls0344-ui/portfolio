@@ -277,7 +277,6 @@ export default function ArtworksSection() {
         <div className="artworks-section__title-wrap">
           <img className="artworks-section__star" src={aboutIconWhite} alt="" />
           <h2 className="artworks-section__title">MY ARTWORKS</h2>
-          <img className="artworks-section__star" src={aboutIconWhite} alt="" />
         </div>
         <p className="artworks-section__subtitle">Notes on form</p>
       </div>

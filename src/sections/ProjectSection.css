@@ -477,6 +477,7 @@
     --folder-top-pad: calc(138px * var(--folder-scale));
     --string-top: calc(284px * var(--folder-scale));
     --open-rise: calc(-238px * var(--folder-scale));
+    --file-stack-y: calc(52px * var(--folder-scale));
   }
 
   .project-folder__string-svg {
@@ -513,6 +514,7 @@
     --folder-top-pad: calc(126px * var(--folder-scale));
     --string-top: calc(258px * var(--folder-scale));
     --open-rise: calc(-205px * var(--folder-scale));
+    --file-stack-y: calc(46px * var(--folder-scale));
   }
 
   .project-folder__slot {
@@ -540,6 +542,7 @@
     --folder-top-pad: calc(118px * var(--folder-scale));
     --string-top: calc(242px * var(--folder-scale));
     --open-rise: calc(-188px * var(--folder-scale));
+    --file-stack-y: calc(42px * var(--folder-scale));
   }
 
   .project-folder__string-svg {

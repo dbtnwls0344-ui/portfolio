@@ -296,7 +296,7 @@
   }
 
   .contact-card__paper {
-    width: min(92vw, 330px);
+    width: min(92vw, 306px);
     gap: 18px;
     padding-inline: clamp(16px, 5vw, 24px);
   }
