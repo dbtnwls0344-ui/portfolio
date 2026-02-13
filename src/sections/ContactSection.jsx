@@ -2,11 +2,10 @@ import { useState } from "react";
 import "./ContactSection.css";
 import contactCover from "../assets/images/contact-cover.png";
 import contactPhoto from "../assets/images/contact-photo.png";
-import contactQr from "../assets/images/contact-qr.png";
-import notePaperTape from "../assets/images/note-paper-tape.png";
 import contactIconInstagram from "../assets/images/contact-icon-instagram.svg";
 import contactIconMail from "../assets/images/contact-icon-mail.svg";
 import contactIconPhone from "../assets/images/contact-icon-phone.svg";
+import ContactNote from "./ContactNote";
 
 function ContactSection() {
   const [isOpen, setIsOpen] = useState(false);
@@ -28,12 +27,7 @@ function ContactSection() {
             <span className="sr-only">Toggle contact card</span>
           </button>
 
-          <div className="contact-note" aria-hidden>
-            <img src={notePaperTape} alt="" />
-            <div className="contact-note__qr">
-              <img src={contactQr} alt="Instagram QR" />
-            </div>
-          </div>
+          <ContactNote />
 
           <div
             className={`contact-card${isOpen ? " contact-card--open" : ""}`}

@@ -42,15 +42,6 @@
   font-weight: 900;
   margin: 0 0 -2px 0;
   color: #9c2121;
-  text-shadow:
-    -1px 0 #6d1a1a,
-    1px 0 #6d1a1a,
-    0 -1px #6d1a1a,
-    0 1px #6d1a1a,
-    -2px 0 #6d1a1a,
-    2px 0 #6d1a1a,
-    0 -2px #6d1a1a,
-    0 2px #6d1a1a;
   white-space: nowrap;
 }
 
@@ -60,7 +51,16 @@
   margin: 0;
   letter-spacing: 0.09em;
   line-height: 1.1;
+  font-weight: 600;
   color: #9c2121;
+}
+
+.hero__copy h1.text-motion.is-in {
+  color: #9c2020;
+  -webkit-text-fill-color: #9c2020;
+  -webkit-text-stroke: 5px #6d1a1a;
+  paint-order: stroke fill;
+  text-shadow: none;
 }
 
 /* 카드 영역: 가운데 */
@@ -137,11 +137,20 @@
 .hero__date {
   justify-self: end;
   align-self: end;
-  font-family: var(--mono);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: "Workbench", "Pretendard Variable", "Pretendard", "Noto Sans KR", sans-serif;
   font-size: 22px;
   font-weight: 600;
   letter-spacing: 0.1em;
   color: #9c2121;
+}
+
+.hero__date img {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
 }
 
 @media (max-width: 980px) {

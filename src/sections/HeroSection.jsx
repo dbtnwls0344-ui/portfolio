@@ -1,8 +1,9 @@
-import "./HeroSection.css";
+﻿import "./HeroSection.css";
 import heroCardFront from "../assets/images/hero-card-front.png";
 import heroCardMid from "../assets/images/hero-card-mid.png";
 import heroCardMidHover from "../assets/images/hero-card-mid-hover.png";
 import heroCardBack from "../assets/images/hero-card-back.png";
+import redMiniStar from "../assets/images/red-mini-star.svg";
 
 function HeroSection() {
   return (
@@ -36,10 +37,14 @@ function HeroSection() {
             />
           </div>
         </div>
-        <div className="hero__date">2026 · 01 · 30 ·</div>
+        <div className="hero__date">
+          <span>2026 · 01 · 30 ·</span>
+          <img src={redMiniStar} alt="" aria-hidden="true" />
+        </div>
       </div>
     </header>
   );
 }
 
 export default HeroSection;
+

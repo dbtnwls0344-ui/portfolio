@@ -29,12 +29,30 @@
   --profile-column-gap: 43px;
   --profile-column-gap-right: 58px;
   --profile-polaroid-width: 15%;
-  --profile-polaroid-right: 31.5%;
-  --profile-polaroid-top: -2.5%;
+  --profile-polaroid-right: 34.5%;
+  --profile-polaroid-top: -1.5%;
   --profile-polaroid-rotate: -20deg;
+  --profile-qr-note-width: 14%;
+  --profile-qr-note-left: 31%;
+  --profile-qr-note-top: 11%;
+  --profile-qr-note-rotate: 11deg;
   --profile-clip-width: 9%;
   --profile-clip-right: 4%;
   --profile-clip-top: 25%;
+  --profile-heading-size: 1.35rem;
+  --profile-heading-weight: 800;
+  --profile-period-size: 0.95rem;
+  --profile-period-weight: 500;
+  --profile-detail-size: 1rem;
+  --profile-detail-weight: 500;
+  --profile-label-size: 0.9rem;
+  --profile-label-weight: 600;
+  --profile-value-size: 0.9rem;
+  --profile-value-weight: 500;
+  --profile-skill-gap: 8px;
+  --profile-skill-item-gap: 4px;
+  --profile-skill-name-size: 0.9rem;
+  --profile-skill-track-height: 6px;
 
   position: relative;
   border: none;
@@ -171,6 +189,7 @@
   left: 16%;
   top: 22%;
   transition-delay: 0.1s;
+  transform-origin: 50% 8%;
 }
 
 .profile__asset--polaroid {
@@ -179,6 +198,16 @@
   top: var(--profile-polaroid-top);
   transition-delay: 0.16s;
   rotate: var(--profile-polaroid-rotate);
+  transform-origin: 50% 10%;
+}
+
+.profile__asset--qr-note {
+  width: var(--profile-qr-note-width);
+  left: var(--profile-qr-note-left);
+  top: var(--profile-qr-note-top);
+  rotate: var(--profile-qr-note-rotate);
+  transition-delay: 0.14s;
+  transform-origin: 50% 8%;
 }
 
 .profile__asset--clip {
@@ -191,6 +220,52 @@
 .profile__stage.is-open .profile__asset {
   opacity: 1;
   transform: translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .profile__stage.is-open .profile__asset--photo:hover {
+    animation: profile-photo-flutter 2.2s ease-in-out infinite;
+  }
+
+  .profile__stage.is-open .profile__asset--qr-note:hover {
+    animation: profile-qr-note-flutter 1.7s ease-in-out infinite;
+  }
+}
+
+@keyframes profile-photo-flutter {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  25% {
+    transform: translateY(-3px) rotate(-1deg);
+  }
+
+  55% {
+    transform: translateY(1px) rotate(0.9deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes profile-qr-note-flutter {
+  0% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  35% {
+    transform: translateY(-1px) rotate(-1.45deg);
+  }
+
+  70% {
+    transform: translateY(0.5px) rotate(-0.75deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
 }
 
 .profile__content {
@@ -263,12 +338,12 @@
 .profile__heading {
   margin-bottom: 8px;
   font-family: var(--mono);
-  font-size: 1.35rem;
+  font-size: var(--profile-heading-size);
   letter-spacing: 0.06rem;
   line-height: 132%;
   text-transform: uppercase;
   color: #000;
-  font-weight: 800;
+  font-weight: var(--profile-heading-weight);
 }
 
 .profile__list,
@@ -285,17 +360,17 @@
 }
 
 .profile__period {
-  font-weight: 500;
+  font-weight: var(--profile-period-weight);
   color: #757575;
-  font-size: 0.95rem;
+  font-size: var(--profile-period-size);
   line-height: 1.15;
   letter-spacing: 0.01em;
 }
 
 .profile__detail {
   color: #1f1f1f;
-  font-size: 1rem;
-  font-weight: 500;
+  font-size: var(--profile-detail-size);
+  font-weight: var(--profile-detail-weight);
   line-height: 1.26;
 }
 
@@ -303,7 +378,7 @@
   display: inline-block;
   font-weight: 700;
   color: #111;
-  font-size: 1rem;
+  font-size: var(--profile-detail-size);
 }
 
 .profile__meta li {
@@ -320,9 +395,9 @@
 }
 
 .profile__label {
-  font-weight: 600;
+  font-weight: var(--profile-label-weight);
   color: #000;
-  font-size: 0.9rem;
+  font-size: var(--profile-label-size);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   font-family: var(--mono);
@@ -330,7 +405,8 @@
 
 .profile__value {
   color: #000;
-  font-size: 0.9rem;
+  font-size: var(--profile-value-size);
+  font-weight: var(--profile-value-weight);
   line-height: 1.32;
 }
 
@@ -369,6 +445,11 @@
     --profile-content-right-gap: 9%;
     --profile-column-gap: 20px;
     --profile-column-gap-right: 26px;
+    --profile-heading-size: 1.15rem;
+    --profile-period-size: 0.62rem;
+    --profile-detail-size: 0.8rem;
+    --profile-label-size: 0.62rem;
+    --profile-value-size: 0.8rem;
   }
 
   .profile__section {
@@ -378,7 +459,6 @@
 
   .profile__heading {
     margin-bottom: 4px;
-    font-size: 1.15rem;
     letter-spacing: 0.04rem;
   }
 
@@ -387,14 +467,8 @@
     gap: 4px;
   }
 
-  .profile__period,
-  .profile__label {
-    font-size: 0.62rem;
-  }
-
   .profile__detail,
   .profile__value {
-    font-size: 0.8rem;
     line-height: 1.3;
   }
 
@@ -410,15 +484,15 @@
   }
 
   .profile__stage {
-    --profile-content-scale: clamp(0.66, calc(100vw / 1180), 0.76);
+    --profile-content-scale: clamp(0.58, calc(100vw / 1320), 0.66);
     --profile-content-columns: repeat(2, minmax(0, 1fr));
-    --profile-content-top: 4.2%;
+    --profile-content-top: 3.8%;
     --profile-content-left: 50%;
-    --profile-content-width: min(50%, 460px);
-    --profile-content-height: 82%;
+    --profile-content-width: min(56%, 520px);
+    --profile-content-height: 88%;
     --profile-content-shift-x: -50%;
-    --profile-column-gap: 8px;
-    --profile-column-gap-right: 8px;
+    --profile-column-gap: 6px;
+    --profile-column-gap-right: 6px;
     --profile-polaroid-width: 20%;
     --profile-polaroid-right: 54%;
     --profile-polaroid-top: 1.8%;
@@ -426,6 +500,18 @@
     --profile-clip-width: 9%;
     --profile-clip-right: 8.4%;
     --profile-clip-top: 29%;
+    --profile-heading-size: 0.82rem;
+    --profile-heading-weight: 700;
+    --profile-period-size: 0.58rem;
+    --profile-detail-size: 0.68rem;
+    --profile-label-size: 0.58rem;
+    --profile-value-size: 0.68rem;
+    --profile-detail-weight: 500;
+    --profile-value-weight: 500;
+    --profile-skill-gap: 5px;
+    --profile-skill-item-gap: 3px;
+    --profile-skill-name-size: 0.66rem;
+    --profile-skill-track-height: 4px;
 
     width: 100%;
     aspect-ratio: 4 / 3;
@@ -467,6 +553,10 @@
     display: none;
   }
 
+  .profile__asset--qr-note {
+    display: none;
+  }
+
   .profile__content {
     opacity: 1;
     pointer-events: auto;
@@ -486,7 +576,6 @@
 
   .profile__heading {
     margin-bottom: 3px;
-    font-size: 0.82rem;
     letter-spacing: 0.03rem;
   }
 
@@ -495,14 +584,8 @@
     gap: 3px;
   }
 
-  .profile__period,
-  .profile__label {
-    font-size: 0.58rem;
-  }
-
   .profile__detail,
   .profile__value {
-    font-size: 0.68rem;
     line-height: 1.26;
   }
 
@@ -531,6 +614,16 @@
     --profile-clip-width: 13%;
     --profile-clip-right: -3%;
     --profile-clip-top: 29.5%;
+    --profile-heading-size: 0.8rem;
+    --profile-heading-weight: 700;
+    --profile-period-size: 0.56rem;
+    --profile-detail-size: 0.64rem;
+    --profile-label-size: 0.56rem;
+    --profile-value-size: 0.64rem;
+    --profile-skill-gap: 4px;
+    --profile-skill-item-gap: 2px;
+    --profile-skill-name-size: 0.62rem;
+    --profile-skill-track-height: 4px;
 
     aspect-ratio: 3 / 4;
   }
@@ -545,18 +638,8 @@
     gap: 6px;
   }
 
-  .profile__heading {
-    font-size: 0.8rem;
-  }
-
-  .profile__period,
-  .profile__label {
-    font-size: 0.56rem;
-  }
-
   .profile__detail,
   .profile__value {
-    font-size: 0.64rem;
     line-height: 1.24;
   }
 
@@ -583,20 +666,18 @@
     --profile-clip-width: 14%;
     --profile-clip-right: -4%;
     --profile-clip-top: 30%;
-  }
-
-  .profile__heading {
-    font-size: 0.74rem;
-  }
-
-  .profile__period,
-  .profile__label {
-    font-size: 0.52rem;
+    --profile-heading-size: 0.74rem;
+    --profile-heading-weight: 680;
+    --profile-period-size: 0.52rem;
+    --profile-detail-size: 0.6rem;
+    --profile-label-size: 0.52rem;
+    --profile-value-size: 0.6rem;
+    --profile-skill-name-size: 0.58rem;
+    --profile-skill-track-height: 3px;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.6rem;
     line-height: 1.24;
   }
 
@@ -619,20 +700,18 @@
     --profile-clip-width: 15%;
     --profile-clip-right: -5%;
     --profile-clip-top: 30%;
-  }
-
-  .profile__heading {
-    font-size: 0.68rem;
-  }
-
-  .profile__period,
-  .profile__label {
-    font-size: 0.48rem;
+    --profile-heading-size: 0.68rem;
+    --profile-heading-weight: 700;
+    --profile-period-size: 0.48rem;
+    --profile-detail-size: 0.56rem;
+    --profile-label-size: 0.48rem;
+    --profile-value-size: 0.56rem;
+    --profile-skill-name-size: 0.54rem;
+    --profile-skill-track-height: 3px;
   }
 
   .profile__detail,
   .profile__value {
-    font-size: 0.56rem;
     line-height: 1.22;
   }
 
@@ -646,17 +725,17 @@
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 8px;
+  gap: var(--profile-skill-gap);
 }
 
 .profile__skill-item {
   display: grid;
-  gap: 4px;
+  gap: var(--profile-skill-item-gap);
 }
 
 .profile__skill-name {
   color: #000;
-  font-size: 0.9rem;
+  font-size: var(--profile-skill-name-size);
   font-weight: 600;
   line-height: 1.2;
 }
@@ -664,7 +743,7 @@
 .profile__skill-track {
   position: relative;
   width: 100%;
-  height: 6px;
+  height: var(--profile-skill-track-height);
   border-radius: 999px;
   background: rgba(0, 0, 0, 0.1);
   overflow: hidden;

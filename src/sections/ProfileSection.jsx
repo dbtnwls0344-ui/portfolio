@@ -6,6 +6,7 @@ import profileBoardRight from "../assets/images/profile-board-right.png";
 import profilePhotoId from "../assets/images/profile-photo-id.png";
 import profilePhotoPolaroid from "../assets/images/profile-photo-polaroid.png";
 import binderClip from "../assets/images/binder-clip.png";
+import notePaperTapeWithQr from "../assets/images/note-paper-tape-with-qr.png";
 
 function ProfileSection() {
   const [isOpen, setIsOpen] = useState(false);
@@ -75,6 +76,11 @@ function ProfileSection() {
                 className="profile__asset profile__asset--photo"
                 src={profilePhotoId}
                 alt="Profile photo"
+              />
+              <img
+                className="profile__asset profile__asset--qr-note"
+                src={notePaperTapeWithQr}
+                alt="QR note"
               />
               <img
                 className="profile__asset profile__asset--polaroid"
