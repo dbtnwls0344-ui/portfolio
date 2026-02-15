@@ -74,7 +74,7 @@ function ContactSection() {
                     <span className="contact-card__icon" aria-hidden>
                       <img src={contactIconPhone} alt="" />
                     </span>
-                    <span>+82 010 0269 3400</span>
+                    <span>+82 10 2571 0344</span>
                   </div>
                 </div>
               </div>
