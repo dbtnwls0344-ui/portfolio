@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./ContactSection.css";
-import contactCover from "../assets/images/contact-cover.png";
-import contactPhoto from "../assets/images/contact-photo.png";
+import contactCover from "../assets/images/contact-cover.webp";
+import contactPhoto from "../assets/images/contact-photo.webp";
 import contactIconInstagram from "../assets/images/contact-icon-instagram.svg";
 import contactIconMail from "../assets/images/contact-icon-mail.svg";
 import contactIconPhone from "../assets/images/contact-icon-phone.svg";

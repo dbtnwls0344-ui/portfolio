@@ -133,7 +133,7 @@
 .contact-card__paper {
   width: min(679px, 90vw);
   height: min(378px, 90vw);
-  background: #dedddb;
+  background: #eeeeee;
   border-radius: 12px;
   box-shadow: 0 26px 60px rgba(0, 0, 0, 0.28);
   display: grid;

@@ -6,6 +6,70 @@
   overflow-x: clip;
 }
 
+.floating-action {
+  --floating-size: clamp(84px, 6.6vw, 102px);
+  --floating-fg: #f7f7f7;
+  position: fixed;
+  right: clamp(12px, 1.8vw, 24px);
+  bottom: clamp(12px, 1.8vw, 24px);
+  z-index: 110;
+  width: var(--floating-size);
+  aspect-ratio: 1;
+  border: none;
+  border-radius: 50%;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: var(--floating-fg);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition:
+    transform 0.3s ease,
+    filter 0.3s ease;
+}
+
+.floating-action--top {
+  --floating-fg: #9c2121;
+}
+
+.floating-action--scroll {
+  bottom: clamp(4px, 0.8vw, 12px);
+}
+
+.floating-action__image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.floating-action__label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: currentColor;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.18);
+  font-family: var(--display);
+  font-size: clamp(12px, 1.1vw, 18px);
+  text-transform: lowercase;
+  line-height: 1;
+  letter-spacing: 0.03em;
+}
+
+.floating-action:hover,
+.floating-action:focus-visible {
+  transform: translateY(-4px) scale(1.04);
+  filter: brightness(1.03) saturate(1.08);
+}
+
+.floating-action:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
 .ui-cursor {
   --cursor-x: -100px;
   --cursor-y: -100px;
@@ -110,6 +174,20 @@
 }
 
 @media (max-width: 900px) {
+  .floating-action {
+    --floating-size: clamp(78px, 14vw, 92px);
+    right: clamp(10px, 2vw, 16px);
+    bottom: clamp(10px, 2vw, 16px);
+  }
+
+  .floating-action--scroll {
+    bottom: clamp(4px, 1.2vw, 10px);
+  }
+
+  .floating-action__label {
+    font-size: clamp(11px, 2.3vw, 15px);
+  }
+
   .ui-cursor {
     --cursor-size: clamp(50px, 5.6vw, 64px);
   }
@@ -121,6 +199,18 @@
 }
 
 @media (max-width: 520px) {
+  .floating-action {
+    --floating-size: clamp(72px, 20vw, 86px);
+  }
+
+  .floating-action--scroll {
+    bottom: clamp(2px, 1vw, 8px);
+  }
+
+  .floating-action__label {
+    font-size: clamp(10px, 3vw, 13px);
+  }
+
   .ui-cursor {
     --cursor-size: clamp(46px, 7.8vw, 56px);
   }

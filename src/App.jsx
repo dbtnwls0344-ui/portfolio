@@ -20,6 +20,7 @@ function App() {
   const [cursorEnabled, setCursorEnabled] = useState(false);
   const [cursorMode, setCursorMode] = useState("");
   const [cursorTone, setCursorTone] = useState("light");
+  const [isHeroInView, setIsHeroInView] = useState(true);
   const [cursorImageFailed, setCursorImageFailed] = useState({
     red: false,
     white: false,
@@ -208,6 +209,51 @@ function App() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    if (typeof window === "undefined") return undefined;
+
+    const heroSection = document.getElementById("hero");
+    if (!heroSection) return undefined;
+
+    if (!("IntersectionObserver" in window)) {
+      const update = () => {
+        const rect = heroSection.getBoundingClientRect();
+        setIsHeroInView(rect.bottom > window.innerHeight * 0.35);
+      };
+      update();
+      window.addEventListener("scroll", update, { passive: true });
+      window.addEventListener("resize", update);
+      return () => {
+        window.removeEventListener("scroll", update);
+        window.removeEventListener("resize", update);
+      };
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsHeroInView(entry.isIntersecting);
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(heroSection);
+    return () => observer.disconnect();
+  }, []);
+
+  const handleFloatingAction = () => {
+    if (isHeroInView) {
+      const nextSection = document.getElementById("profile");
+      if (!nextSection) return;
+      nextSection.scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  const floatingLabel = isHeroInView ? "scroll" : "top";
+  const floatingImage = isHeroInView ? cursorClickRed : cursorClickWhite;
+
   return (
     <div className="page">
       <div
@@ -251,6 +297,20 @@ function App() {
       <SkillsSection />
       <QaSection />
       <ContactSection />
+      <button
+        className={`floating-action ${isHeroInView ? "floating-action--scroll" : "floating-action--top"}`}
+        type="button"
+        onClick={handleFloatingAction}
+        aria-label={isHeroInView ? "Scroll to profile section" : "Back to top"}
+      >
+        <img
+          className="floating-action__image"
+          src={floatingImage}
+          alt=""
+          aria-hidden="true"
+        />
+        <span className="floating-action__label">{floatingLabel}</span>
+      </button>
     </div>
   );
 }

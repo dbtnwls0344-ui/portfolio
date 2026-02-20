@@ -7,9 +7,9 @@ import "./AboutSection.css";
 import aboutIconStarRed from "../assets/images/about-icon-star-red.svg";
 import aboutIconStarWhite from "../assets/images/about-icon-star-white.svg";
 
-import aboutImage01 from "../assets/images/about-image-01.png";
-import aboutImage02 from "../assets/images/about-image-02.png";
-import aboutImage03 from "../assets/images/about-image-03.png";
+import aboutImage01 from "../assets/images/about-image-01.webp";
+import aboutImage02 from "../assets/images/about-image-02.webp";
+import aboutImage03 from "../assets/images/about-image-03.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
 import "./CloneSection.css";
-import cloneYStudio from "../assets/images/clone-y-studio.png";
-import cloneMusign from "../assets/images/clone-musign.png";
-import cloneCrew from "../assets/images/clone-crew-a-la-mode.png";
-import clonePhomein from "../assets/images/clone-phomein.png";
-import cloneDaebang from "../assets/images/clone-daebang.png";
-import cloneConcierge from "../assets/images/clone-concierge.png";
+import cloneYStudio from "../assets/images/clone-y-studio.webp";
+import cloneMusign from "../assets/images/clone-musign.webp";
+import cloneCrew from "../assets/images/clone-crew-a-la-mode.webp";
+import clonePhomein from "../assets/images/clone-phomein.webp";
+import cloneDaebang from "../assets/images/clone-daebang.webp";
+import cloneConcierge from "../assets/images/clone-concierge.webp";
 
 function CloneSection() {
   const projects = useMemo(

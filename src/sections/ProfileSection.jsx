@@ -1,9 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import "./ProfileSection.css";
-import profileFolderClosed from "../assets/images/profile-folder-closed.png";
-import profileBoardLeft from "../assets/images/profile-board-left.png";
-import profileBoardRight from "../assets/images/profile-board-right.png";
-import profilePhotoId from "../assets/images/profile-photo-id.png";
+import profileFolderClosed from "../assets/images/profile-folder-closed.webp";
+import profileBoardLeft from "../assets/images/profile-board-left.webp";
+import profileBoardRight from "../assets/images/profile-board-right.webp";
+import profilePhotoId from "../assets/images/profile-photo-id.webp";
 import profilePhotoPolaroid from "../assets/images/profile-photo-polaroid.png";
 import binderClip from "../assets/images/binder-clip.png";
 import notePaperTapeWithQr from "../assets/images/note-paper-tape-with-qr.png";

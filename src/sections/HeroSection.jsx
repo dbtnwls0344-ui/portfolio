@@ -1,8 +1,8 @@
 ﻿import "./HeroSection.css";
-import heroCardFront from "../assets/images/hero-card-front.png";
+import heroCardFront from "../assets/images/hero-card-front.webp";
 import heroCardMid from "../assets/images/hero-card-mid.png";
 import heroCardMidHover from "../assets/images/hero-card-mid-hover.png";
-import heroCardBack from "../assets/images/hero-card-back.png";
+import heroCardBack from "../assets/images/hero-card-back.webp";
 import redMiniStar from "../assets/images/red-mini-star.svg";
 
 function HeroSection() {

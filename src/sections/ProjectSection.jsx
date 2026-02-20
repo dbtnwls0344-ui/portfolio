@@ -3,14 +3,14 @@ import { gsap } from "gsap";
 import { interpolate } from "flubber";
 import "./ProjectSection.css";
 
-import folderLid from "../assets/images/project-folder-lid.png";
-import folderBody from "../assets/images/project-folder-body.png";
+import folderLid from "../assets/images/project-folder-lid.webp";
+import folderBody from "../assets/images/project-folder-body.webp";
 import buttonTop from "../assets/images/project-button-top.png";
 import buttonBottom from "../assets/images/project-button-bottom.png";
-import detail01 from "../assets/images/project-detail-01.png";
-import detail02 from "../assets/images/project-detail-02.png";
+import detail01 from "../assets/images/project-detail-01.webp";
+import detail02 from "../assets/images/project-detail-02.webp";
 import detail03 from "../assets/images/project-detail-03.png";
-import detail04 from "../assets/images/project-detail-04.png";
+import detail04 from "../assets/images/project-detail-04.webp";
 
 const TIED_PATH =
   "M31.974 292.671C17.5021 273.336 9.1698 105.77 4.78437 52.9218C1.27603 10.6434 31.0969 6.37549 46.4459 9.52632C57.7018 11.8178 80.2137 23.705 80.2137 52.9218C80.2137 82.1385 57.7018 224.928 46.4459 292.671C15.3094 328.332 -18.8983 452.246 31.9726 523.397C95.5613 612.336 120.356 619.157 139.854 707.72C163.975 817.283 90.0074 932.861 80.2137 938.446";
