@@ -1,4 +1,4 @@
-import { useLayoutEffect, useMemo, useRef, useState } from "react";
+﻿import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { interpolate } from "flubber";
 import "./ProjectSection.css";
@@ -19,9 +19,9 @@ const LOOSE_PATH =
   "M661.98 265.121C661.98 294.361 377.746 398.421 456.007 241.901C493.03 167.856 460.307 -5.34929 330.875 100.861C246.863 169.799 188.973 184.281 128.772 184.281C16.5983 184.281 14.1031 3.25071 4.5 8.84071M661.98 265.121C661.98 235.881 643.777 218.395 632.74 216.102C617.69 212.948 588.45 217.22 591.89 259.532C596.19 312.422 661.98 265.121 661.98 265.121Z";
 
 const ROLE_BARS = [
-  { label: "기획", value: 100 },
-  { label: "디자인", value: 100 },
-  { label: "퍼블리싱", value: 67 },
+  { label: "Planning", value: 100 },
+  { label: "Design", value: 100 },
+  { label: "Publishing", value: 67 },
 ];
 
 function ProjectSection() {
@@ -29,6 +29,7 @@ function ProjectSection() {
   const [activeFile, setActiveFile] = useState(null);
 
   const stringPathRef = useRef(null);
+  const stringSwayTweenRef = useRef(null);
   const closeBtnRef = useRef(null);
   const lastActiveElRef = useRef(null);
 
@@ -40,7 +41,7 @@ function ProjectSection() {
         title: "MONAMI : Brand Experience Renewal",
         category: "Rebranding",
         summary:
-          "기존 필기구 브랜드의 정체성을 재해석하고, 일상의 기록 경험을 현대적으로 확장한 브랜딩 프로젝트입니다. 모나미가 지닌 헤리티지를 유지하면서도 새로운 세대와 연결될 수 있는 시각 시스템과 브랜드 톤을 재정립했습니다.",
+          "湲곗〈 ?꾧린援?釉뚮옖?쒖쓽 ?뺤껜?깆쓣 ?ы빐?앺븯怨? ?쇱긽??湲곕줉 寃쏀뿕???꾨??곸쑝濡??뺤옣??釉뚮옖???꾨줈?앺듃?낅땲?? 紐⑤굹誘멸? 吏???ㅻ━?곗?瑜??좎??섎㈃?쒕룄 ?덈줈???몃?? ?곌껐?????덈뒗 ?쒓컖 ?쒖뒪?쒓낵 釉뚮옖???ㅼ쓣 ?ъ젙由쏀뻽?듬땲??",
         href: "https://meongpunch.github.io/monamifinal/",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=11-29351&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -50,9 +51,9 @@ function ProjectSection() {
         cardStyle: "project-file__card--monami",
         modalPanelClass: "project-modal__panel--monami",
         roleBars: [
-          { label: "기획", value: 84 },
-          { label: "디자인", value: 98 },
-          { label: "퍼블리싱", value: 67 },
+          { label: "Planning", value: 84 },
+          { label: "Design", value: 98 },
+          { label: "Publishing", value: 67 },
         ],
       },
       {
@@ -61,7 +62,7 @@ function ProjectSection() {
         title: "DUGOUT : Mobile Fandom App",
         category: "Product",
         summary:
-          "관람에 머무르던 야구 팬 경험을기록하고, 공유하고, 축적되는 참여형 팬 경험으로 확장한 모바일 앱 프로젝트입니다.덕아웃은 팬을 단순한 사용자로 보지 않고,경기의 흐름과 감정을 함께 만들어가는 경험의 주체로 재정의합니다.경기 정보 중심의 기존 야구 앱 구조에서 벗어나,개인의 응원과 기억이 자연스럽게 쌓이는 팬덤 공간을 제안했습니다.",
+          "愿?뚯뿉 癒몃Т瑜대뜕 ?쇨뎄 ??寃쏀뿕?꾧린濡앺븯怨? 怨듭쑀?섍퀬, 異뺤쟻?섎뒗 李몄뿬????寃쏀뿕?쇰줈 ?뺤옣??紐⑤컮?????꾨줈?앺듃?낅땲???뺤븘?껋? ?ъ쓣 ?⑥닚???ъ슜?먮줈 蹂댁? ?딄퀬,寃쎄린???먮쫫怨?媛먯젙???④퍡 留뚮뱾?닿???寃쏀뿕??二쇱껜濡??ъ젙?섑빀?덈떎.寃쎄린 ?뺣낫 以묒떖??湲곗〈 ?쇨뎄 ??援ъ“?먯꽌 踰쀬뼱??媛쒖씤???묒썝怨?湲곗뼲???먯뿰?ㅻ읇寃??볦씠???щ뜡 怨듦컙???쒖븞?덉뒿?덈떎.",
         href: "https://dugout-ruby.vercel.app/onboarding",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=7-4&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -71,9 +72,9 @@ function ProjectSection() {
         cardStyle: "project-file__card--dugout",
         modalPanelClass: "project-modal__panel--uiux",
         roleBars: [
-          { label: "기획", value: 74 },
-          { label: "디자인", value: 96 },
-          { label: "퍼블리싱", value: 84 },
+          { label: "Planning", value: 74 },
+          { label: "Design", value: 96 },
+          { label: "Publishing", value: 84 },
         ],
       },
       {
@@ -82,7 +83,7 @@ function ProjectSection() {
         title: "ARP : Exhibition Archive App",
         category: "Product",
         summary:
-          "전시 관람 경험을 기록하고 축적할 수 있도록 설계한 모바일 아카이브 앱 프로젝트입니다. 감상의 흐름을 정리하는 UI 구조와 시각적 리듬을 통해, 개인의 관람 경험이 자연스럽게 확장되도록 구성했습니다.",
+          "?꾩떆 愿??寃쏀뿕??湲곕줉?섍퀬 異뺤쟻?????덈룄濡??ㅺ퀎??紐⑤컮???꾩뭅?대툕 ???꾨줈?앺듃?낅땲?? 媛먯긽???먮쫫???뺣━?섎뒗 UI 援ъ“? ?쒓컖??由щ벉???듯빐, 媛쒖씤??愿??寃쏀뿕???먯뿰?ㅻ읇寃??뺤옣?섎룄濡?援ъ꽦?덉뒿?덈떎.",
         href: "https://www.figma.com/proto/2cRRaUsj8t5czQPOQIGZg5/ARP-APP_%EC%A0%84%EC%8B%9C%EA%B8%B0%EB%A1%9D%EC%95%B1?node-id=0-1&t=D86PP9TySDqQWFWh-1",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=11-26711&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -92,9 +93,9 @@ function ProjectSection() {
         cardStyle: "project-file__card--arp",
         modalPanelClass: "project-modal__panel--arp",
         roleBars: [
-          { label: "기획", value: 100 },
-          { label: "디자인", value: 100 },
-          { label: "퍼블리싱", value: 100 },
+          { label: "Planning", value: 100 },
+          { label: "Design", value: 100 },
+          { label: "Publishing", value: 100 },
         ],
       },
       {
@@ -103,7 +104,7 @@ function ProjectSection() {
         title: "PERSONAL : Identity System",
         category: "Product",
         summary:
-          "개인의 태도와 작업 세계관을 기반으로 아이덴티티를 정립한 퍼스널 브랜딩 프로젝트입니다. 일관된 시각 시스템과 톤을 설계해, 스스로의 방향성과 메시지가 명확하게 전달되도록 구성했습니다.",
+          "媛쒖씤???쒕룄? ?묒뾽 ?멸퀎愿??湲곕컲?쇰줈 ?꾩씠?댄떚?곕? ?뺣┰???쇱뒪??釉뚮옖???꾨줈?앺듃?낅땲?? ?쇨????쒓컖 ?쒖뒪?쒓낵 ?ㅼ쓣 ?ㅺ퀎?? ?ㅼ뒪濡쒖쓽 諛⑺뼢?깃낵 硫붿떆吏媛 紐낇솗?섍쾶 ?꾨떖?섎룄濡?援ъ꽦?덉뒿?덈떎.",
 
         href: "https://example.com/personal-branding",
         secondaryHref: "https://example.com/personal-branding/process",
@@ -113,9 +114,9 @@ function ProjectSection() {
         cardStyle: "project-file__card--personal",
         modalPanelClass: "project-modal__panel--personal",
         roleBars: [
-          { label: "기획", value: 100 },
-          { label: "디자인", value: 100 },
-          { label: "퍼블리싱", value: 100 },
+          { label: "Planning", value: 100 },
+          { label: "Design", value: 100 },
+          { label: "Publishing", value: 100 },
         ],
       },
     ],
@@ -131,25 +132,52 @@ function ProjectSection() {
 
   const handleFileOpen = (file) => setActiveFile(file);
 
-  // 끈 모핑
+  // ??紐⑦븨
   useLayoutEffect(() => {
     if (!stringPathRef.current) return;
 
-    const morph = interpolate(TIED_PATH, LOOSE_PATH, { maxSegmentLength: 2 });
-    const state = { t: isOpen ? 1 : 0 };
-    stringPathRef.current.setAttribute("d", morph(state.t));
+    stringSwayTweenRef.current?.kill();
+    stringSwayTweenRef.current = null;
+    gsap.set(stringPathRef.current, { rotation: 0, x: 0, y: 0 });
+
+    const targetPath = isOpen ? LOOSE_PATH : TIED_PATH;
+    const currentPath = stringPathRef.current.getAttribute("d") || TIED_PATH;
+    const toTarget = interpolate(currentPath, targetPath, { maxSegmentLength: 2 });
+    const state = { t: 0 };
 
     const tween = gsap.to(state, {
-      t: isOpen ? 1 : 0,
+      t: 1,
       duration: 0.55,
       ease: "power4.out",
-      onUpdate: () => stringPathRef.current?.setAttribute("d", morph(state.t)),
+      onUpdate: () => {
+        stringPathRef.current?.setAttribute("d", toTarget(state.t));
+      },
+      onComplete: () => {
+        // flubber interpolation 결과의 미세 왜곡을 막기 위해 최종 path를 강제로 고정
+        stringPathRef.current?.setAttribute("d", targetPath);
+
+        if (isOpen || !stringPathRef.current) return;
+
+        stringSwayTweenRef.current = gsap.to(stringPathRef.current, {
+          rotation: 3.2,
+          x: 2.2,
+          transformOrigin: "46px 52px",
+          duration: 1.15,
+          repeat: -1,
+          yoyo: true,
+          ease: "sine.inOut",
+        });
+      },
     });
 
-    return () => tween.kill();
+    return () => {
+      tween.kill();
+      stringSwayTweenRef.current?.kill();
+      stringSwayTweenRef.current = null;
+    };
   }, [isOpen]);
 
-  // 모달: ESC/스크롤 잠금/포커스
+  // 紐⑤떖: ESC/?ㅽ겕濡??좉툑/?ъ빱??
   useLayoutEffect(() => {
     if (!activeFile) return;
 
@@ -183,7 +211,7 @@ function ProjectSection() {
     >
       <div className="project-section__stage">
         <div className="project-section__header">
-          <h2 className="project-section__title">PROJECT:✸</h2>
+          <h2 className="project-section__title">PROJECT:</h2>
           <p className="project-section__subtitle">
             From observation to interaction.
           </p>
@@ -207,49 +235,6 @@ function ProjectSection() {
               aria-hidden="true"
               focusable="false"
             >
-              <defs>
-                <filter
-                  id="project-string-inner-shadow"
-                  x="-25%"
-                  y="-25%"
-                  width="150%"
-                  height="150%"
-                  colorInterpolationFilters="sRGB"
-                >
-                  <feFlood
-                    floodColor="#ffffff"
-                    floodOpacity="0.16"
-                    result="shadowColor"
-                  />
-                  <feComposite
-                    in="shadowColor"
-                    in2="SourceAlpha"
-                    operator="in"
-                    result="shadowAlpha"
-                  />
-                  <feOffset
-                    in="shadowAlpha"
-                    dx="6.87"
-                    dy="1.72"
-                    result="offsetShadow"
-                  />
-                  <feGaussianBlur
-                    in="offsetShadow"
-                    stdDeviation="3.35"
-                    result="blurShadow"
-                  />
-                  <feComposite
-                    in="blurShadow"
-                    in2="SourceAlpha"
-                    operator="in"
-                    result="innerShadow"
-                  />
-                  <feMerge>
-                    <feMergeNode in="SourceGraphic" />
-                    <feMergeNode in="innerShadow" />
-                  </feMerge>
-                </filter>
-              </defs>
               <path
                 className="project-folder__string-path"
                 ref={stringPathRef}
@@ -259,7 +244,6 @@ function ProjectSection() {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 fill="none"
-                filter="url(#project-string-inner-shadow)"
               />
             </svg>
           </div>
@@ -294,7 +278,7 @@ function ProjectSection() {
                     onClick={() => handleFileOpen(file)}
                     disabled={!isOpen}
                     tabIndex={isOpen ? 0 : -1}
-                    aria-label={`${file.title} 상세 보기`}
+                    aria-label={`${file.title} ?곸꽭 蹂닿린`}
                   >
                     <span
                       className={`project-file__card ${file.cardStyle}`}
@@ -421,7 +405,7 @@ function ProjectSection() {
                         />
                       </svg>
                     </span>
-                    <span className="project-modal__link-label">바로가기</span>
+                    <span className="project-modal__link-label">View Live</span>
                   </a>
                   <a
                     className="project-modal__link project-modal__link--secondary"
@@ -457,7 +441,7 @@ function ProjectSection() {
                       </svg>
                     </span>
                     <span className="project-modal__link-label">
-                      기획서 보기
+                      湲고쉷??蹂닿린
                     </span>
                   </a>
                 </div>
@@ -471,3 +455,4 @@ function ProjectSection() {
 }
 
 export default ProjectSection;
+
