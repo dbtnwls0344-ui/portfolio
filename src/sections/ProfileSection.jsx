@@ -8,6 +8,8 @@ import profilePhotoPolaroid from "../assets/images/profile-photo-polaroid.png";
 import binderClip from "../assets/images/binder-clip.png";
 import notePaperTapeWithQr from "../assets/images/note-paper-tape-with-qr.png";
 
+const AUTO_OPEN_DELAY_MS = 1000;
+
 function ProfileSection() {
   const [isOpen, setIsOpen] = useState(false);
   const [hasEntered, setHasEntered] = useState(
@@ -15,6 +17,8 @@ function ProfileSection() {
   );
   const [isInView, setIsInView] = useState(false);
   const sectionRef = useRef(null);
+  const hasAutoOpenedRef = useRef(false);
+  const autoOpenTimerRef = useRef(null);
 
   useEffect(() => {
     const target = sectionRef.current;
@@ -23,23 +27,86 @@ function ProfileSection() {
       return undefined;
     }
 
-    if (!("IntersectionObserver" in window)) return undefined;
+    const clearAutoOpenTimer = () => {
+      if (autoOpenTimerRef.current) {
+        window.clearTimeout(autoOpenTimerRef.current);
+        autoOpenTimerRef.current = null;
+      }
+    };
+
+    const scheduleAutoOpen = () => {
+      if (hasAutoOpenedRef.current) {
+        return;
+      }
+      if (autoOpenTimerRef.current) {
+        return;
+      }
+      autoOpenTimerRef.current = window.setTimeout(() => {
+        setIsOpen(true);
+        hasAutoOpenedRef.current = true;
+        autoOpenTimerRef.current = null;
+      }, AUTO_OPEN_DELAY_MS);
+    };
+
+    const maybeAutoOpen = () => {
+      if (hasAutoOpenedRef.current) {
+        return;
+      }
+
+      const rect = target.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || 1;
+      const isWithinViewportBand =
+        rect.top < viewportHeight * 0.62 && rect.bottom > viewportHeight * 0.38;
+
+      if (isWithinViewportBand) {
+        setHasEntered(true);
+        setIsInView(true);
+        scheduleAutoOpen();
+      } else {
+        clearAutoOpenTimer();
+      }
+    };
+
+    const onScrollOrResize = () => {
+      maybeAutoOpen();
+    };
+
+    maybeAutoOpen();
+    window.addEventListener("scroll", onScrollOrResize, { passive: true });
+    window.addEventListener("resize", onScrollOrResize);
+
+    if (!("IntersectionObserver" in window)) {
+      return () => {
+        window.removeEventListener("scroll", onScrollOrResize);
+        window.removeEventListener("resize", onScrollOrResize);
+        clearAutoOpenTimer();
+      };
+    }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setHasEntered(true);
           setIsInView(true);
+          if (!hasAutoOpenedRef.current) {
+            scheduleAutoOpen();
+          }
         } else {
           setIsInView(false);
+          clearAutoOpenTimer();
         }
       },
-      { threshold: 0.35 },
+      { threshold: 0.38, rootMargin: "0px 0px -4% 0px" },
     );
 
     observer.observe(target);
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScrollOrResize);
+      window.removeEventListener("resize", onScrollOrResize);
+      clearAutoOpenTimer();
+    };
   }, []);
 
   const toggleOpen = () => {
@@ -58,6 +125,9 @@ function ProfileSection() {
         >
           <span className="profile__closed">
             <img src={profileFolderClosed} alt="Closed profile folder" />
+            <span className="profile__click-hint" aria-hidden="true">
+              Click
+            </span>
           </span>
 
           <span className="profile__open">

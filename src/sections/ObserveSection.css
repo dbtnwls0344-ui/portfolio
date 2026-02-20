@@ -115,6 +115,7 @@
   transform-origin: 50% 100%;
   transform: translateX(-50%) rotateX(0deg);
   border-radius: 18px 18px 26px 26px;
+  filter: drop-shadow(-1.12px -4.49px 6.84px rgba(0, 0, 0, 0.2));
   will-change: transform;
 }
 
@@ -187,7 +188,10 @@
   transform: translateX(-50%) translateY(4px) rotateX(-34deg) scale(1.01);
   border-radius: 18px 18px 22px 22px;
   opacity: 1;
-  filter: brightness(1.03) drop-shadow(0 14px 18px rgba(0, 0, 0, 0.24));
+  filter:
+    brightness(1.03)
+    drop-shadow(-1.12px -4.49px 6.84px rgba(0, 0, 0, 0.2))
+    drop-shadow(0 14px 18px rgba(0, 0, 0, 0.24));
 }
 
 .observe-folder:is(:hover, :focus-visible) .observe-folder__back {

@@ -36,7 +36,14 @@ export default function AboutSection() {
         </>
       ),
       altTitle: "Sensing Art & Observation",
-      body: "미술을 전공하며 이미지를 빠르게 소비하기보다,오래 관찰하고 축적하는 방식에 익숙해졌습니다.Luxun Academy에서는 손을 통해 사고하는 밀도 있는 작업 과정을,홍익대학교 대학원에서는 감각을 해석하고 구조화하는 과정을 경험했습니다.이 시기를 통해 시각적 완성도 이전에‘왜 이 형태가 필요한가’를 먼저 고민하는 태도가 형성되었습니다.",
+      bodyTitle: (
+        <>
+          회화 전공에서
+          <br />
+          익힌 조형 설계를 UX 정보 구조에 적용합니다
+        </>
+      ),
+      body: "순수미술을 전공하며 이미지를 빠르게 소비하기보다, 오래 관찰하고 축적하는 방식에 익숙해졌습니다.Luxun Academy에서는 손으로 사고하는 밀도 있는 작업 과정을 경험했고,홍익대학교 대학원에서는 감각을 해석하고 구조화하는 훈련을 이어갔습니다.이 과정 속에서 시각적 완성도 이전에, “왜 이 형태가 필요한가”를 먼저 질문하는 태도가 자리 잡았습니다.",
       image: aboutImage01,
       icon: aboutIconStarRed,
       caption: "Luxun Academy of Fine Arts · Hongik University Graduate School",
@@ -44,16 +51,18 @@ export default function AboutSection() {
     {
       title: "Communication & Mediation",
       altTitle: "Communication & Mediation",
-      body: "문화예술교육사 과정과 아동 대상 교육, 그리고 전시 현장에서의 갤러리 통역 경험을 통해 같은 내용도 대상에 따라 전혀 다르게 전달되어야 한다는 것을 체감했습니다. 상대의 반응을 기준으로 설명의 깊이와 방식을 조율하는 과정은 이후 사용자 관점에서 경험을 설계하는 사고의 기반이 되었습니다. 이 경험들은 ‘전달’과 ‘이해’ 사이의 간극을 인식하게 만든 중요한 전환점이었습니다.",
+      bodyTitle: "현장 커뮤니케이션 경험을 UX 문제 정의에 활용합니다",
+      body: "문화예술교육사 과정과 다양한 연령층을 대상으로 한 미술교육, 그리고 전시 현장에서의 갤러리 통역 경험을 통해같은 내용이라도 대상의 맥락에 따라 전달 방식이 달라져야 한다는 것을 배웠습니다.상대의 반응을 기준으로 설명의 순서와 밀도를 조정해왔고,이 경험은 사용자 관점에서 문제를 재구성하는 사고로 이어졌습니다.저는 ‘전달’이 아니라 ‘이해’를 기준으로 경험을 설계합니다.",
       image: aboutImage02,
       icon: aboutIconStarWhite,
       caption:
         "Cultural Arts Education · Children’s Education · Gallery Interpretation",
     },
     {
-      title: "Building UIUX & Frontend",
-      altTitle: "Building UIUX & Frontend",
-      body: "이젠아카데미 프론트엔드 과정을 통해 감각과 소통을 실제 인터페이스로 구현하는 방법을 익혔습니다. HTML, CSS, JavaScript, React 기반의 프로젝트 경험을 통해 화면 구성과 사용자 흐름을 구조적으로 설계하는 훈련을 반복했습니다. 이전의 관찰과 조율 경험은 이 단계에서 사용자 중심의 UIUX 설계로 구체화되었습니다.",
+      title: "Building UIUX",
+      altTitle: "Building UIUX",
+      bodyTitle: "설계한 UX를 HTML·CSS·React로 직접 구현합니다",
+      body: "이젠아카데미 UX/UI 디자인 & 웹기획 프론트엔드 부트캠프를 통해감각과 소통의 경험을 실제 인터페이스로 구현하는 방법을 배웠습니다.HTML, CSS, JavaScript, React 기반의 프로젝트를 수행하며화면 구성과 사용자 흐름을 코드 구조로 설계해왔습니다.이전의 관찰과 조율 경험은 이 과정에서 사용자 중심의 UX 설계로 구체화되었습니다.",
       image: aboutImage03,
       icon: aboutIconStarRed,
       caption: "EZEN Academy · UIUX & Frontend",
@@ -150,7 +159,10 @@ export default function AboutSection() {
 
     const getBackgroundShift = () => {
       if (!section) return 0;
-      const scrollRange = Math.max(section.scrollHeight - window.innerHeight, 0);
+      const scrollRange = Math.max(
+        section.scrollHeight - window.innerHeight,
+        0,
+      );
       const baseShift = window.innerHeight * 0.55;
       return Math.round(Math.min(Math.max(baseShift, scrollRange * 0.24), 620));
     };
@@ -242,7 +254,8 @@ export default function AboutSection() {
 
                   <div className="about__content">
                     <div className="about__body">
-                      <p>{block.body}</p>
+                      <h4 className="about__body-title">{block.bodyTitle}</h4>
+                      <p className="about__body-text">{block.body}</p>
                     </div>
 
                     <div className="about__image">
@@ -262,7 +275,8 @@ export default function AboutSection() {
 
               <div className="about__content">
                 <div className="about__body">
-                  <p>{active.body}</p>
+                  <h4 className="about__body-title">{active.bodyTitle}</h4>
+                  <p className="about__body-text">{active.body}</p>
                 </div>
 
                 <div className="about__image">

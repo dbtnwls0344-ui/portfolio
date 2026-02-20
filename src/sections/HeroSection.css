@@ -32,7 +32,6 @@
   position: relative;
 }
 
-/* 상단 타이포 */
 .hero__copy {
   justify-self: start;
 }
@@ -58,12 +57,9 @@
 .hero__copy h1.text-motion.is-in {
   color: #9c2020;
   -webkit-text-fill-color: #9c2020;
-  -webkit-text-stroke: 5px #6d1a1a;
-  paint-order: stroke fill;
   text-shadow: none;
 }
 
-/* 카드 영역: 가운데 */
 .hero__stage {
   display: flex;
   justify-content: center;
@@ -75,8 +71,10 @@
   width: min(53%, 92vw);
   aspect-ratio: 16 / 9;
 
-  /* ✅ mid & mid-hover가 '같이' 움직이게 만드는 공통 변수 */
-  --mid-tx: 0px;
+  /* mid/mid-hover shared translateX = scroll shift + hover shift */
+  --scroll-tx: 0px;
+  --hover-tx: 0px;
+  --mid-tx: calc(var(--scroll-tx) + var(--hover-tx));
 }
 
 .hero__img {
@@ -92,7 +90,6 @@
   will-change: transform, opacity;
 }
 
-/* back/front는 고정 */
 .hero__img--back {
   z-index: 1;
   transform: translate3d(0, 0, 0);
@@ -101,15 +98,14 @@
 .hero__img--front {
   z-index: 4;
   transform: translate3d(0, 0, 0);
+  filter: drop-shadow(0 -1px 2.72px rgba(0, 0, 0, 0.21));
 }
 
-/* ✅ mid 두 장은 transform을 동일하게 공유 */
 .hero__img--mid,
 .hero__img--mid-hover {
-  transform: translate3d(var(--mid-tx), 0, 0) scale(0.94); /* ← 여기 숫자만 조절 */
+  transform: translate3d(var(--mid-tx), 0, 0) scale(0.94);
 }
 
-/* 레이어 + 기본 가시성 */
 .hero__img--mid {
   z-index: 2;
   opacity: 1;
@@ -120,9 +116,8 @@
   opacity: 0;
 }
 
-/* ✅ hover: 이동은 변수 하나만 변경, 교체는 opacity만 */
 .hero__card:hover {
-  --mid-tx: 167px; /* 원하는 만큼 조절 */
+  --hover-tx: calc(167px - var(--scroll-tx));
 }
 
 .hero__card:hover .hero__img--mid {
@@ -133,14 +128,14 @@
   opacity: 1;
 }
 
-/* 날짜: 우하단 */
 .hero__date {
   justify-self: end;
   align-self: end;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-family: "Workbench", "Pretendard Variable", "Pretendard", "Noto Sans KR", sans-serif;
+  font-family:
+    "Workbench", "Pretendard Variable", "Pretendard", "Noto Sans KR", sans-serif;
   font-size: 22px;
   font-weight: 600;
   letter-spacing: 0.1em;
@@ -190,8 +185,7 @@
     width: 92vw;
   }
 
-  /* 모바일에서 이동값 조금 줄이고 싶으면 */
   .hero__card:hover {
-    --mid-tx: 28px;
+    --hover-tx: calc(28px - var(--scroll-tx));
   }
 }

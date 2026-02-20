@@ -116,6 +116,30 @@
   z-index: 2;
 }
 
+.profile__click-hint {
+  position: absolute;
+  left: 46.5%;
+  top: 38%;
+  display: inline-block;
+  padding: 0.12em 0.34em;
+  border-radius: 3px;
+  font-family: var(--mono);
+  font-size: clamp(1rem, 1.12vw, 1.32rem);
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(151, 24, 30, 0.98);
+  background: rgba(245, 236, 223, 0.3);
+  border: 1px solid rgba(155, 32, 37, 0.24);
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.28),
+    0 -1px 0 rgba(65, 8, 8, 0.36),
+    0 0 6px rgba(126, 16, 20, 0.22);
+  transform: rotate(-2deg);
+  opacity: 0.98;
+  pointer-events: none;
+}
+
 .profile__open {
   opacity: 0;
   z-index: 1;
