@@ -214,7 +214,7 @@ function ProfileSection() {
                         </li>
                         <li className="profile__item">
                           <span className="profile__period">
-                            2018.03-2019-02
+                            2018.03-2019.02
                           </span>
                           <span className="profile__detail">
                             <span className="profile__detail-title">
