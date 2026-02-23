@@ -50,7 +50,7 @@
   }
 }
 
-/* sticky ���� ���� */
+/* sticky overflow safety */
 .about,
 .about__scrolly {
   overflow: visible;

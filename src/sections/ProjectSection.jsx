@@ -41,7 +41,7 @@ function ProjectSection() {
         title: "MONAMI : Brand Experience Renewal",
         category: "Rebranding",
         summary:
-          "湲곗〈 ?꾧린援?釉뚮옖?쒖쓽 ?뺤껜?깆쓣 ?ы빐?앺븯怨? ?쇱긽??湲곕줉 寃쏀뿕???꾨??곸쑝濡??뺤옣??釉뚮옖???꾨줈?앺듃?낅땲?? 紐⑤굹誘멸? 吏???ㅻ━?곗?瑜??좎??섎㈃?쒕룄 ?덈줈???몃?? ?곌껐?????덈뒗 ?쒓컖 ?쒖뒪?쒓낵 釉뚮옖???ㅼ쓣 ?ъ젙由쏀뻽?듬땲??",
+          "기존 필기구 브랜드의 정체성을 재해석하고 일상 속 기록 경험을 브랜드 경험으로 확장한 브랜딩 프로젝트입니다. 모나미가 지닌 헤리티지를 유지하면서도 새로운 브랜드 톤과 연결되는 시각 시스템과 브랜드 요소를 재정의했습니다.",
         href: "https://meongpunch.github.io/monamifinal/",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=11-29351&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -62,7 +62,7 @@ function ProjectSection() {
         title: "DUGOUT : Mobile Fandom App",
         category: "Product",
         summary:
-          "愿?뚯뿉 癒몃Т瑜대뜕 ?쇨뎄 ??寃쏀뿕?꾧린濡앺븯怨? 怨듭쑀?섍퀬, 異뺤쟻?섎뒗 李몄뿬????寃쏀뿕?쇰줈 ?뺤옣??紐⑤컮?????꾨줈?앺듃?낅땲???뺤븘?껋? ?ъ쓣 ?⑥닚???ъ슜?먮줈 蹂댁? ?딄퀬,寃쎄린???먮쫫怨?媛먯젙???④퍡 留뚮뱾?닿???寃쏀뿕??二쇱껜濡??ъ젙?섑빀?덈떎.寃쎄린 ?뺣낫 以묒떖??湲곗〈 ?쇨뎄 ??援ъ“?먯꽌 踰쀬뼱??媛쒖씤???묒썝怨?湲곗뼲???먯뿰?ㅻ읇寃??볦씠???щ뜡 怨듦컙???쒖븞?덉뒿?덈떎.",
+          "관람에 머무르던 야구 팬 경험을 기록하고 공유하고, 축적되는 참여형 경험으로 확장한 모바일 팬덤 프로젝트입니다. 선수를 단순한 소비 대상으로 보지 않고 경기의 흐름과 감정을 함께 만드는 경험의 주체로 설계했습니다. 경기 정보 전달 중심의 기존 야구 앱 구조에서 벗어나 개인의 응원과 기록이 자연스럽게 쌓이는 공감형 인터랙션을 제안했습니다.",
         href: "https://dugout-ruby.vercel.app/onboarding",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=7-4&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -83,7 +83,7 @@ function ProjectSection() {
         title: "ARP : Exhibition Archive App",
         category: "Product",
         summary:
-          "?꾩떆 愿??寃쏀뿕??湲곕줉?섍퀬 異뺤쟻?????덈룄濡??ㅺ퀎??紐⑤컮???꾩뭅?대툕 ???꾨줈?앺듃?낅땲?? 媛먯긽???먮쫫???뺣━?섎뒗 UI 援ъ“? ?쒓컖??由щ벉???듯빐, 媛쒖씤??愿??寃쏀뿕???먯뿰?ㅻ읇寃??뺤옣?섎룄濡?援ъ꽦?덉뒿?덈떎.",
+          "전시 관람 경험을 기록하고 축적할 수 있도록 설계한 모바일 아카이브 앱 프로젝트입니다. 감상의 흐름을 정리하는 UI 구조와 시각적 리듬을 통해 개인의 관람 경험이 자연스럽게 확장되도록 구성했습니다.",
         href: "https://www.figma.com/proto/2cRRaUsj8t5czQPOQIGZg5/ARP-APP_%EC%A0%84%EC%8B%9C%EA%B8%B0%EB%A1%9D%EC%95%B1?node-id=0-1&t=D86PP9TySDqQWFWh-1",
         secondaryHref:
           "https://www.figma.com/design/2cRRaUsj8t5czQPOQIGZg5/%EC%9C%A0%EC%88%98%EC%A7%84-%ED%8F%AC%ED%8A%B8%ED%8F%B4%EB%A6%AC%EC%98%A4?node-id=11-26711&m=dev&t=D86PP9TySDqQWFWh-1",
@@ -104,7 +104,7 @@ function ProjectSection() {
         title: "PERSONAL : Identity System",
         category: "Product",
         summary:
-          "媛쒖씤???쒕룄? ?묒뾽 ?멸퀎愿??湲곕컲?쇰줈 ?꾩씠?댄떚?곕? ?뺣┰???쇱뒪??釉뚮옖???꾨줈?앺듃?낅땲?? ?쇨????쒓컖 ?쒖뒪?쒓낵 ?ㅼ쓣 ?ㅺ퀎?? ?ㅼ뒪濡쒖쓽 諛⑺뼢?깃낵 硫붿떆吏媛 紐낇솗?섍쾶 ?꾨떖?섎룄濡?援ъ꽦?덉뒿?덈떎.",
+          "개인의 태도와 작업 세계관을 기반으로 아이덴티티를 정립한 셀프 브랜딩 프로젝트입니다. 언어적·시각적 시스템을 설계해 브랜드의 방향성과 메시지가 명확하게 전달되도록 구성했습니다.",
 
         href: "https://example.com/personal-branding",
         secondaryHref: "https://example.com/personal-branding/process",
@@ -132,7 +132,7 @@ function ProjectSection() {
 
   const handleFileOpen = (file) => setActiveFile(file);
 
-  // ??紐⑦븨
+  // 줄 모핑
   useLayoutEffect(() => {
     if (!stringPathRef.current) return;
 
@@ -177,7 +177,7 @@ function ProjectSection() {
     };
   }, [isOpen]);
 
-  // 紐⑤떖: ESC/?ㅽ겕濡??좉툑/?ъ빱??
+  // 모달: ESC/스크롤 잠금/포커스 복귀
   useLayoutEffect(() => {
     if (!activeFile) return;
 
@@ -278,7 +278,7 @@ function ProjectSection() {
                     onClick={() => handleFileOpen(file)}
                     disabled={!isOpen}
                     tabIndex={isOpen ? 0 : -1}
-                    aria-label={`${file.title} ?곸꽭 蹂닿린`}
+                    aria-label={`${file.title} 상세 보기`}
                   >
                     <span
                       className={`project-file__card ${file.cardStyle}`}
@@ -441,7 +441,7 @@ function ProjectSection() {
                       </svg>
                     </span>
                     <span className="project-modal__link-label">
-                      湲고쉷??蹂닿린
+                      기획안 보기
                     </span>
                   </a>
                 </div>
