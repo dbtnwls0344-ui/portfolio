@@ -1,0 +1,15 @@
+{
+  "name": "resume",
+  "version": "1.0.0",
+  "description": "PDF 이력서를 그대로 웹에서 보여주는 정적 뷰어입니다. 기본 파일은 `assets/resume-default.pdf`로 자동 로드되고, 다른 PDF를 업로드해 즉시 교체할 수 있습니다.",
+  "main": "app.js",
+  "scripts": {
+    "dev": "python3 -m http.server 4173",
+    "start": "npm run dev",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}

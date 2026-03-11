@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>유수진 이력서</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        display: grid;
+        grid-template-rows: auto 1fr;
+        background: #f5f7fb;
+      }
+
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 16px;
+        border-radius: 999px;
+        border: 1px solid #0e1320;
+        background: linear-gradient(135deg, #141a29 0%, #2a344c 100%);
+        color: #fff;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 600;
+        letter-spacing: 0.01em;
+        box-shadow: 0 8px 20px rgba(17, 24, 39, 0.25);
+        transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+      }
+
+      .quick-links .download-btn {
+        margin-left: auto;
+        white-space: nowrap;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 24px rgba(17, 24, 39, 0.32);
+        filter: brightness(1.04);
+      }
+
+      .download-btn:active {
+        transform: translateY(0);
+      }
+
+      .quick-links {
+        padding: 10px 14px;
+        background: #fff;
+        border-bottom: 1px solid #e6e8ee;
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+
+      .quick-links a:not(.download-btn) {
+        display: inline-flex;
+        align-items: center;
+        text-decoration: none;
+        color: #121212;
+        font-size: 13px;
+        padding: 8px 12px;
+        border: 1px solid #dde2ee;
+        border-radius: 999px;
+        background: #f8faff;
+        transition: background 0.15s ease, border-color 0.15s ease;
+      }
+
+      .quick-links a:not(.download-btn):hover {
+        background: #edf2ff;
+        border-color: #c6d4ff;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: 0;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="quick-links" aria-label="연락처 바로가기">
+      <a href="https://github.com/dbtnwls0344-ui" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a href="https://portfolio2-lilac-psi.vercel.app/" target="_blank" rel="noopener noreferrer">Portfolio</a>
+      <a href="mailto:dbtnwls0344@naver.com">Email</a>
+      <a href="tel:+821025710344">Phone</a>
+      <a href="https://www.instagram.com/ysoo__jin__b/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a class="download-btn" href="./assets/resume-default.pdf" download="유수진_이력서_자소서.pdf">이력서 다운로드</a>
+    </nav>
+
+    <iframe src="./assets/resume-default.pdf" title="유수진 이력서 PDF"></iframe>
+  </body>
+</html>
